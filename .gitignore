@@ -1,6 +1,9 @@
 # emacs temporary files
 *~
 
+# binaries
+bin/*
+
 # Prerequisites
 *.d
 

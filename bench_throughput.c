@@ -10,13 +10,14 @@
 const unsigned ITERS = 1000000000;
 const unsigned UNROLL = 1;
 const double   GHZ = 2.59;
-const int TRIES = 5;
+
+volatile int blackhole = 0;
 
 #define BFUNC_C(fname) uint32_t bench_c_ ## fname(uint32_t p, uint32_t q) { \
     (void)q;								\
     uint32_t total = p;							\
     for (unsigned i=0; i < ITERS; i++) {				\
-      total += fname(total, 8);						\
+      total += fname(i, 8);						\
     }									\
     return total;							\
   }
@@ -24,7 +25,7 @@ const int TRIES = 5;
 #define BFUNC_I(fname) uint32_t bench_i_ ## fname(uint32_t p, uint32_t q) { \
     uint32_t total = p;							\
     for (unsigned i=0; i < ITERS; i++) {				\
-      total += fname(total, q);						\
+      total += fname(i, q);						\
     }									\
     return total;							\
   }
@@ -32,7 +33,7 @@ const int TRIES = 5;
 #define BFUNC_V(fname) uint32_t bench_v_ ## fname(uint32_t p, uint32_t q) { \
     uint32_t total = p;							\
     for (unsigned i=0; i < ITERS; i++) {				\
-      total += fname(total, q);						\
+      total += fname(i, q);						\
       q = rotl1(q);							\
     }									\
     return total;							\
@@ -66,6 +67,8 @@ BPTRS(C)
 BPTRS(I)
 BPTRS(V)
 
+const int TRIES = 5;
+
 volatile uint32_t x = 123456, y = 256, sink;
 
 clock_t bench_one(bfunc_t f) {  
@@ -86,8 +89,7 @@ void bench_loop(bfunc_t f, const char *fname, const char *suffix) {
     min = r < min ? r : min;
   }
   double ns = (double)min*1000000000/CLOCKS_PER_SEC/ITERS/UNROLL;
-  if (isatty(1)) printf("\r");
-  printf("%23s%s%16.2f%10.2f\n", fname, suffix, ns, ns * GHZ);
+  printf("\r%23s%s%16.2f%10.2f\n", fname, suffix, ns, ns * GHZ);
   fflush(stdout);
 }
 

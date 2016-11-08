@@ -56,8 +56,8 @@ ALGO_DECL u64 divide_weather_64(u64 n, u64 d) {
 }
 
 ALGO_DECL u32 divide_chris_32(u32 p, u32 q) {
-  int lp=__builtin_ffsl(p);
-  int lq=__builtin_ctzl(q);
+  int lp=__builtin_ffs(p);
+  int lq=__builtin_ctz(q);
   return (p>>lq)+(lp<(lq+1)&&lp);
 
 }

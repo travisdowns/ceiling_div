@@ -2,15 +2,15 @@
 #define ALLX_H
 
 #define X_MACRO(x_func)	  \
-  x_func(divide_chris)	\
-  x_func(divide_dummy) \
   /* x_func(divide_questionc) .. fails at (0x80..., 2)	*/	\
-  x_func(divide_weather)				\
-  x_func(divide_chux) \
-  x_func(divide_user23) \
+  x_func(divide_chux)      \
+  x_func(divide_user23)    \
   x_func(divide_user23_variant) \
   x_func(divide_chrisdodd) \
-  x_func(divide_plusq)
+  x_func(divide_chris)	   \
+  x_func(divide_weather)   \
+  x_func(divide_plusq)     \
+  x_func(divide_dummy)     \
 
 #define STRING(a) #a,
 #define STRING32(a) #a "_32"

@@ -4,6 +4,9 @@
 # binaries
 bin/*
 
+# results
+results/*
+
 # Prerequisites
 *.d
 

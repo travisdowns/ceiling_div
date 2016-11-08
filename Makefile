@@ -1,5 +1,5 @@
 CFLAGS = -Wall -Wextra -O3 -march=haswell
-BINARIES = validate list bench_latency
+BINARIES = validate list bench_latency bench_throughput
 # objects are things that aren't compiled directly into executables
 OBJECTS = funcs.o bench.o
 HEADERS = $(wildcard *.h)

@@ -1,5 +1,6 @@
 #include <time.h>
 #include <stdio.h>
+#include <limits.h>
 
 #include "algos.h"
 #include "allx.h"
@@ -65,19 +66,29 @@ BPTRS(C)
 BPTRS(I)
 BPTRS(V)
 
-const bfunc_t func = 0;
+const int TRIES = 5;
 
 volatile uint32_t x = 123456, y = 256, sink;
 
-void bench_one(bfunc_t f, const char *fname, const char *suffix) {
-  printf("%23s%s", fname, suffix);
+clock_t bench_one(bfunc_t f) {  
   //sink = (*f)(x, y); /* warm cache */
   clock_t start = clock();	       
   sink = (*f)(x, y);
-  clock_t end = clock(), elapsed = end - start;
-  double ns = (double)elapsed*1000000000/CLOCKS_PER_SEC/ITERS/UNROLL;
-  printf("%16.2f %10.2f\n", ns, ns * GHZ);
+  return clock() - start;
 }
+
+void bench_loop(bfunc_t f, const char *fname, const char *suffix) {
+  unsigned long min = ULONG_MAX;
+  for (int i = 1; i <= TRIES; i++) {
+    printf("\r%23s%s           [Run  %3d...]", fname, suffix, i);
+    fflush(stdout);
+    unsigned long r = (unsigned long)bench_one(f);
+    min = r < min ? r : min;
+  }
+  double ns = (double)min*1000000000/CLOCKS_PER_SEC/ITERS/UNROLL;
+  printf("\r%23s%s%16.2f%10.2f\n", fname, suffix, ns, ns * GHZ);
+}
+
 
 void bench_index(int indexes[], bfunc_t f32[], bfunc_t f64[], const char *name) {
   printf("\n\n==============================\nBench: %s\n==============================\n", name);
@@ -85,8 +96,8 @@ void bench_index(int indexes[], bfunc_t f32[], bfunc_t f64[], const char *name) 
   for (int i=0; indexes[i] != -1; i++) {
     unsigned idx = indexes[i];
     const char *fname = algo_names[idx];
-    bench_one(f32[idx], fname, "_32");
-    bench_one(f64[idx], fname, "_64");
+    bench_loop(f32[idx], fname, "_32");
+    bench_loop(f64[idx], fname, "_64");
   }
 }
 

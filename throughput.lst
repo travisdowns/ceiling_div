@@ -1,0 +1,1523 @@
+0000000000400710 <bench_c_divide_chux_32>:
+  400710:	c5 fd 6f 0d a8 1b 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x1ba8]        # 4022c0 <algo_names+0x40>
+  400717:	00 
+  400718:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  40071c:	31 c0                	xor    eax,eax
+  40071e:	c5 fd 6f ea          	vmovdqa ymm5,ymm2
+  400722:	c5 7d 6f 05 b6 1b 00 	vmovdqa ymm8,YMMWORD PTR [rip+0x1bb6]        # 4022e0 <algo_names+0x60>
+  400729:	00 
+  40072a:	c5 fd 6f 3d ce 1b 00 	vmovdqa ymm7,YMMWORD PTR [rip+0x1bce]        # 402300 <algo_names+0x80>
+  400731:	00 
+  400732:	c5 fd 6f 35 e6 1b 00 	vmovdqa ymm6,YMMWORD PTR [rip+0x1be6]        # 402320 <algo_names+0xa0>
+  400739:	00 
+  40073a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400740:	c5 f5 db c7          	vpand  ymm0,ymm1,ymm7
+  400744:	c5 fd 76 c5          	vpcmpeqd ymm0,ymm0,ymm5
+  400748:	83 c0 01             	add    eax,0x1
+  40074b:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  40074f:	c5 e5 72 d1 03       	vpsrld ymm3,ymm1,0x3
+  400754:	c4 c1 75 fe c8       	vpaddd ymm1,ymm1,ymm8
+  400759:	c5 fd df c6          	vpandn ymm0,ymm0,ymm6
+  40075d:	c5 fd fe c3          	vpaddd ymm0,ymm0,ymm3
+  400761:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  400765:	3d 40 59 73 07       	cmp    eax,0x7735940
+  40076a:	75 d4                	jne    400740 <bench_c_divide_chux_32+0x30>
+  40076c:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  400772:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  400776:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  40077c:	c4 e3 7d 0f c2 08    	vpalignr ymm0,ymm0,ymm2,0x8
+  400782:	c5 ed fe c0          	vpaddd ymm0,ymm2,ymm0
+  400786:	c4 e3 7d 46 cc 21    	vperm2i128 ymm1,ymm0,ymm4,0x21
+  40078c:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400792:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400796:	c5 f9 7e c0          	vmovd  eax,xmm0
+  40079a:	01 f8                	add    eax,edi
+  40079c:	c5 f8 77             	vzeroupper 
+  40079f:	c3                   	ret    
+
+00000000004007a0 <bench_c_divide_chux_64>:
+  4007a0:	c5 fd 6f 1d 18 1b 00 	vmovdqa ymm3,YMMWORD PTR [rip+0x1b18]        # 4022c0 <algo_names+0x40>
+  4007a7:	00 
+  4007a8:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  4007ac:	31 c0                	xor    eax,eax
+  4007ae:	c5 fd 6f f4          	vmovdqa ymm6,ymm4
+  4007b2:	c5 7d 6f 0d 26 1b 00 	vmovdqa ymm9,YMMWORD PTR [rip+0x1b26]        # 4022e0 <algo_names+0x60>
+  4007b9:	00 
+  4007ba:	c5 7d 6f 05 3e 1b 00 	vmovdqa ymm8,YMMWORD PTR [rip+0x1b3e]        # 402300 <algo_names+0x80>
+  4007c1:	00 
+  4007c2:	c5 fd 6f 3d 56 1b 00 	vmovdqa ymm7,YMMWORD PTR [rip+0x1b56]        # 402320 <algo_names+0xa0>
+  4007c9:	00 
+  4007ca:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  4007d0:	c4 c1 65 db d0       	vpand  ymm2,ymm3,ymm8
+  4007d5:	c5 ed 76 d6          	vpcmpeqd ymm2,ymm2,ymm6
+  4007d9:	c4 e2 7d 35 c3       	vpmovzxdq ymm0,xmm3
+  4007de:	83 c0 01             	add    eax,0x1
+  4007e1:	c5 f5 73 d0 03       	vpsrlq ymm1,ymm0,0x3
+  4007e6:	c5 d1 ef ed          	vpxor  xmm5,xmm5,xmm5
+  4007ea:	c5 ed df d7          	vpandn ymm2,ymm2,ymm7
+  4007ee:	c4 e2 7d 35 c2       	vpmovzxdq ymm0,xmm2
+  4007f3:	c4 e3 7d 39 d2 01    	vextracti128 xmm2,ymm2,0x1
+  4007f9:	c4 e2 7d 35 d2       	vpmovzxdq ymm2,xmm2
+  4007fe:	c5 f5 d4 c0          	vpaddq ymm0,ymm1,ymm0
+  400802:	c4 e3 7d 39 d9 01    	vextracti128 xmm1,ymm3,0x1
+  400808:	c4 e2 7d 35 c9       	vpmovzxdq ymm1,xmm1
+  40080d:	c4 c1 65 fe d9       	vpaddd ymm3,ymm3,ymm9
+  400812:	c5 f5 73 d1 03       	vpsrlq ymm1,ymm1,0x3
+  400817:	c5 f5 d4 d2          	vpaddq ymm2,ymm1,ymm2
+  40081b:	c4 e3 7d 46 ca 20    	vperm2i128 ymm1,ymm0,ymm2,0x20
+  400821:	c4 e3 7d 46 c2 31    	vperm2i128 ymm0,ymm0,ymm2,0x31
+  400827:	c5 fd 70 c9 d8       	vpshufd ymm1,ymm1,0xd8
+  40082c:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  400831:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  400835:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  400839:	3d 40 59 73 07       	cmp    eax,0x7735940
+  40083e:	75 90                	jne    4007d0 <bench_c_divide_chux_64+0x30>
+  400840:	c4 e3 5d 46 c5 21    	vperm2i128 ymm0,ymm4,ymm5,0x21
+  400846:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  40084a:	c4 e3 5d 46 c5 21    	vperm2i128 ymm0,ymm4,ymm5,0x21
+  400850:	c4 e3 7d 0f c4 08    	vpalignr ymm0,ymm0,ymm4,0x8
+  400856:	c5 dd fe c0          	vpaddd ymm0,ymm4,ymm0
+  40085a:	c4 e3 7d 46 cd 21    	vperm2i128 ymm1,ymm0,ymm5,0x21
+  400860:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400866:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  40086a:	c5 f9 7e c0          	vmovd  eax,xmm0
+  40086e:	01 f8                	add    eax,edi
+  400870:	c5 f8 77             	vzeroupper 
+  400873:	c3                   	ret    
+  400874:	66 90                	xchg   ax,ax
+  400876:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40087d:	00 00 00 
+
+0000000000400880 <bench_c_divide_user23_32>:
+  400880:	c5 fd 6f 0d 38 1a 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x1a38]        # 4022c0 <algo_names+0x40>
+  400887:	00 
+  400888:	31 c0                	xor    eax,eax
+  40088a:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  40088e:	c5 fd 6f 2d 4a 1a 00 	vmovdqa ymm5,YMMWORD PTR [rip+0x1a4a]        # 4022e0 <algo_names+0x60>
+  400895:	00 
+  400896:	c5 fd 6f 1d 62 1a 00 	vmovdqa ymm3,YMMWORD PTR [rip+0x1a62]        # 402300 <algo_names+0x80>
+  40089d:	00 
+  40089e:	66 90                	xchg   ax,ax
+  4008a0:	c5 f5 db c3          	vpand  ymm0,ymm1,ymm3
+  4008a4:	c5 fd fe c3          	vpaddd ymm0,ymm0,ymm3
+  4008a8:	c5 dd 72 d1 03       	vpsrld ymm4,ymm1,0x3
+  4008ad:	83 c0 01             	add    eax,0x1
+  4008b0:	c5 fd 72 d0 03       	vpsrld ymm0,ymm0,0x3
+  4008b5:	c5 f5 fe cd          	vpaddd ymm1,ymm1,ymm5
+  4008b9:	c5 fd fe c4          	vpaddd ymm0,ymm0,ymm4
+  4008bd:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  4008c1:	3d 40 59 73 07       	cmp    eax,0x7735940
+  4008c6:	75 d8                	jne    4008a0 <bench_c_divide_user23_32+0x20>
+  4008c8:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  4008cc:	c4 e3 6d 46 c1 21    	vperm2i128 ymm0,ymm2,ymm1,0x21
+  4008d2:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  4008d6:	c4 e3 6d 46 c1 21    	vperm2i128 ymm0,ymm2,ymm1,0x21
+  4008dc:	c4 e3 7d 0f c2 08    	vpalignr ymm0,ymm0,ymm2,0x8
+  4008e2:	c5 ed fe c0          	vpaddd ymm0,ymm2,ymm0
+  4008e6:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  4008ec:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  4008f2:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  4008f6:	c5 f9 7e c0          	vmovd  eax,xmm0
+  4008fa:	01 f8                	add    eax,edi
+  4008fc:	c5 f8 77             	vzeroupper 
+  4008ff:	c3                   	ret    
+
+0000000000400900 <bench_c_divide_user23_64>:
+  400900:	c5 fd 6f 1d b8 19 00 	vmovdqa ymm3,YMMWORD PTR [rip+0x19b8]        # 4022c0 <algo_names+0x40>
+  400907:	00 
+  400908:	31 c0                	xor    eax,eax
+  40090a:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  40090e:	c5 fd 6f 3d ca 19 00 	vmovdqa ymm7,YMMWORD PTR [rip+0x19ca]        # 4022e0 <algo_names+0x60>
+  400915:	00 
+  400916:	c5 fd 6f 35 e2 19 00 	vmovdqa ymm6,YMMWORD PTR [rip+0x19e2]        # 402300 <algo_names+0x80>
+  40091d:	00 
+  40091e:	c5 fd 6f 2d 1a 1a 00 	vmovdqa ymm5,YMMWORD PTR [rip+0x1a1a]        # 402340 <algo_names+0xc0>
+  400925:	00 
+  400926:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40092d:	00 00 00 
+  400930:	c5 e5 db d6          	vpand  ymm2,ymm3,ymm6
+  400934:	c4 e2 7d 35 c2       	vpmovzxdq ymm0,xmm2
+  400939:	83 c0 01             	add    eax,0x1
+  40093c:	c5 fd d4 c5          	vpaddq ymm0,ymm0,ymm5
+  400940:	c5 f5 73 d0 03       	vpsrlq ymm1,ymm0,0x3
+  400945:	c4 e2 7d 35 c3       	vpmovzxdq ymm0,xmm3
+  40094a:	c5 fd 73 d0 03       	vpsrlq ymm0,ymm0,0x3
+  40094f:	c5 f5 d4 c0          	vpaddq ymm0,ymm1,ymm0
+  400953:	c4 e3 7d 39 d1 01    	vextracti128 xmm1,ymm2,0x1
+  400959:	c4 e2 7d 35 c9       	vpmovzxdq ymm1,xmm1
+  40095e:	c5 f5 d4 cd          	vpaddq ymm1,ymm1,ymm5
+  400962:	c5 ed 73 d1 03       	vpsrlq ymm2,ymm1,0x3
+  400967:	c4 e3 7d 39 d9 01    	vextracti128 xmm1,ymm3,0x1
+  40096d:	c4 e2 7d 35 c9       	vpmovzxdq ymm1,xmm1
+  400972:	c5 e5 fe df          	vpaddd ymm3,ymm3,ymm7
+  400976:	c5 f5 73 d1 03       	vpsrlq ymm1,ymm1,0x3
+  40097b:	c5 ed d4 c9          	vpaddq ymm1,ymm2,ymm1
+  40097f:	c4 e3 7d 46 d1 20    	vperm2i128 ymm2,ymm0,ymm1,0x20
+  400985:	c4 e3 7d 46 c1 31    	vperm2i128 ymm0,ymm0,ymm1,0x31
+  40098b:	c5 fd 70 ca d8       	vpshufd ymm1,ymm2,0xd8
+  400990:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  400995:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  400999:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  40099d:	3d 40 59 73 07       	cmp    eax,0x7735940
+  4009a2:	75 8c                	jne    400930 <bench_c_divide_user23_64+0x30>
+  4009a4:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  4009a8:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  4009ae:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  4009b2:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  4009b8:	c4 e3 7d 0f c4 08    	vpalignr ymm0,ymm0,ymm4,0x8
+  4009be:	c5 dd fe c0          	vpaddd ymm0,ymm4,ymm0
+  4009c2:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  4009c8:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  4009ce:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  4009d2:	c5 f9 7e c0          	vmovd  eax,xmm0
+  4009d6:	01 f8                	add    eax,edi
+  4009d8:	c5 f8 77             	vzeroupper 
+  4009db:	c3                   	ret    
+  4009dc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+
+00000000004009e0 <bench_c_divide_user23_variant_32>:
+  4009e0:	c5 fd 6f 0d d8 18 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x18d8]        # 4022c0 <algo_names+0x40>
+  4009e7:	00 
+  4009e8:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  4009ec:	31 c0                	xor    eax,eax
+  4009ee:	c5 fd 6f ea          	vmovdqa ymm5,ymm2
+  4009f2:	c5 7d 6f 05 e6 18 00 	vmovdqa ymm8,YMMWORD PTR [rip+0x18e6]        # 4022e0 <algo_names+0x60>
+  4009f9:	00 
+  4009fa:	c5 fd 6f 3d fe 18 00 	vmovdqa ymm7,YMMWORD PTR [rip+0x18fe]        # 402300 <algo_names+0x80>
+  400a01:	00 
+  400a02:	c5 fd 6f 35 16 19 00 	vmovdqa ymm6,YMMWORD PTR [rip+0x1916]        # 402320 <algo_names+0xa0>
+  400a09:	00 
+  400a0a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400a10:	c5 f5 db c7          	vpand  ymm0,ymm1,ymm7
+  400a14:	c5 fd 76 c5          	vpcmpeqd ymm0,ymm0,ymm5
+  400a18:	83 c0 01             	add    eax,0x1
+  400a1b:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  400a1f:	c5 e5 72 d1 03       	vpsrld ymm3,ymm1,0x3
+  400a24:	c4 c1 75 fe c8       	vpaddd ymm1,ymm1,ymm8
+  400a29:	c5 fd df c6          	vpandn ymm0,ymm0,ymm6
+  400a2d:	c5 fd fe c3          	vpaddd ymm0,ymm0,ymm3
+  400a31:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  400a35:	3d 40 59 73 07       	cmp    eax,0x7735940
+  400a3a:	75 d4                	jne    400a10 <bench_c_divide_user23_variant_32+0x30>
+  400a3c:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  400a42:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  400a46:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  400a4c:	c4 e3 7d 0f c2 08    	vpalignr ymm0,ymm0,ymm2,0x8
+  400a52:	c5 ed fe c0          	vpaddd ymm0,ymm2,ymm0
+  400a56:	c4 e3 7d 46 cc 21    	vperm2i128 ymm1,ymm0,ymm4,0x21
+  400a5c:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400a62:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400a66:	c5 f9 7e c0          	vmovd  eax,xmm0
+  400a6a:	01 f8                	add    eax,edi
+  400a6c:	c5 f8 77             	vzeroupper 
+  400a6f:	c3                   	ret    
+
+0000000000400a70 <bench_c_divide_user23_variant_64>:
+  400a70:	c5 fd 6f 1d 48 18 00 	vmovdqa ymm3,YMMWORD PTR [rip+0x1848]        # 4022c0 <algo_names+0x40>
+  400a77:	00 
+  400a78:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  400a7c:	31 c0                	xor    eax,eax
+  400a7e:	c5 fd 6f f4          	vmovdqa ymm6,ymm4
+  400a82:	c5 7d 6f 0d 56 18 00 	vmovdqa ymm9,YMMWORD PTR [rip+0x1856]        # 4022e0 <algo_names+0x60>
+  400a89:	00 
+  400a8a:	c5 7d 6f 05 6e 18 00 	vmovdqa ymm8,YMMWORD PTR [rip+0x186e]        # 402300 <algo_names+0x80>
+  400a91:	00 
+  400a92:	c5 fd 6f 3d 86 18 00 	vmovdqa ymm7,YMMWORD PTR [rip+0x1886]        # 402320 <algo_names+0xa0>
+  400a99:	00 
+  400a9a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400aa0:	c4 c1 65 db d0       	vpand  ymm2,ymm3,ymm8
+  400aa5:	c5 ed 76 d6          	vpcmpeqd ymm2,ymm2,ymm6
+  400aa9:	c4 e2 7d 35 c3       	vpmovzxdq ymm0,xmm3
+  400aae:	83 c0 01             	add    eax,0x1
+  400ab1:	c5 f5 73 d0 03       	vpsrlq ymm1,ymm0,0x3
+  400ab6:	c5 d1 ef ed          	vpxor  xmm5,xmm5,xmm5
+  400aba:	c5 ed df d7          	vpandn ymm2,ymm2,ymm7
+  400abe:	c4 e2 7d 35 c2       	vpmovzxdq ymm0,xmm2
+  400ac3:	c4 e3 7d 39 d2 01    	vextracti128 xmm2,ymm2,0x1
+  400ac9:	c4 e2 7d 35 d2       	vpmovzxdq ymm2,xmm2
+  400ace:	c5 f5 d4 c0          	vpaddq ymm0,ymm1,ymm0
+  400ad2:	c4 e3 7d 39 d9 01    	vextracti128 xmm1,ymm3,0x1
+  400ad8:	c4 e2 7d 35 c9       	vpmovzxdq ymm1,xmm1
+  400add:	c4 c1 65 fe d9       	vpaddd ymm3,ymm3,ymm9
+  400ae2:	c5 f5 73 d1 03       	vpsrlq ymm1,ymm1,0x3
+  400ae7:	c5 f5 d4 d2          	vpaddq ymm2,ymm1,ymm2
+  400aeb:	c4 e3 7d 46 ca 20    	vperm2i128 ymm1,ymm0,ymm2,0x20
+  400af1:	c4 e3 7d 46 c2 31    	vperm2i128 ymm0,ymm0,ymm2,0x31
+  400af7:	c5 fd 70 c9 d8       	vpshufd ymm1,ymm1,0xd8
+  400afc:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  400b01:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  400b05:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  400b09:	3d 40 59 73 07       	cmp    eax,0x7735940
+  400b0e:	75 90                	jne    400aa0 <bench_c_divide_user23_variant_64+0x30>
+  400b10:	c4 e3 5d 46 c5 21    	vperm2i128 ymm0,ymm4,ymm5,0x21
+  400b16:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  400b1a:	c4 e3 5d 46 c5 21    	vperm2i128 ymm0,ymm4,ymm5,0x21
+  400b20:	c4 e3 7d 0f c4 08    	vpalignr ymm0,ymm0,ymm4,0x8
+  400b26:	c5 dd fe c0          	vpaddd ymm0,ymm4,ymm0
+  400b2a:	c4 e3 7d 46 cd 21    	vperm2i128 ymm1,ymm0,ymm5,0x21
+  400b30:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400b36:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400b3a:	c5 f9 7e c0          	vmovd  eax,xmm0
+  400b3e:	01 f8                	add    eax,edi
+  400b40:	c5 f8 77             	vzeroupper 
+  400b43:	c3                   	ret    
+  400b44:	66 90                	xchg   ax,ax
+  400b46:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400b4d:	00 00 00 
+
+0000000000400b50 <bench_c_divide_chrisdodd_32>:
+  400b50:	89 f8                	mov    eax,edi
+  400b52:	ba 01 00 00 00       	mov    edx,0x1
+  400b57:	eb 0a                	jmp    400b63 <bench_c_divide_chrisdodd_32+0x13>
+  400b59:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  400b60:	83 c2 01             	add    edx,0x1
+  400b63:	83 fa 01             	cmp    edx,0x1
+  400b66:	74 f8                	je     400b60 <bench_c_divide_chrisdodd_32+0x10>
+  400b68:	8d 4a fe             	lea    ecx,[rdx-0x2]
+  400b6b:	c1 e9 03             	shr    ecx,0x3
+  400b6e:	8d 44 08 01          	lea    eax,[rax+rcx*1+0x1]
+  400b72:	81 fa 00 ca 9a 3b    	cmp    edx,0x3b9aca00
+  400b78:	75 e6                	jne    400b60 <bench_c_divide_chrisdodd_32+0x10>
+  400b7a:	c3                   	ret    
+  400b7b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000400b80 <bench_c_divide_chrisdodd_64>:
+  400b80:	89 f8                	mov    eax,edi
+  400b82:	be 01 00 00 00       	mov    esi,0x1
+  400b87:	31 c9                	xor    ecx,ecx
+  400b89:	eb 0c                	jmp    400b97 <bench_c_divide_chrisdodd_64+0x17>
+  400b8b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  400b90:	48 83 c1 01          	add    rcx,0x1
+  400b94:	83 c6 01             	add    esi,0x1
+  400b97:	48 85 c9             	test   rcx,rcx
+  400b9a:	74 f4                	je     400b90 <bench_c_divide_chrisdodd_64+0x10>
+  400b9c:	48 8d 51 ff          	lea    rdx,[rcx-0x1]
+  400ba0:	48 c1 ea 03          	shr    rdx,0x3
+  400ba4:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
+  400ba8:	81 fe 00 ca 9a 3b    	cmp    esi,0x3b9aca00
+  400bae:	75 e0                	jne    400b90 <bench_c_divide_chrisdodd_64+0x10>
+  400bb0:	c3                   	ret    
+  400bb1:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  400bb6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400bbd:	00 00 00 
+
+0000000000400bc0 <bench_c_divide_weather_32>:
+  400bc0:	89 f8                	mov    eax,edi
+  400bc2:	41 b8 01 00 00 00    	mov    r8d,0x1
+  400bc8:	31 c9                	xor    ecx,ecx
+  400bca:	eb 0b                	jmp    400bd7 <bench_c_divide_weather_32+0x17>
+  400bcc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400bd0:	41 83 c0 01          	add    r8d,0x1
+  400bd4:	83 c1 01             	add    ecx,0x1
+  400bd7:	89 ca                	mov    edx,ecx
+  400bd9:	c1 ea 03             	shr    edx,0x3
+  400bdc:	85 c9                	test   ecx,ecx
+  400bde:	74 1e                	je     400bfe <bench_c_divide_weather_32+0x3e>
+  400be0:	8d 71 ff             	lea    esi,[rcx-0x1]
+  400be3:	c1 ee 03             	shr    esi,0x3
+  400be6:	39 f2                	cmp    edx,esi
+  400be8:	40 0f 94 c6          	sete   sil
+  400bec:	40 0f b6 f6          	movzx  esi,sil
+  400bf0:	01 f2                	add    edx,esi
+  400bf2:	01 d0                	add    eax,edx
+  400bf4:	41 81 f8 00 ca 9a 3b 	cmp    r8d,0x3b9aca00
+  400bfb:	75 d3                	jne    400bd0 <bench_c_divide_weather_32+0x10>
+  400bfd:	c3                   	ret    
+  400bfe:	01 d0                	add    eax,edx
+  400c00:	eb ce                	jmp    400bd0 <bench_c_divide_weather_32+0x10>
+  400c02:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400c06:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400c0d:	00 00 00 
+
+0000000000400c10 <bench_c_divide_weather_64>:
+  400c10:	89 f8                	mov    eax,edi
+  400c12:	41 b8 01 00 00 00    	mov    r8d,0x1
+  400c18:	31 c9                	xor    ecx,ecx
+  400c1a:	eb 0c                	jmp    400c28 <bench_c_divide_weather_64+0x18>
+  400c1c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400c20:	48 83 c1 01          	add    rcx,0x1
+  400c24:	41 83 c0 01          	add    r8d,0x1
+  400c28:	48 89 ca             	mov    rdx,rcx
+  400c2b:	48 c1 ea 03          	shr    rdx,0x3
+  400c2f:	48 85 c9             	test   rcx,rcx
+  400c32:	74 22                	je     400c56 <bench_c_divide_weather_64+0x46>
+  400c34:	48 8d 71 ff          	lea    rsi,[rcx-0x1]
+  400c38:	48 c1 ee 03          	shr    rsi,0x3
+  400c3c:	48 39 f2             	cmp    rdx,rsi
+  400c3f:	40 0f 94 c6          	sete   sil
+  400c43:	40 0f b6 f6          	movzx  esi,sil
+  400c47:	48 01 f2             	add    rdx,rsi
+  400c4a:	01 d0                	add    eax,edx
+  400c4c:	41 81 f8 00 ca 9a 3b 	cmp    r8d,0x3b9aca00
+  400c53:	75 cb                	jne    400c20 <bench_c_divide_weather_64+0x10>
+  400c55:	c3                   	ret    
+  400c56:	01 d0                	add    eax,edx
+  400c58:	eb c6                	jmp    400c20 <bench_c_divide_weather_64+0x10>
+  400c5a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+
+0000000000400c60 <bench_c_divide_plusq_32>:
+  400c60:	c5 fd 6f 15 58 16 00 	vmovdqa ymm2,YMMWORD PTR [rip+0x1658]        # 4022c0 <algo_names+0x40>
+  400c67:	00 
+  400c68:	31 c0                	xor    eax,eax
+  400c6a:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  400c6e:	c5 fd 6f 25 6a 16 00 	vmovdqa ymm4,YMMWORD PTR [rip+0x166a]        # 4022e0 <algo_names+0x60>
+  400c75:	00 
+  400c76:	c5 fd 6f 1d 82 16 00 	vmovdqa ymm3,YMMWORD PTR [rip+0x1682]        # 402300 <algo_names+0x80>
+  400c7d:	00 
+  400c7e:	66 90                	xchg   ax,ax
+  400c80:	c5 ed fe c3          	vpaddd ymm0,ymm2,ymm3
+  400c84:	83 c0 01             	add    eax,0x1
+  400c87:	c5 ed fe d4          	vpaddd ymm2,ymm2,ymm4
+  400c8b:	c5 fd 72 d0 03       	vpsrld ymm0,ymm0,0x3
+  400c90:	c5 f5 fe c8          	vpaddd ymm1,ymm1,ymm0
+  400c94:	3d 40 59 73 07       	cmp    eax,0x7735940
+  400c99:	75 e5                	jne    400c80 <bench_c_divide_plusq_32+0x20>
+  400c9b:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  400c9f:	c4 e3 75 46 c2 21    	vperm2i128 ymm0,ymm1,ymm2,0x21
+  400ca5:	c5 f5 fe c8          	vpaddd ymm1,ymm1,ymm0
+  400ca9:	c4 e3 75 46 c2 21    	vperm2i128 ymm0,ymm1,ymm2,0x21
+  400caf:	c4 e3 7d 0f c1 08    	vpalignr ymm0,ymm0,ymm1,0x8
+  400cb5:	c5 f5 fe c0          	vpaddd ymm0,ymm1,ymm0
+  400cb9:	c4 e3 7d 46 ca 21    	vperm2i128 ymm1,ymm0,ymm2,0x21
+  400cbf:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400cc5:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400cc9:	c5 f9 7e c0          	vmovd  eax,xmm0
+  400ccd:	01 f8                	add    eax,edi
+  400ccf:	c5 f8 77             	vzeroupper 
+  400cd2:	c3                   	ret    
+  400cd3:	0f 1f 00             	nop    DWORD PTR [rax]
+  400cd6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400cdd:	00 00 00 
+
+0000000000400ce0 <bench_c_divide_plusq_64>:
+  400ce0:	c5 fd 6f 15 d8 15 00 	vmovdqa ymm2,YMMWORD PTR [rip+0x15d8]        # 4022c0 <algo_names+0x40>
+  400ce7:	00 
+  400ce8:	31 c0                	xor    eax,eax
+  400cea:	c5 e1 ef db          	vpxor  xmm3,xmm3,xmm3
+  400cee:	c5 fd 6f 2d ea 15 00 	vmovdqa ymm5,YMMWORD PTR [rip+0x15ea]        # 4022e0 <algo_names+0x60>
+  400cf5:	00 
+  400cf6:	c5 fd 6f 25 42 16 00 	vmovdqa ymm4,YMMWORD PTR [rip+0x1642]        # 402340 <algo_names+0xc0>
+  400cfd:	00 
+  400cfe:	66 90                	xchg   ax,ax
+  400d00:	c4 e2 7d 35 c2       	vpmovzxdq ymm0,xmm2
+  400d05:	c4 e3 7d 39 d1 01    	vextracti128 xmm1,ymm2,0x1
+  400d0b:	c4 e2 7d 35 c9       	vpmovzxdq ymm1,xmm1
+  400d10:	83 c0 01             	add    eax,0x1
+  400d13:	c5 fd d4 c4          	vpaddq ymm0,ymm0,ymm4
+  400d17:	c5 f5 d4 cc          	vpaddq ymm1,ymm1,ymm4
+  400d1b:	c5 f5 73 d1 03       	vpsrlq ymm1,ymm1,0x3
+  400d20:	c5 ed fe d5          	vpaddd ymm2,ymm2,ymm5
+  400d24:	c5 fd 73 d0 03       	vpsrlq ymm0,ymm0,0x3
+  400d29:	c4 e3 7d 46 f1 20    	vperm2i128 ymm6,ymm0,ymm1,0x20
+  400d2f:	c4 e3 7d 46 c1 31    	vperm2i128 ymm0,ymm0,ymm1,0x31
+  400d35:	c5 fd 70 ce d8       	vpshufd ymm1,ymm6,0xd8
+  400d3a:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  400d3f:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  400d43:	c5 e5 fe d8          	vpaddd ymm3,ymm3,ymm0
+  400d47:	3d 40 59 73 07       	cmp    eax,0x7735940
+  400d4c:	75 b2                	jne    400d00 <bench_c_divide_plusq_64+0x20>
+  400d4e:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  400d52:	c4 e3 65 46 c1 21    	vperm2i128 ymm0,ymm3,ymm1,0x21
+  400d58:	c5 e5 fe d8          	vpaddd ymm3,ymm3,ymm0
+  400d5c:	c4 e3 65 46 c1 21    	vperm2i128 ymm0,ymm3,ymm1,0x21
+  400d62:	c4 e3 7d 0f c3 08    	vpalignr ymm0,ymm0,ymm3,0x8
+  400d68:	c5 e5 fe c0          	vpaddd ymm0,ymm3,ymm0
+  400d6c:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  400d72:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400d78:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400d7c:	c5 f9 7e c0          	vmovd  eax,xmm0
+  400d80:	01 f8                	add    eax,edi
+  400d82:	c5 f8 77             	vzeroupper 
+  400d85:	c3                   	ret    
+  400d86:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400d8d:	00 00 00 
+
+0000000000400d90 <bench_c_divide_dummy_32>:
+  400d90:	c5 fd 6f 05 28 15 00 	vmovdqa ymm0,YMMWORD PTR [rip+0x1528]        # 4022c0 <algo_names+0x40>
+  400d97:	00 
+  400d98:	31 c0                	xor    eax,eax
+  400d9a:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  400d9e:	c5 fd 6f 15 3a 15 00 	vmovdqa ymm2,YMMWORD PTR [rip+0x153a]        # 4022e0 <algo_names+0x60>
+  400da5:	00 
+  400da6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400dad:	00 00 00 
+  400db0:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  400db4:	83 c0 01             	add    eax,0x1
+  400db7:	c5 f5 fe c8          	vpaddd ymm1,ymm1,ymm0
+  400dbb:	3d 40 59 73 07       	cmp    eax,0x7735940
+  400dc0:	75 ee                	jne    400db0 <bench_c_divide_dummy_32+0x20>
+  400dc2:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  400dc6:	c4 e3 75 46 c2 21    	vperm2i128 ymm0,ymm1,ymm2,0x21
+  400dcc:	c5 f5 fe c8          	vpaddd ymm1,ymm1,ymm0
+  400dd0:	c4 e3 75 46 c2 21    	vperm2i128 ymm0,ymm1,ymm2,0x21
+  400dd6:	c4 e3 7d 0f c1 08    	vpalignr ymm0,ymm0,ymm1,0x8
+  400ddc:	c5 f5 fe c0          	vpaddd ymm0,ymm1,ymm0
+  400de0:	c4 e3 7d 46 ca 21    	vperm2i128 ymm1,ymm0,ymm2,0x21
+  400de6:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400dec:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400df0:	c5 f9 7e c0          	vmovd  eax,xmm0
+  400df4:	01 f8                	add    eax,edi
+  400df6:	c5 f8 77             	vzeroupper 
+  400df9:	c3                   	ret    
+  400dfa:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+
+0000000000400e00 <bench_c_divide_dummy_64>:
+  400e00:	c5 fd 6f 1d b8 14 00 	vmovdqa ymm3,YMMWORD PTR [rip+0x14b8]        # 4022c0 <algo_names+0x40>
+  400e07:	00 
+  400e08:	31 c0                	xor    eax,eax
+  400e0a:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  400e0e:	c5 fd 6f 35 ca 14 00 	vmovdqa ymm6,YMMWORD PTR [rip+0x14ca]        # 4022e0 <algo_names+0x60>
+  400e15:	00 
+  400e16:	c5 fd 6f 2d 42 15 00 	vmovdqa ymm5,YMMWORD PTR [rip+0x1542]        # 402360 <algo_names+0xe0>
+  400e1d:	00 
+  400e1e:	66 90                	xchg   ax,ax
+  400e20:	c4 e2 7d 35 c3       	vpmovzxdq ymm0,xmm3
+  400e25:	c4 e3 7d 39 d9 01    	vextracti128 xmm1,ymm3,0x1
+  400e2b:	c4 e2 7d 35 c9       	vpmovzxdq ymm1,xmm1
+  400e30:	83 c0 01             	add    eax,0x1
+  400e33:	c5 f5 d4 cd          	vpaddq ymm1,ymm1,ymm5
+  400e37:	c5 fd d4 c5          	vpaddq ymm0,ymm0,ymm5
+  400e3b:	c4 e3 7d 46 d1 20    	vperm2i128 ymm2,ymm0,ymm1,0x20
+  400e41:	c5 e5 fe de          	vpaddd ymm3,ymm3,ymm6
+  400e45:	c4 e3 7d 46 c1 31    	vperm2i128 ymm0,ymm0,ymm1,0x31
+  400e4b:	c5 fd 70 ca d8       	vpshufd ymm1,ymm2,0xd8
+  400e50:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  400e55:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  400e59:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  400e5d:	3d 40 59 73 07       	cmp    eax,0x7735940
+  400e62:	75 bc                	jne    400e20 <bench_c_divide_dummy_64+0x20>
+  400e64:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  400e68:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  400e6e:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  400e72:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  400e78:	c4 e3 7d 0f c4 08    	vpalignr ymm0,ymm0,ymm4,0x8
+  400e7e:	c5 dd fe c0          	vpaddd ymm0,ymm4,ymm0
+  400e82:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  400e88:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400e8e:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400e92:	c5 f9 7e c0          	vmovd  eax,xmm0
+  400e96:	01 f8                	add    eax,edi
+  400e98:	c5 f8 77             	vzeroupper 
+  400e9b:	c3                   	ret    
+  400e9c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+
+0000000000400ea0 <bench_i_divide_weather_32>:
+  400ea0:	41 b9 01 00 00 00    	mov    r9d,0x1
+  400ea6:	31 c9                	xor    ecx,ecx
+  400ea8:	eb 0d                	jmp    400eb7 <bench_i_divide_weather_32+0x17>
+  400eaa:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400eb0:	41 83 c1 01          	add    r9d,0x1
+  400eb4:	83 c1 01             	add    ecx,0x1
+  400eb7:	89 c8                	mov    eax,ecx
+  400eb9:	31 d2                	xor    edx,edx
+  400ebb:	f7 f6                	div    esi
+  400ebd:	41 89 c0             	mov    r8d,eax
+  400ec0:	85 c9                	test   ecx,ecx
+  400ec2:	74 21                	je     400ee5 <bench_i_divide_weather_32+0x45>
+  400ec4:	8d 41 ff             	lea    eax,[rcx-0x1]
+  400ec7:	31 d2                	xor    edx,edx
+  400ec9:	f7 f6                	div    esi
+  400ecb:	41 8d 50 01          	lea    edx,[r8+0x1]
+  400ecf:	41 39 c0             	cmp    r8d,eax
+  400ed2:	44 0f 44 c2          	cmove  r8d,edx
+  400ed6:	44 01 c7             	add    edi,r8d
+  400ed9:	41 81 f9 00 ca 9a 3b 	cmp    r9d,0x3b9aca00
+  400ee0:	75 ce                	jne    400eb0 <bench_i_divide_weather_32+0x10>
+  400ee2:	89 f8                	mov    eax,edi
+  400ee4:	c3                   	ret    
+  400ee5:	01 c7                	add    edi,eax
+  400ee7:	eb c7                	jmp    400eb0 <bench_i_divide_weather_32+0x10>
+  400ee9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+0000000000400ef0 <bench_i_divide_weather_64>:
+  400ef0:	89 f6                	mov    esi,esi
+  400ef2:	41 b9 01 00 00 00    	mov    r9d,0x1
+  400ef8:	31 c9                	xor    ecx,ecx
+  400efa:	eb 0c                	jmp    400f08 <bench_i_divide_weather_64+0x18>
+  400efc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400f00:	48 83 c1 01          	add    rcx,0x1
+  400f04:	41 83 c1 01          	add    r9d,0x1
+  400f08:	48 89 c8             	mov    rax,rcx
+  400f0b:	31 d2                	xor    edx,edx
+  400f0d:	48 f7 f6             	div    rsi
+  400f10:	49 89 c0             	mov    r8,rax
+  400f13:	48 85 c9             	test   rcx,rcx
+  400f16:	74 23                	je     400f3b <bench_i_divide_weather_64+0x4b>
+  400f18:	48 8d 41 ff          	lea    rax,[rcx-0x1]
+  400f1c:	31 d2                	xor    edx,edx
+  400f1e:	48 f7 f6             	div    rsi
+  400f21:	49 8d 50 01          	lea    rdx,[r8+0x1]
+  400f25:	49 39 c0             	cmp    r8,rax
+  400f28:	4c 0f 44 c2          	cmove  r8,rdx
+  400f2c:	44 01 c7             	add    edi,r8d
+  400f2f:	41 81 f9 00 ca 9a 3b 	cmp    r9d,0x3b9aca00
+  400f36:	75 c8                	jne    400f00 <bench_i_divide_weather_64+0x10>
+  400f38:	89 f8                	mov    eax,edi
+  400f3a:	c3                   	ret    
+  400f3b:	01 c7                	add    edi,eax
+  400f3d:	eb c1                	jmp    400f00 <bench_i_divide_weather_64+0x10>
+  400f3f:	90                   	nop
+
+0000000000400f40 <bench_i_divide_dummy_64>:
+  400f40:	c5 f9 6e de          	vmovd  xmm3,esi
+  400f44:	31 c0                	xor    eax,eax
+  400f46:	c5 f9 ef c0          	vpxor  xmm0,xmm0,xmm0
+  400f4a:	c5 fd 6f 0d 6e 13 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x136e]        # 4022c0 <algo_names+0x40>
+  400f51:	00 
+  400f52:	c5 fd 6f 25 86 13 00 	vmovdqa ymm4,YMMWORD PTR [rip+0x1386]        # 4022e0 <algo_names+0x60>
+  400f59:	00 
+  400f5a:	c4 e2 7d 58 db       	vpbroadcastd ymm3,xmm3
+  400f5f:	90                   	nop
+  400f60:	c5 e5 fe d1          	vpaddd ymm2,ymm3,ymm1
+  400f64:	83 c0 01             	add    eax,0x1
+  400f67:	c5 f5 fe cc          	vpaddd ymm1,ymm1,ymm4
+  400f6b:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  400f6f:	3d 40 59 73 07       	cmp    eax,0x7735940
+  400f74:	75 ea                	jne    400f60 <bench_i_divide_dummy_64+0x20>
+  400f76:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  400f7a:	c4 e3 7d 46 d1 21    	vperm2i128 ymm2,ymm0,ymm1,0x21
+  400f80:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  400f84:	c4 e3 7d 46 d1 21    	vperm2i128 ymm2,ymm0,ymm1,0x21
+  400f8a:	c4 e3 6d 0f d0 08    	vpalignr ymm2,ymm2,ymm0,0x8
+  400f90:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  400f94:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  400f9a:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  400fa0:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  400fa4:	c5 f9 7e c0          	vmovd  eax,xmm0
+  400fa8:	01 f8                	add    eax,edi
+  400faa:	c5 f8 77             	vzeroupper 
+  400fad:	c3                   	ret    
+  400fae:	66 90                	xchg   ax,ax
+
+0000000000400fb0 <bench_v_divide_weather_32>:
+  400fb0:	41 b9 01 00 00 00    	mov    r9d,0x1
+  400fb6:	31 c9                	xor    ecx,ecx
+  400fb8:	eb 0d                	jmp    400fc7 <bench_v_divide_weather_32+0x17>
+  400fba:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400fc0:	41 83 c1 01          	add    r9d,0x1
+  400fc4:	83 c1 01             	add    ecx,0x1
+  400fc7:	89 c8                	mov    eax,ecx
+  400fc9:	31 d2                	xor    edx,edx
+  400fcb:	f7 f6                	div    esi
+  400fcd:	41 89 c0             	mov    r8d,eax
+  400fd0:	85 c9                	test   ecx,ecx
+  400fd2:	74 27                	je     400ffb <bench_v_divide_weather_32+0x4b>
+  400fd4:	8d 41 ff             	lea    eax,[rcx-0x1]
+  400fd7:	31 d2                	xor    edx,edx
+  400fd9:	f7 f6                	div    esi
+  400fdb:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400fe1:	41 8d 50 01          	lea    edx,[r8+0x1]
+  400fe5:	41 39 c0             	cmp    r8d,eax
+  400fe8:	44 0f 44 c2          	cmove  r8d,edx
+  400fec:	44 01 c7             	add    edi,r8d
+  400fef:	41 81 f9 00 ca 9a 3b 	cmp    r9d,0x3b9aca00
+  400ff6:	75 c8                	jne    400fc0 <bench_v_divide_weather_32+0x10>
+  400ff8:	89 f8                	mov    eax,edi
+  400ffa:	c3                   	ret    
+  400ffb:	01 c7                	add    edi,eax
+  400ffd:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401003:	eb bb                	jmp    400fc0 <bench_v_divide_weather_32+0x10>
+  401005:	90                   	nop
+  401006:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40100d:	00 00 00 
+
+0000000000401010 <bench_v_divide_weather_64>:
+  401010:	41 ba 01 00 00 00    	mov    r10d,0x1
+  401016:	31 c9                	xor    ecx,ecx
+  401018:	eb 0e                	jmp    401028 <bench_v_divide_weather_64+0x18>
+  40101a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  401020:	48 83 c1 01          	add    rcx,0x1
+  401024:	41 83 c2 01          	add    r10d,0x1
+  401028:	41 89 f0             	mov    r8d,esi
+  40102b:	48 89 c8             	mov    rax,rcx
+  40102e:	31 d2                	xor    edx,edx
+  401030:	49 f7 f0             	div    r8
+  401033:	49 89 c1             	mov    r9,rax
+  401036:	48 85 c9             	test   rcx,rcx
+  401039:	74 29                	je     401064 <bench_v_divide_weather_64+0x54>
+  40103b:	48 8d 41 ff          	lea    rax,[rcx-0x1]
+  40103f:	31 d2                	xor    edx,edx
+  401041:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401047:	49 f7 f0             	div    r8
+  40104a:	49 8d 51 01          	lea    rdx,[r9+0x1]
+  40104e:	49 39 c1             	cmp    r9,rax
+  401051:	4c 0f 44 ca          	cmove  r9,rdx
+  401055:	44 01 cf             	add    edi,r9d
+  401058:	41 81 fa 00 ca 9a 3b 	cmp    r10d,0x3b9aca00
+  40105f:	75 bf                	jne    401020 <bench_v_divide_weather_64+0x10>
+  401061:	89 f8                	mov    eax,edi
+  401063:	c3                   	ret    
+  401064:	01 c7                	add    edi,eax
+  401066:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40106c:	eb b2                	jmp    401020 <bench_v_divide_weather_64+0x10>
+  40106e:	66 90                	xchg   ax,ax
+
+0000000000401070 <bench_v_divide_dummy_64>:
+  401070:	89 f8                	mov    eax,edi
+  401072:	31 d2                	xor    edx,edx
+  401074:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  401078:	8d 0c 16             	lea    ecx,[rsi+rdx*1]
+  40107b:	83 c2 01             	add    edx,0x1
+  40107e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401084:	01 c8                	add    eax,ecx
+  401086:	81 fa 00 ca 9a 3b    	cmp    edx,0x3b9aca00
+  40108c:	75 ea                	jne    401078 <bench_v_divide_dummy_64+0x8>
+  40108e:	c3                   	ret    
+  40108f:	90                   	nop
+
+0000000000401090 <bench_i_divide_chux_32>:
+  401090:	8d 46 ff             	lea    eax,[rsi-0x1]
+  401093:	0f bd d6             	bsr    edx,esi
+  401096:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  40109a:	c5 fd 6f 0d 1e 12 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x121e]        # 4022c0 <algo_names+0x40>
+  4010a1:	00 
+  4010a2:	c5 f9 6e f0          	vmovd  xmm6,eax
+  4010a6:	c5 f9 6e ea          	vmovd  xmm5,edx
+  4010aa:	31 c0                	xor    eax,eax
+  4010ac:	c5 7d 6f 0d 2c 12 00 	vmovdqa ymm9,YMMWORD PTR [rip+0x122c]        # 4022e0 <algo_names+0x60>
+  4010b3:	00 
+  4010b4:	c5 7d 6f 05 64 12 00 	vmovdqa ymm8,YMMWORD PTR [rip+0x1264]        # 402320 <algo_names+0xa0>
+  4010bb:	00 
+  4010bc:	c4 e2 7d 58 f6       	vpbroadcastd ymm6,xmm6
+  4010c1:	c5 fd 6f fa          	vmovdqa ymm7,ymm2
+  4010c5:	0f 1f 00             	nop    DWORD PTR [rax]
+  4010c8:	c5 cd db c1          	vpand  ymm0,ymm6,ymm1
+  4010cc:	c5 fd 76 c7          	vpcmpeqd ymm0,ymm0,ymm7
+  4010d0:	83 c0 01             	add    eax,0x1
+  4010d3:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  4010d7:	c5 f5 d2 dd          	vpsrld ymm3,ymm1,xmm5
+  4010db:	c4 c1 75 fe c9       	vpaddd ymm1,ymm1,ymm9
+  4010e0:	c4 c1 7d df c0       	vpandn ymm0,ymm0,ymm8
+  4010e5:	c5 fd fe c3          	vpaddd ymm0,ymm0,ymm3
+  4010e9:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  4010ed:	3d 40 59 73 07       	cmp    eax,0x7735940
+  4010f2:	75 d4                	jne    4010c8 <bench_i_divide_chux_32+0x38>
+  4010f4:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  4010fa:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  4010fe:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  401104:	c4 e3 7d 0f c2 08    	vpalignr ymm0,ymm0,ymm2,0x8
+  40110a:	c5 ed fe c0          	vpaddd ymm0,ymm2,ymm0
+  40110e:	c4 e3 7d 46 cc 21    	vperm2i128 ymm1,ymm0,ymm4,0x21
+  401114:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  40111a:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  40111e:	c5 f9 7e c0          	vmovd  eax,xmm0
+  401122:	01 f8                	add    eax,edi
+  401124:	c5 f8 77             	vzeroupper 
+  401127:	c3                   	ret    
+  401128:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  40112f:	00 
+
+0000000000401130 <bench_i_divide_user23_32>:
+  401130:	c5 fd 6f 0d 88 11 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x1188]        # 4022c0 <algo_names+0x40>
+  401137:	00 
+  401138:	0f bd c6             	bsr    eax,esi
+  40113b:	83 ee 01             	sub    esi,0x1
+  40113e:	c5 e1 ef db          	vpxor  xmm3,xmm3,xmm3
+  401142:	c5 f9 6e d6          	vmovd  xmm2,esi
+  401146:	c5 f9 6e e0          	vmovd  xmm4,eax
+  40114a:	31 c0                	xor    eax,eax
+  40114c:	c5 fd 6f 35 8c 11 00 	vmovdqa ymm6,YMMWORD PTR [rip+0x118c]        # 4022e0 <algo_names+0x60>
+  401153:	00 
+  401154:	c4 e2 7d 58 d2       	vpbroadcastd ymm2,xmm2
+  401159:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  401160:	c5 ed db c1          	vpand  ymm0,ymm2,ymm1
+  401164:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  401168:	c5 f5 d2 ec          	vpsrld ymm5,ymm1,xmm4
+  40116c:	83 c0 01             	add    eax,0x1
+  40116f:	c5 fd d2 c4          	vpsrld ymm0,ymm0,xmm4
+  401173:	c5 f5 fe ce          	vpaddd ymm1,ymm1,ymm6
+  401177:	c5 fd fe c5          	vpaddd ymm0,ymm0,ymm5
+  40117b:	c5 e5 fe d8          	vpaddd ymm3,ymm3,ymm0
+  40117f:	3d 40 59 73 07       	cmp    eax,0x7735940
+  401184:	75 da                	jne    401160 <bench_i_divide_user23_32+0x30>
+  401186:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  40118a:	c4 e3 65 46 c1 21    	vperm2i128 ymm0,ymm3,ymm1,0x21
+  401190:	c5 fd fe db          	vpaddd ymm3,ymm0,ymm3
+  401194:	c4 e3 65 46 c1 21    	vperm2i128 ymm0,ymm3,ymm1,0x21
+  40119a:	c4 e3 7d 0f c3 08    	vpalignr ymm0,ymm0,ymm3,0x8
+  4011a0:	c5 e5 fe c0          	vpaddd ymm0,ymm3,ymm0
+  4011a4:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  4011aa:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  4011b0:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  4011b4:	c5 f9 7e c0          	vmovd  eax,xmm0
+  4011b8:	01 f8                	add    eax,edi
+  4011ba:	c5 f8 77             	vzeroupper 
+  4011bd:	c3                   	ret    
+  4011be:	66 90                	xchg   ax,ax
+
+00000000004011c0 <bench_i_divide_user23_variant_32>:
+  4011c0:	c5 fd 6f 0d f8 10 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x10f8]        # 4022c0 <algo_names+0x40>
+  4011c7:	00 
+  4011c8:	0f bd c6             	bsr    eax,esi
+  4011cb:	83 ee 01             	sub    esi,0x1
+  4011ce:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  4011d2:	c5 f9 6e ee          	vmovd  xmm5,esi
+  4011d6:	c5 79 6e c8          	vmovd  xmm9,eax
+  4011da:	c5 fd 6f f2          	vmovdqa ymm6,ymm2
+  4011de:	c5 7d 6f 05 fa 10 00 	vmovdqa ymm8,YMMWORD PTR [rip+0x10fa]        # 4022e0 <algo_names+0x60>
+  4011e5:	00 
+  4011e6:	c5 fd 6f 3d 32 11 00 	vmovdqa ymm7,YMMWORD PTR [rip+0x1132]        # 402320 <algo_names+0xa0>
+  4011ed:	00 
+  4011ee:	c4 e2 7d 58 ed       	vpbroadcastd ymm5,xmm5
+  4011f3:	31 c0                	xor    eax,eax
+  4011f5:	0f 1f 00             	nop    DWORD PTR [rax]
+  4011f8:	c5 d5 db c1          	vpand  ymm0,ymm5,ymm1
+  4011fc:	c5 fd 76 c6          	vpcmpeqd ymm0,ymm0,ymm6
+  401200:	83 c0 01             	add    eax,0x1
+  401203:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  401207:	c4 c1 75 d2 d9       	vpsrld ymm3,ymm1,xmm9
+  40120c:	c4 c1 75 fe c8       	vpaddd ymm1,ymm1,ymm8
+  401211:	c5 fd df c7          	vpandn ymm0,ymm0,ymm7
+  401215:	c5 fd fe c3          	vpaddd ymm0,ymm0,ymm3
+  401219:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  40121d:	3d 40 59 73 07       	cmp    eax,0x7735940
+  401222:	75 d4                	jne    4011f8 <bench_i_divide_user23_variant_32+0x38>
+  401224:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  40122a:	c5 ed fe d0          	vpaddd ymm2,ymm2,ymm0
+  40122e:	c4 e3 6d 46 c4 21    	vperm2i128 ymm0,ymm2,ymm4,0x21
+  401234:	c4 e3 7d 0f c2 08    	vpalignr ymm0,ymm0,ymm2,0x8
+  40123a:	c5 ed fe c0          	vpaddd ymm0,ymm2,ymm0
+  40123e:	c4 e3 7d 46 cc 21    	vperm2i128 ymm1,ymm0,ymm4,0x21
+  401244:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  40124a:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  40124e:	c5 f9 7e c0          	vmovd  eax,xmm0
+  401252:	01 f8                	add    eax,edi
+  401254:	c5 f8 77             	vzeroupper 
+  401257:	c3                   	ret    
+  401258:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  40125f:	00 
+
+0000000000401260 <bench_i_divide_user23_variant_64>:
+  401260:	c5 fd 6f 1d 58 10 00 	vmovdqa ymm3,YMMWORD PTR [rip+0x1058]        # 4022c0 <algo_names+0x40>
+  401267:	00 
+  401268:	0f bd c6             	bsr    eax,esi
+  40126b:	c5 c9 ef f6          	vpxor  xmm6,xmm6,xmm6
+  40126f:	c5 7d 6f 05 69 10 00 	vmovdqa ymm8,YMMWORD PTR [rip+0x1069]        # 4022e0 <algo_names+0x60>
+  401276:	00 
+  401277:	c5 79 6e d0          	vmovd  xmm10,eax
+  40127b:	89 f0                	mov    eax,esi
+  40127d:	c5 fd 6f 3d fb 10 00 	vmovdqa ymm7,YMMWORD PTR [rip+0x10fb]        # 402380 <algo_names+0x100>
+  401284:	00 
+  401285:	48 83 e8 01          	sub    rax,0x1
+  401289:	c4 e1 f9 6e e0       	vmovq  xmm4,rax
+  40128e:	31 c0                	xor    eax,eax
+  401290:	c4 e2 7d 59 ec       	vpbroadcastq ymm5,xmm4
+  401295:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  401299:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  4012a0:	c4 e2 7d 35 c3       	vpmovzxdq ymm0,xmm3
+  4012a5:	c4 c3 7d 39 d9 01    	vextracti128 xmm9,ymm3,0x1
+  4012ab:	c4 42 7d 35 c9       	vpmovzxdq ymm9,xmm9
+  4012b0:	83 c0 01             	add    eax,0x1
+  4012b3:	c5 d5 db c8          	vpand  ymm1,ymm5,ymm0
+  4012b7:	c4 e2 75 29 ce       	vpcmpeqq ymm1,ymm1,ymm6
+  4012bc:	c4 c1 65 fe d8       	vpaddd ymm3,ymm3,ymm8
+  4012c1:	c4 c1 7d d3 c2       	vpsrlq ymm0,ymm0,xmm10
+  4012c6:	c5 f5 df cf          	vpandn ymm1,ymm1,ymm7
+  4012ca:	c5 f5 d4 c0          	vpaddq ymm0,ymm1,ymm0
+  4012ce:	c4 c1 55 db c9       	vpand  ymm1,ymm5,ymm9
+  4012d3:	c4 e2 75 29 ce       	vpcmpeqq ymm1,ymm1,ymm6
+  4012d8:	c5 f5 df d7          	vpandn ymm2,ymm1,ymm7
+  4012dc:	c4 c1 35 d3 ca       	vpsrlq ymm1,ymm9,xmm10
+  4012e1:	c5 ed d4 c9          	vpaddq ymm1,ymm2,ymm1
+  4012e5:	c4 e3 7d 46 d1 20    	vperm2i128 ymm2,ymm0,ymm1,0x20
+  4012eb:	c4 e3 7d 46 c1 31    	vperm2i128 ymm0,ymm0,ymm1,0x31
+  4012f1:	c5 fd 70 ca d8       	vpshufd ymm1,ymm2,0xd8
+  4012f6:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  4012fb:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  4012ff:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  401303:	3d 40 59 73 07       	cmp    eax,0x7735940
+  401308:	75 96                	jne    4012a0 <bench_i_divide_user23_variant_64+0x40>
+  40130a:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  40130e:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  401314:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  401318:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  40131e:	c4 e3 7d 0f c4 08    	vpalignr ymm0,ymm0,ymm4,0x8
+  401324:	c5 dd fe c0          	vpaddd ymm0,ymm4,ymm0
+  401328:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  40132e:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  401334:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  401338:	c5 f9 7e c0          	vmovd  eax,xmm0
+  40133c:	01 f8                	add    eax,edi
+  40133e:	c5 f8 77             	vzeroupper 
+  401341:	c3                   	ret    
+  401342:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  401346:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40134d:	00 00 00 
+
+0000000000401350 <bench_i_divide_chrisdodd_32>:
+  401350:	89 f8                	mov    eax,edi
+  401352:	0f bd f6             	bsr    esi,esi
+  401355:	ba 01 00 00 00       	mov    edx,0x1
+  40135a:	eb 07                	jmp    401363 <bench_i_divide_chrisdodd_32+0x13>
+  40135c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  401360:	83 c2 01             	add    edx,0x1
+  401363:	83 fa 01             	cmp    edx,0x1
+  401366:	74 f8                	je     401360 <bench_i_divide_chrisdodd_32+0x10>
+  401368:	8d 4a fe             	lea    ecx,[rdx-0x2]
+  40136b:	c4 e2 4b f7 c9       	shrx   ecx,ecx,esi
+  401370:	8d 44 08 01          	lea    eax,[rax+rcx*1+0x1]
+  401374:	81 fa 00 ca 9a 3b    	cmp    edx,0x3b9aca00
+  40137a:	75 e4                	jne    401360 <bench_i_divide_chrisdodd_32+0x10>
+  40137c:	c3                   	ret    
+  40137d:	0f 1f 00             	nop    DWORD PTR [rax]
+
+0000000000401380 <bench_i_divide_plusq_32>:
+  401380:	c5 fd 6f 15 38 0f 00 	vmovdqa ymm2,YMMWORD PTR [rip+0xf38]        # 4022c0 <algo_names+0x40>
+  401387:	00 
+  401388:	0f bd c6             	bsr    eax,esi
+  40138b:	83 ee 01             	sub    esi,0x1
+  40138e:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  401392:	c5 f9 6e de          	vmovd  xmm3,esi
+  401396:	c5 f9 6e e8          	vmovd  xmm5,eax
+  40139a:	31 c0                	xor    eax,eax
+  40139c:	c5 fd 6f 25 3c 0f 00 	vmovdqa ymm4,YMMWORD PTR [rip+0xf3c]        # 4022e0 <algo_names+0x60>
+  4013a3:	00 
+  4013a4:	c4 e2 7d 58 db       	vpbroadcastd ymm3,xmm3
+  4013a9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  4013b0:	c5 e5 fe c2          	vpaddd ymm0,ymm3,ymm2
+  4013b4:	83 c0 01             	add    eax,0x1
+  4013b7:	c5 ed fe d4          	vpaddd ymm2,ymm2,ymm4
+  4013bb:	c5 fd d2 c5          	vpsrld ymm0,ymm0,xmm5
+  4013bf:	c5 f5 fe c8          	vpaddd ymm1,ymm1,ymm0
+  4013c3:	3d 40 59 73 07       	cmp    eax,0x7735940
+  4013c8:	75 e6                	jne    4013b0 <bench_i_divide_plusq_32+0x30>
+  4013ca:	c5 e9 ef d2          	vpxor  xmm2,xmm2,xmm2
+  4013ce:	c4 e3 75 46 c2 21    	vperm2i128 ymm0,ymm1,ymm2,0x21
+  4013d4:	c5 f5 fe c8          	vpaddd ymm1,ymm1,ymm0
+  4013d8:	c4 e3 75 46 c2 21    	vperm2i128 ymm0,ymm1,ymm2,0x21
+  4013de:	c4 e3 7d 0f c1 08    	vpalignr ymm0,ymm0,ymm1,0x8
+  4013e4:	c5 f5 fe c0          	vpaddd ymm0,ymm1,ymm0
+  4013e8:	c4 e3 7d 46 ca 21    	vperm2i128 ymm1,ymm0,ymm2,0x21
+  4013ee:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  4013f4:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  4013f8:	c5 f9 7e c0          	vmovd  eax,xmm0
+  4013fc:	01 f8                	add    eax,edi
+  4013fe:	c5 f8 77             	vzeroupper 
+  401401:	c3                   	ret    
+  401402:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  401406:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40140d:	00 00 00 
+
+0000000000401410 <bench_v_divide_chux_32>:
+  401410:	89 f8                	mov    eax,edi
+  401412:	31 c9                	xor    ecx,ecx
+  401414:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  40141a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  401420:	8d 7e ff             	lea    edi,[rsi-0x1]
+  401423:	31 d2                	xor    edx,edx
+  401425:	45 89 c1             	mov    r9d,r8d
+  401428:	f3 0f bd d6          	lzcnt  edx,esi
+  40142c:	85 cf                	test   edi,ecx
+  40142e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401434:	40 0f 95 c7          	setne  dil
+  401438:	41 29 d1             	sub    r9d,edx
+  40143b:	40 0f b6 ff          	movzx  edi,dil
+  40143f:	c4 e2 33 f7 d1       	shrx   edx,ecx,r9d
+  401444:	83 c1 01             	add    ecx,0x1
+  401447:	01 fa                	add    edx,edi
+  401449:	01 d0                	add    eax,edx
+  40144b:	81 f9 00 ca 9a 3b    	cmp    ecx,0x3b9aca00
+  401451:	75 cd                	jne    401420 <bench_v_divide_chux_32+0x10>
+  401453:	c3                   	ret    
+  401454:	66 90                	xchg   ax,ax
+  401456:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40145d:	00 00 00 
+
+0000000000401460 <bench_v_divide_user23_32>:
+  401460:	89 f8                	mov    eax,edi
+  401462:	45 31 c0             	xor    r8d,r8d
+  401465:	41 b9 1f 00 00 00    	mov    r9d,0x1f
+  40146b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  401470:	8d 4e ff             	lea    ecx,[rsi-0x1]
+  401473:	31 d2                	xor    edx,edx
+  401475:	44 89 cf             	mov    edi,r9d
+  401478:	f3 0f bd d6          	lzcnt  edx,esi
+  40147c:	29 d7                	sub    edi,edx
+  40147e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401484:	89 fa                	mov    edx,edi
+  401486:	89 cf                	mov    edi,ecx
+  401488:	44 21 c7             	and    edi,r8d
+  40148b:	01 f9                	add    ecx,edi
+  40148d:	c4 e2 6b f7 c9       	shrx   ecx,ecx,edx
+  401492:	c4 c2 6b f7 d0       	shrx   edx,r8d,edx
+  401497:	41 83 c0 01          	add    r8d,0x1
+  40149b:	01 ca                	add    edx,ecx
+  40149d:	01 d0                	add    eax,edx
+  40149f:	41 81 f8 00 ca 9a 3b 	cmp    r8d,0x3b9aca00
+  4014a6:	75 c8                	jne    401470 <bench_v_divide_user23_32+0x10>
+  4014a8:	c3                   	ret    
+  4014a9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+00000000004014b0 <bench_v_divide_user23_variant_32>:
+  4014b0:	89 f8                	mov    eax,edi
+  4014b2:	31 c9                	xor    ecx,ecx
+  4014b4:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  4014ba:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  4014c0:	8d 7e ff             	lea    edi,[rsi-0x1]
+  4014c3:	31 d2                	xor    edx,edx
+  4014c5:	45 89 c1             	mov    r9d,r8d
+  4014c8:	f3 0f bd d6          	lzcnt  edx,esi
+  4014cc:	85 cf                	test   edi,ecx
+  4014ce:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4014d4:	40 0f 95 c7          	setne  dil
+  4014d8:	41 29 d1             	sub    r9d,edx
+  4014db:	40 0f b6 ff          	movzx  edi,dil
+  4014df:	c4 e2 33 f7 d1       	shrx   edx,ecx,r9d
+  4014e4:	83 c1 01             	add    ecx,0x1
+  4014e7:	01 fa                	add    edx,edi
+  4014e9:	01 d0                	add    eax,edx
+  4014eb:	81 f9 00 ca 9a 3b    	cmp    ecx,0x3b9aca00
+  4014f1:	75 cd                	jne    4014c0 <bench_v_divide_user23_variant_32+0x10>
+  4014f3:	c3                   	ret    
+  4014f4:	66 90                	xchg   ax,ax
+  4014f6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  4014fd:	00 00 00 
+
+0000000000401500 <bench_v_divide_user23_variant_64>:
+  401500:	89 f8                	mov    eax,edi
+  401502:	31 c9                	xor    ecx,ecx
+  401504:	41 b9 1f 00 00 00    	mov    r9d,0x1f
+  40150a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  401510:	89 f2                	mov    edx,esi
+  401512:	45 31 c0             	xor    r8d,r8d
+  401515:	31 ff                	xor    edi,edi
+  401517:	48 83 ea 01          	sub    rdx,0x1
+  40151b:	f3 44 0f bd c6       	lzcnt  r8d,esi
+  401520:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401526:	48 85 ca             	test   rdx,rcx
+  401529:	44 89 ca             	mov    edx,r9d
+  40152c:	40 0f 95 c7          	setne  dil
+  401530:	44 29 c2             	sub    edx,r8d
+  401533:	c4 e2 eb f7 d1       	shrx   rdx,rcx,rdx
+  401538:	48 83 c1 01          	add    rcx,0x1
+  40153c:	48 01 fa             	add    rdx,rdi
+  40153f:	01 d0                	add    eax,edx
+  401541:	48 81 f9 00 ca 9a 3b 	cmp    rcx,0x3b9aca00
+  401548:	75 c6                	jne    401510 <bench_v_divide_user23_variant_64+0x10>
+  40154a:	c3                   	ret    
+  40154b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000401550 <bench_v_divide_chrisdodd_32>:
+  401550:	89 f8                	mov    eax,edi
+  401552:	ba 01 00 00 00       	mov    edx,0x1
+  401557:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  40155d:	eb 04                	jmp    401563 <bench_v_divide_chrisdodd_32+0x13>
+  40155f:	90                   	nop
+  401560:	83 c2 01             	add    edx,0x1
+  401563:	31 c9                	xor    ecx,ecx
+  401565:	44 89 c7             	mov    edi,r8d
+  401568:	f3 0f bd ce          	lzcnt  ecx,esi
+  40156c:	29 cf                	sub    edi,ecx
+  40156e:	83 fa 01             	cmp    edx,0x1
+  401571:	74 1b                	je     40158e <bench_v_divide_chrisdodd_32+0x3e>
+  401573:	8d 4a fe             	lea    ecx,[rdx-0x2]
+  401576:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40157c:	c4 e2 43 f7 c9       	shrx   ecx,ecx,edi
+  401581:	8d 44 08 01          	lea    eax,[rax+rcx*1+0x1]
+  401585:	81 fa 00 ca 9a 3b    	cmp    edx,0x3b9aca00
+  40158b:	75 d3                	jne    401560 <bench_v_divide_chrisdodd_32+0x10>
+  40158d:	c3                   	ret    
+  40158e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401594:	eb ca                	jmp    401560 <bench_v_divide_chrisdodd_32+0x10>
+  401596:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40159d:	00 00 00 
+
+00000000004015a0 <bench_v_divide_plusq_32>:
+  4015a0:	89 f8                	mov    eax,edi
+  4015a2:	31 d2                	xor    edx,edx
+  4015a4:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  4015aa:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  4015b0:	8d 4c 32 ff          	lea    ecx,[rdx+rsi*1-0x1]
+  4015b4:	31 ff                	xor    edi,edi
+  4015b6:	45 89 c1             	mov    r9d,r8d
+  4015b9:	f3 0f bd fe          	lzcnt  edi,esi
+  4015bd:	83 c2 01             	add    edx,0x1
+  4015c0:	41 29 f9             	sub    r9d,edi
+  4015c3:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4015c9:	c4 e2 33 f7 c9       	shrx   ecx,ecx,r9d
+  4015ce:	01 c8                	add    eax,ecx
+  4015d0:	81 fa 00 ca 9a 3b    	cmp    edx,0x3b9aca00
+  4015d6:	75 d8                	jne    4015b0 <bench_v_divide_plusq_32+0x10>
+  4015d8:	c3                   	ret    
+  4015d9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+00000000004015e0 <bench_i_divide_chux_64>:
+  4015e0:	c5 fd 6f 1d d8 0c 00 	vmovdqa ymm3,YMMWORD PTR [rip+0xcd8]        # 4022c0 <algo_names+0x40>
+  4015e7:	00 
+  4015e8:	89 f0                	mov    eax,esi
+  4015ea:	c5 c9 ef f6          	vpxor  xmm6,xmm6,xmm6
+  4015ee:	c5 7d 6f 05 ea 0c 00 	vmovdqa ymm8,YMMWORD PTR [rip+0xcea]        # 4022e0 <algo_names+0x60>
+  4015f5:	00 
+  4015f6:	48 8d 50 ff          	lea    rdx,[rax-0x1]
+  4015fa:	48 0f bd c0          	bsr    rax,rax
+  4015fe:	c5 fd 6f 3d 7a 0d 00 	vmovdqa ymm7,YMMWORD PTR [rip+0xd7a]        # 402380 <algo_names+0x100>
+  401605:	00 
+  401606:	c4 e1 f9 6e e2       	vmovq  xmm4,rdx
+  40160b:	c5 79 6e d0          	vmovd  xmm10,eax
+  40160f:	31 c0                	xor    eax,eax
+  401611:	c4 e2 7d 59 ec       	vpbroadcastq ymm5,xmm4
+  401616:	c5 d9 ef e4          	vpxor  xmm4,xmm4,xmm4
+  40161a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  401620:	c4 e2 7d 35 c3       	vpmovzxdq ymm0,xmm3
+  401625:	c4 c3 7d 39 d9 01    	vextracti128 xmm9,ymm3,0x1
+  40162b:	c4 42 7d 35 c9       	vpmovzxdq ymm9,xmm9
+  401630:	83 c0 01             	add    eax,0x1
+  401633:	c5 d5 db c8          	vpand  ymm1,ymm5,ymm0
+  401637:	c4 e2 75 29 ce       	vpcmpeqq ymm1,ymm1,ymm6
+  40163c:	c4 c1 65 fe d8       	vpaddd ymm3,ymm3,ymm8
+  401641:	c4 c1 7d d3 c2       	vpsrlq ymm0,ymm0,xmm10
+  401646:	c5 f5 df cf          	vpandn ymm1,ymm1,ymm7
+  40164a:	c5 f5 d4 c0          	vpaddq ymm0,ymm1,ymm0
+  40164e:	c4 c1 55 db c9       	vpand  ymm1,ymm5,ymm9
+  401653:	c4 e2 75 29 ce       	vpcmpeqq ymm1,ymm1,ymm6
+  401658:	c5 f5 df d7          	vpandn ymm2,ymm1,ymm7
+  40165c:	c4 c1 35 d3 ca       	vpsrlq ymm1,ymm9,xmm10
+  401661:	c5 ed d4 c9          	vpaddq ymm1,ymm2,ymm1
+  401665:	c4 e3 7d 46 d1 20    	vperm2i128 ymm2,ymm0,ymm1,0x20
+  40166b:	c4 e3 7d 46 c1 31    	vperm2i128 ymm0,ymm0,ymm1,0x31
+  401671:	c5 fd 70 ca d8       	vpshufd ymm1,ymm2,0xd8
+  401676:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  40167b:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  40167f:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  401683:	3d 40 59 73 07       	cmp    eax,0x7735940
+  401688:	75 96                	jne    401620 <bench_i_divide_chux_64+0x40>
+  40168a:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  40168e:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  401694:	c5 dd fe e0          	vpaddd ymm4,ymm4,ymm0
+  401698:	c4 e3 5d 46 c1 21    	vperm2i128 ymm0,ymm4,ymm1,0x21
+  40169e:	c4 e3 7d 0f c4 08    	vpalignr ymm0,ymm0,ymm4,0x8
+  4016a4:	c5 dd fe c0          	vpaddd ymm0,ymm4,ymm0
+  4016a8:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  4016ae:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  4016b4:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  4016b8:	c5 f9 7e c0          	vmovd  eax,xmm0
+  4016bc:	01 f8                	add    eax,edi
+  4016be:	c5 f8 77             	vzeroupper 
+  4016c1:	c3                   	ret    
+  4016c2:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  4016c6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  4016cd:	00 00 00 
+
+00000000004016d0 <bench_i_divide_user23_64>:
+  4016d0:	c5 fd 6f 2d e8 0b 00 	vmovdqa ymm5,YMMWORD PTR [rip+0xbe8]        # 4022c0 <algo_names+0x40>
+  4016d7:	00 
+  4016d8:	89 f0                	mov    eax,esi
+  4016da:	c5 c9 ef f6          	vpxor  xmm6,xmm6,xmm6
+  4016de:	48 8d 50 ff          	lea    rdx,[rax-0x1]
+  4016e2:	48 0f bd c0          	bsr    rax,rax
+  4016e6:	c4 e1 f9 6e fa       	vmovq  xmm7,rdx
+  4016eb:	c5 79 6e c0          	vmovd  xmm8,eax
+  4016ef:	31 c0                	xor    eax,eax
+  4016f1:	c4 e2 7d 59 e7       	vpbroadcastq ymm4,xmm7
+  4016f6:	c5 fd 6f 3d e2 0b 00 	vmovdqa ymm7,YMMWORD PTR [rip+0xbe2]        # 4022e0 <algo_names+0x60>
+  4016fd:	00 
+  4016fe:	66 90                	xchg   ax,ax
+  401700:	c4 e2 7d 35 c5       	vpmovzxdq ymm0,xmm5
+  401705:	c4 e3 7d 39 eb 01    	vextracti128 xmm3,ymm5,0x1
+  40170b:	c4 e2 7d 35 db       	vpmovzxdq ymm3,xmm3
+  401710:	83 c0 01             	add    eax,0x1
+  401713:	c5 dd db c8          	vpand  ymm1,ymm4,ymm0
+  401717:	c5 f5 d4 cc          	vpaddq ymm1,ymm1,ymm4
+  40171b:	c4 c1 7d d3 c0       	vpsrlq ymm0,ymm0,xmm8
+  401720:	c5 d5 fe ef          	vpaddd ymm5,ymm5,ymm7
+  401724:	c4 c1 75 d3 c8       	vpsrlq ymm1,ymm1,xmm8
+  401729:	c5 f5 d4 c0          	vpaddq ymm0,ymm1,ymm0
+  40172d:	c5 dd db cb          	vpand  ymm1,ymm4,ymm3
+  401731:	c5 f5 d4 cc          	vpaddq ymm1,ymm1,ymm4
+  401735:	c4 c1 75 d3 d0       	vpsrlq ymm2,ymm1,xmm8
+  40173a:	c4 c1 65 d3 c8       	vpsrlq ymm1,ymm3,xmm8
+  40173f:	c5 ed d4 c9          	vpaddq ymm1,ymm2,ymm1
+  401743:	c4 e3 7d 46 d1 20    	vperm2i128 ymm2,ymm0,ymm1,0x20
+  401749:	c4 e3 7d 46 c1 31    	vperm2i128 ymm0,ymm0,ymm1,0x31
+  40174f:	c5 fd 70 ca d8       	vpshufd ymm1,ymm2,0xd8
+  401754:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  401759:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  40175d:	c5 cd fe f0          	vpaddd ymm6,ymm6,ymm0
+  401761:	3d 40 59 73 07       	cmp    eax,0x7735940
+  401766:	75 98                	jne    401700 <bench_i_divide_user23_64+0x30>
+  401768:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  40176c:	c4 e3 4d 46 c1 21    	vperm2i128 ymm0,ymm6,ymm1,0x21
+  401772:	c5 fd fe f6          	vpaddd ymm6,ymm0,ymm6
+  401776:	c4 e3 4d 46 c1 21    	vperm2i128 ymm0,ymm6,ymm1,0x21
+  40177c:	c4 e3 7d 0f c6 08    	vpalignr ymm0,ymm0,ymm6,0x8
+  401782:	c5 cd fe c0          	vpaddd ymm0,ymm6,ymm0
+  401786:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  40178c:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  401792:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  401796:	c5 f9 7e c0          	vmovd  eax,xmm0
+  40179a:	01 f8                	add    eax,edi
+  40179c:	c5 f8 77             	vzeroupper 
+  40179f:	c3                   	ret    
+
+00000000004017a0 <bench_i_divide_chrisdodd_64>:
+  4017a0:	89 f8                	mov    eax,edi
+  4017a2:	89 f7                	mov    edi,esi
+  4017a4:	31 c9                	xor    ecx,ecx
+  4017a6:	48 0f bd ff          	bsr    rdi,rdi
+  4017aa:	be 01 00 00 00       	mov    esi,0x1
+  4017af:	eb 0e                	jmp    4017bf <bench_i_divide_chrisdodd_64+0x1f>
+  4017b1:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  4017b8:	48 83 c1 01          	add    rcx,0x1
+  4017bc:	83 c6 01             	add    esi,0x1
+  4017bf:	48 85 c9             	test   rcx,rcx
+  4017c2:	74 f4                	je     4017b8 <bench_i_divide_chrisdodd_64+0x18>
+  4017c4:	48 8d 51 ff          	lea    rdx,[rcx-0x1]
+  4017c8:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  4017cd:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
+  4017d1:	81 fe 00 ca 9a 3b    	cmp    esi,0x3b9aca00
+  4017d7:	75 df                	jne    4017b8 <bench_i_divide_chrisdodd_64+0x18>
+  4017d9:	c3                   	ret    
+  4017da:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+
+00000000004017e0 <bench_i_divide_plusq_64>:
+  4017e0:	c5 fd 6f 15 d8 0a 00 	vmovdqa ymm2,YMMWORD PTR [rip+0xad8]        # 4022c0 <algo_names+0x40>
+  4017e7:	00 
+  4017e8:	89 f2                	mov    edx,esi
+  4017ea:	c5 e1 ef db          	vpxor  xmm3,xmm3,xmm3
+  4017ee:	48 0f bd c2          	bsr    rax,rdx
+  4017f2:	48 83 ea 01          	sub    rdx,0x1
+  4017f6:	c4 e1 f9 6e ea       	vmovq  xmm5,rdx
+  4017fb:	c5 f9 6e f8          	vmovd  xmm7,eax
+  4017ff:	31 c0                	xor    eax,eax
+  401801:	c4 e2 7d 59 e5       	vpbroadcastq ymm4,xmm5
+  401806:	c5 fd 6f 2d d2 0a 00 	vmovdqa ymm5,YMMWORD PTR [rip+0xad2]        # 4022e0 <algo_names+0x60>
+  40180d:	00 
+  40180e:	66 90                	xchg   ax,ax
+  401810:	c4 e2 7d 35 c2       	vpmovzxdq ymm0,xmm2
+  401815:	c4 e3 7d 39 d1 01    	vextracti128 xmm1,ymm2,0x1
+  40181b:	c4 e2 7d 35 c9       	vpmovzxdq ymm1,xmm1
+  401820:	83 c0 01             	add    eax,0x1
+  401823:	c5 fd d4 c4          	vpaddq ymm0,ymm0,ymm4
+  401827:	c5 f5 d4 cc          	vpaddq ymm1,ymm1,ymm4
+  40182b:	c5 f5 d3 cf          	vpsrlq ymm1,ymm1,xmm7
+  40182f:	c5 ed fe d5          	vpaddd ymm2,ymm2,ymm5
+  401833:	c5 fd d3 c7          	vpsrlq ymm0,ymm0,xmm7
+  401837:	c4 e3 7d 46 f1 20    	vperm2i128 ymm6,ymm0,ymm1,0x20
+  40183d:	c4 e3 7d 46 c1 31    	vperm2i128 ymm0,ymm0,ymm1,0x31
+  401843:	c5 fd 70 ce d8       	vpshufd ymm1,ymm6,0xd8
+  401848:	c5 fd 70 c0 d8       	vpshufd ymm0,ymm0,0xd8
+  40184d:	c5 f5 6c c0          	vpunpcklqdq ymm0,ymm1,ymm0
+  401851:	c5 e5 fe d8          	vpaddd ymm3,ymm3,ymm0
+  401855:	3d 40 59 73 07       	cmp    eax,0x7735940
+  40185a:	75 b4                	jne    401810 <bench_i_divide_plusq_64+0x30>
+  40185c:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  401860:	c4 e3 65 46 c1 21    	vperm2i128 ymm0,ymm3,ymm1,0x21
+  401866:	c5 e5 fe d8          	vpaddd ymm3,ymm3,ymm0
+  40186a:	c4 e3 65 46 c1 21    	vperm2i128 ymm0,ymm3,ymm1,0x21
+  401870:	c4 e3 7d 0f c3 08    	vpalignr ymm0,ymm0,ymm3,0x8
+  401876:	c5 e5 fe c0          	vpaddd ymm0,ymm3,ymm0
+  40187a:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  401880:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  401886:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  40188a:	c5 f9 7e c0          	vmovd  eax,xmm0
+  40188e:	01 f8                	add    eax,edi
+  401890:	c5 f8 77             	vzeroupper 
+  401893:	c3                   	ret    
+  401894:	66 90                	xchg   ax,ax
+  401896:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40189d:	00 00 00 
+
+00000000004018a0 <bench_v_divide_chux_64>:
+  4018a0:	89 f8                	mov    eax,edi
+  4018a2:	31 c9                	xor    ecx,ecx
+  4018a4:	41 b9 3f 00 00 00    	mov    r9d,0x3f
+  4018aa:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  4018b0:	41 89 f0             	mov    r8d,esi
+  4018b3:	31 ff                	xor    edi,edi
+  4018b5:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4018bb:	49 8d 50 ff          	lea    rdx,[r8-0x1]
+  4018bf:	48 85 ca             	test   rdx,rcx
+  4018c2:	4c 89 ca             	mov    rdx,r9
+  4018c5:	40 0f 95 c7          	setne  dil
+  4018c9:	f3 4d 0f bd c0       	lzcnt  r8,r8
+  4018ce:	4c 29 c2             	sub    rdx,r8
+  4018d1:	c4 e2 eb f7 d1       	shrx   rdx,rcx,rdx
+  4018d6:	48 83 c1 01          	add    rcx,0x1
+  4018da:	48 01 fa             	add    rdx,rdi
+  4018dd:	01 d0                	add    eax,edx
+  4018df:	48 81 f9 00 ca 9a 3b 	cmp    rcx,0x3b9aca00
+  4018e6:	75 c8                	jne    4018b0 <bench_v_divide_chux_64+0x10>
+  4018e8:	c3                   	ret    
+  4018e9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+00000000004018f0 <bench_v_divide_user23_64>:
+  4018f0:	89 f8                	mov    eax,edi
+  4018f2:	45 31 c0             	xor    r8d,r8d
+  4018f5:	41 b9 3f 00 00 00    	mov    r9d,0x3f
+  4018fb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  401900:	89 f2                	mov    edx,esi
+  401902:	4c 89 cf             	mov    rdi,r9
+  401905:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40190b:	48 8d 4a ff          	lea    rcx,[rdx-0x1]
+  40190f:	f3 48 0f bd d2       	lzcnt  rdx,rdx
+  401914:	48 29 d7             	sub    rdi,rdx
+  401917:	48 89 fa             	mov    rdx,rdi
+  40191a:	48 89 cf             	mov    rdi,rcx
+  40191d:	4c 21 c7             	and    rdi,r8
+  401920:	48 01 f9             	add    rcx,rdi
+  401923:	c4 e2 eb f7 c9       	shrx   rcx,rcx,rdx
+  401928:	c4 c2 eb f7 d0       	shrx   rdx,r8,rdx
+  40192d:	49 83 c0 01          	add    r8,0x1
+  401931:	48 01 ca             	add    rdx,rcx
+  401934:	01 d0                	add    eax,edx
+  401936:	49 81 f8 00 ca 9a 3b 	cmp    r8,0x3b9aca00
+  40193d:	75 c1                	jne    401900 <bench_v_divide_user23_64+0x10>
+  40193f:	c3                   	ret    
+
+0000000000401940 <bench_v_divide_chrisdodd_64>:
+  401940:	89 f8                	mov    eax,edi
+  401942:	41 b8 01 00 00 00    	mov    r8d,0x1
+  401948:	31 c9                	xor    ecx,ecx
+  40194a:	41 b9 3f 00 00 00    	mov    r9d,0x3f
+  401950:	eb 0e                	jmp    401960 <bench_v_divide_chrisdodd_64+0x20>
+  401952:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  401958:	48 83 c1 01          	add    rcx,0x1
+  40195c:	41 83 c0 01          	add    r8d,0x1
+  401960:	89 f2                	mov    edx,esi
+  401962:	4c 89 cf             	mov    rdi,r9
+  401965:	f3 48 0f bd d2       	lzcnt  rdx,rdx
+  40196a:	48 29 d7             	sub    rdi,rdx
+  40196d:	48 85 c9             	test   rcx,rcx
+  401970:	74 1d                	je     40198f <bench_v_divide_chrisdodd_64+0x4f>
+  401972:	48 8d 51 ff          	lea    rdx,[rcx-0x1]
+  401976:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40197c:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  401981:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
+  401985:	41 81 f8 00 ca 9a 3b 	cmp    r8d,0x3b9aca00
+  40198c:	75 ca                	jne    401958 <bench_v_divide_chrisdodd_64+0x18>
+  40198e:	c3                   	ret    
+  40198f:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401995:	eb c1                	jmp    401958 <bench_v_divide_chrisdodd_64+0x18>
+  401997:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40199e:	00 00 
+
+00000000004019a0 <bench_v_divide_plusq_64>:
+  4019a0:	89 f8                	mov    eax,edi
+  4019a2:	31 c9                	xor    ecx,ecx
+  4019a4:	bf 3f 00 00 00       	mov    edi,0x3f
+  4019a9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  4019b0:	89 f2                	mov    edx,esi
+  4019b2:	49 89 f9             	mov    r9,rdi
+  4019b5:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4019bb:	4c 8d 44 0a ff       	lea    r8,[rdx+rcx*1-0x1]
+  4019c0:	f3 48 0f bd d2       	lzcnt  rdx,rdx
+  4019c5:	48 83 c1 01          	add    rcx,0x1
+  4019c9:	49 29 d1             	sub    r9,rdx
+  4019cc:	c4 c2 b3 f7 d0       	shrx   rdx,r8,r9
+  4019d1:	01 d0                	add    eax,edx
+  4019d3:	48 81 f9 00 ca 9a 3b 	cmp    rcx,0x3b9aca00
+  4019da:	75 d4                	jne    4019b0 <bench_v_divide_plusq_64+0x10>
+  4019dc:	c3                   	ret    
+  4019dd:	0f 1f 00             	nop    DWORD PTR [rax]
+
+00000000004019e0 <bench_c_divide_chris_32>:
+  4019e0:	89 f8                	mov    eax,edi
+  4019e2:	31 d2                	xor    edx,edx
+  4019e4:	31 c9                	xor    ecx,ecx
+  4019e6:	bf ff ff ff ff       	mov    edi,0xffffffff
+  4019eb:	eb 0c                	jmp    4019f9 <bench_c_divide_chris_32+0x19>
+  4019ed:	0f 1f 00             	nop    DWORD PTR [rax]
+  4019f0:	0f bc d1             	bsf    edx,ecx
+  4019f3:	0f 44 d7             	cmove  edx,edi
+  4019f6:	83 c2 01             	add    edx,0x1
+  4019f9:	83 fa 03             	cmp    edx,0x3
+  4019fc:	40 0f 9e c6          	setle  sil
+  401a00:	85 d2                	test   edx,edx
+  401a02:	0f 95 c2             	setne  dl
+  401a05:	0f b6 d2             	movzx  edx,dl
+  401a08:	21 f2                	and    edx,esi
+  401a0a:	89 ce                	mov    esi,ecx
+  401a0c:	83 c1 01             	add    ecx,0x1
+  401a0f:	c1 ee 03             	shr    esi,0x3
+  401a12:	01 f2                	add    edx,esi
+  401a14:	01 d0                	add    eax,edx
+  401a16:	81 f9 00 ca 9a 3b    	cmp    ecx,0x3b9aca00
+  401a1c:	75 d2                	jne    4019f0 <bench_c_divide_chris_32+0x10>
+  401a1e:	c3                   	ret    
+  401a1f:	90                   	nop
+
+0000000000401a20 <bench_i_divide_chris_32>:
+  401a20:	45 31 c0             	xor    r8d,r8d
+  401a23:	89 f8                	mov    eax,edi
+  401a25:	31 d2                	xor    edx,edx
+  401a27:	f3 44 0f bc c6       	tzcnt  r8d,esi
+  401a2c:	31 c9                	xor    ecx,ecx
+  401a2e:	bf ff ff ff ff       	mov    edi,0xffffffff
+  401a33:	eb 0c                	jmp    401a41 <bench_i_divide_chris_32+0x21>
+  401a35:	0f 1f 00             	nop    DWORD PTR [rax]
+  401a38:	0f bc d1             	bsf    edx,ecx
+  401a3b:	0f 44 d7             	cmove  edx,edi
+  401a3e:	83 c2 01             	add    edx,0x1
+  401a41:	44 39 c2             	cmp    edx,r8d
+  401a44:	40 0f 9e c6          	setle  sil
+  401a48:	85 d2                	test   edx,edx
+  401a4a:	0f 95 c2             	setne  dl
+  401a4d:	0f b6 d2             	movzx  edx,dl
+  401a50:	21 f2                	and    edx,esi
+  401a52:	c4 e2 3b f7 f1       	shrx   esi,ecx,r8d
+  401a57:	83 c1 01             	add    ecx,0x1
+  401a5a:	01 f2                	add    edx,esi
+  401a5c:	01 d0                	add    eax,edx
+  401a5e:	81 f9 00 ca 9a 3b    	cmp    ecx,0x3b9aca00
+  401a64:	75 d2                	jne    401a38 <bench_i_divide_chris_32+0x18>
+  401a66:	c3                   	ret    
+  401a67:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  401a6e:	00 00 
+
+0000000000401a70 <bench_v_divide_chris_32>:
+  401a70:	89 f8                	mov    eax,edi
+  401a72:	31 c9                	xor    ecx,ecx
+  401a74:	45 31 c0             	xor    r8d,r8d
+  401a77:	bf ff ff ff ff       	mov    edi,0xffffffff
+  401a7c:	eb 0c                	jmp    401a8a <bench_v_divide_chris_32+0x1a>
+  401a7e:	66 90                	xchg   ax,ax
+  401a80:	41 0f bc c8          	bsf    ecx,r8d
+  401a84:	0f 44 cf             	cmove  ecx,edi
+  401a87:	83 c1 01             	add    ecx,0x1
+  401a8a:	31 d2                	xor    edx,edx
+  401a8c:	f3 0f bc d6          	tzcnt  edx,esi
+  401a90:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401a96:	39 ca                	cmp    edx,ecx
+  401a98:	c4 c2 6b f7 d0       	shrx   edx,r8d,edx
+  401a9d:	41 0f 9d c1          	setge  r9b
+  401aa1:	85 c9                	test   ecx,ecx
+  401aa3:	0f 95 c1             	setne  cl
+  401aa6:	41 83 c0 01          	add    r8d,0x1
+  401aaa:	0f b6 c9             	movzx  ecx,cl
+  401aad:	44 21 c9             	and    ecx,r9d
+  401ab0:	01 ca                	add    edx,ecx
+  401ab2:	01 d0                	add    eax,edx
+  401ab4:	41 81 f8 00 ca 9a 3b 	cmp    r8d,0x3b9aca00
+  401abb:	75 c3                	jne    401a80 <bench_v_divide_chris_32+0x10>
+  401abd:	c3                   	ret    
+  401abe:	66 90                	xchg   ax,ax
+
+0000000000401ac0 <bench_c_divide_chris_64>:
+  401ac0:	89 f8                	mov    eax,edi
+  401ac2:	31 d2                	xor    edx,edx
+  401ac4:	31 f6                	xor    esi,esi
+  401ac6:	48 c7 c7 ff ff ff ff 	mov    rdi,0xffffffffffffffff
+  401acd:	eb 0c                	jmp    401adb <bench_c_divide_chris_64+0x1b>
+  401acf:	90                   	nop
+  401ad0:	48 0f bc ca          	bsf    rcx,rdx
+  401ad4:	48 0f 44 cf          	cmove  rcx,rdi
+  401ad8:	8d 71 01             	lea    esi,[rcx+0x1]
+  401adb:	83 fe 03             	cmp    esi,0x3
+  401ade:	0f 9e c1             	setle  cl
+  401ae1:	85 f6                	test   esi,esi
+  401ae3:	40 0f 95 c6          	setne  sil
+  401ae7:	40 0f b6 f6          	movzx  esi,sil
+  401aeb:	48 21 f1             	and    rcx,rsi
+  401aee:	48 89 d6             	mov    rsi,rdx
+  401af1:	48 83 c2 01          	add    rdx,0x1
+  401af5:	48 c1 ee 03          	shr    rsi,0x3
+  401af9:	48 01 f1             	add    rcx,rsi
+  401afc:	01 c8                	add    eax,ecx
+  401afe:	48 81 fa 00 ca 9a 3b 	cmp    rdx,0x3b9aca00
+  401b05:	75 c9                	jne    401ad0 <bench_c_divide_chris_64+0x10>
+  401b07:	c3                   	ret    
+  401b08:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  401b0f:	00 
+
+0000000000401b10 <bench_i_divide_chris_64>:
+  401b10:	41 89 f0             	mov    r8d,esi
+  401b13:	89 f8                	mov    eax,edi
+  401b15:	31 d2                	xor    edx,edx
+  401b17:	f3 4d 0f bc c0       	tzcnt  r8,r8
+  401b1c:	31 f6                	xor    esi,esi
+  401b1e:	48 c7 c7 ff ff ff ff 	mov    rdi,0xffffffffffffffff
+  401b25:	eb 14                	jmp    401b3b <bench_i_divide_chris_64+0x2b>
+  401b27:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  401b2e:	00 00 
+  401b30:	48 0f bc ca          	bsf    rcx,rdx
+  401b34:	48 0f 44 cf          	cmove  rcx,rdi
+  401b38:	8d 71 01             	lea    esi,[rcx+0x1]
+  401b3b:	44 39 c6             	cmp    esi,r8d
+  401b3e:	0f 9e c1             	setle  cl
+  401b41:	85 f6                	test   esi,esi
+  401b43:	40 0f 95 c6          	setne  sil
+  401b47:	40 0f b6 f6          	movzx  esi,sil
+  401b4b:	48 21 f1             	and    rcx,rsi
+  401b4e:	c4 e2 bb f7 f2       	shrx   rsi,rdx,r8
+  401b53:	48 83 c2 01          	add    rdx,0x1
+  401b57:	48 01 f1             	add    rcx,rsi
+  401b5a:	01 c8                	add    eax,ecx
+  401b5c:	48 81 fa 00 ca 9a 3b 	cmp    rdx,0x3b9aca00
+  401b63:	75 cb                	jne    401b30 <bench_i_divide_chris_64+0x20>
+  401b65:	c3                   	ret    
+  401b66:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  401b6d:	00 00 00 
+
+0000000000401b70 <bench_v_divide_chris_64>:
+  401b70:	89 f8                	mov    eax,edi
+  401b72:	31 c9                	xor    ecx,ecx
+  401b74:	45 31 c9             	xor    r9d,r9d
+  401b77:	49 c7 c2 ff ff ff ff 	mov    r10,0xffffffffffffffff
+  401b7e:	eb 0c                	jmp    401b8c <bench_v_divide_chris_64+0x1c>
+  401b80:	48 0f bc d1          	bsf    rdx,rcx
+  401b84:	49 0f 44 d2          	cmove  rdx,r10
+  401b88:	44 8d 4a 01          	lea    r9d,[rdx+0x1]
+  401b8c:	89 f2                	mov    edx,esi
+  401b8e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401b94:	f3 48 0f bc d2       	tzcnt  rdx,rdx
+  401b99:	44 39 ca             	cmp    edx,r9d
+  401b9c:	c4 e2 eb f7 d1       	shrx   rdx,rcx,rdx
+  401ba1:	41 0f 9d c0          	setge  r8b
+  401ba5:	31 ff                	xor    edi,edi
+  401ba7:	45 85 c9             	test   r9d,r9d
+  401baa:	40 0f 95 c7          	setne  dil
+  401bae:	48 83 c1 01          	add    rcx,0x1
+  401bb2:	49 21 f8             	and    r8,rdi
+  401bb5:	4c 01 c2             	add    rdx,r8
+  401bb8:	01 d0                	add    eax,edx
+  401bba:	48 81 f9 00 ca 9a 3b 	cmp    rcx,0x3b9aca00
+  401bc1:	75 bd                	jne    401b80 <bench_v_divide_chris_64+0x10>
+  401bc3:	c3                   	ret    
+  401bc4:	66 90                	xchg   ax,ax
+  401bc6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  401bcd:	00 00 00 
+
+0000000000401d10 <bench_i_divide_dummy_32>:
+  401d10:	c5 f9 6e de          	vmovd  xmm3,esi
+  401d14:	31 c0                	xor    eax,eax
+  401d16:	c5 f9 ef c0          	vpxor  xmm0,xmm0,xmm0
+  401d1a:	c5 fd 6f 0d 9e 05 00 	vmovdqa ymm1,YMMWORD PTR [rip+0x59e]        # 4022c0 <algo_names+0x40>
+  401d21:	00 
+  401d22:	c5 fd 6f 25 b6 05 00 	vmovdqa ymm4,YMMWORD PTR [rip+0x5b6]        # 4022e0 <algo_names+0x60>
+  401d29:	00 
+  401d2a:	c4 e2 7d 58 db       	vpbroadcastd ymm3,xmm3
+  401d2f:	90                   	nop
+  401d30:	c5 f5 fe d3          	vpaddd ymm2,ymm1,ymm3
+  401d34:	83 c0 01             	add    eax,0x1
+  401d37:	c5 f5 fe cc          	vpaddd ymm1,ymm1,ymm4
+  401d3b:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  401d3f:	3d 40 59 73 07       	cmp    eax,0x7735940
+  401d44:	75 ea                	jne    401d30 <bench_i_divide_dummy_32+0x20>
+  401d46:	c5 f1 ef c9          	vpxor  xmm1,xmm1,xmm1
+  401d4a:	c4 e3 7d 46 d1 21    	vperm2i128 ymm2,ymm0,ymm1,0x21
+  401d50:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  401d54:	c4 e3 7d 46 d1 21    	vperm2i128 ymm2,ymm0,ymm1,0x21
+  401d5a:	c4 e3 6d 0f d0 08    	vpalignr ymm2,ymm2,ymm0,0x8
+  401d60:	c5 fd fe c2          	vpaddd ymm0,ymm0,ymm2
+  401d64:	c4 e3 7d 46 c9 21    	vperm2i128 ymm1,ymm0,ymm1,0x21
+  401d6a:	c4 e3 75 0f c8 04    	vpalignr ymm1,ymm1,ymm0,0x4
+  401d70:	c5 fd fe c1          	vpaddd ymm0,ymm0,ymm1
+  401d74:	c5 f9 7e c0          	vmovd  eax,xmm0
+  401d78:	01 f8                	add    eax,edi
+  401d7a:	c5 f8 77             	vzeroupper 
+  401d7d:	c3                   	ret    
+  401d7e:	66 90                	xchg   ax,ax
+
+0000000000401d80 <bench_v_divide_dummy_32>:
+  401d80:	89 f8                	mov    eax,edi
+  401d82:	31 d2                	xor    edx,edx
+  401d84:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  401d88:	8d 0c 16             	lea    ecx,[rsi+rdx*1]
+  401d8b:	83 c2 01             	add    edx,0x1
+  401d8e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  401d94:	01 c8                	add    eax,ecx
+  401d96:	81 fa 00 ca 9a 3b    	cmp    edx,0x3b9aca00
+  401d9c:	75 ea                	jne    401d88 <bench_v_divide_dummy_32+0x8>
+  401d9e:	c3                   	ret    
+  401d9f:	90                   	nop
+

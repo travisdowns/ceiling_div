@@ -3,6 +3,7 @@
 
 #include <inttypes.h>
 #include <stdbool.h>
+#include <immintrin.h>
 
 #ifndef ALGO_DECL
 #define ALGO_DECL static inline
@@ -22,6 +23,52 @@ inline uint64_t lg64(uint64_t x) {
   return 63U - (uint64_t)__builtin_clzl(x);
 }
 
+/* 
+imull $0xff, %esi, %ebx         
+decl %edi                       
+pextl %ebx, %edi, %eax          
+incl %eax                       
+retq   
+*/
+
+ALGO_DECL unsigned stoke32_32(unsigned p, unsigned q) {
+  return (((unsigned long)p - 1) >> lg32(q)) + 1;
+}
+
+ALGO_DECL unsigned stoke32_64(unsigned long p, unsigned long q) {
+    unsigned exponent = __builtin_ctz(q);
+  //     v divide
+  unsigned ret = (p >> exponent);
+
+  return (ret << exponent) == p ? ret : ret + 1;
+}
+  
+
+ALGO_DECL unsigned stoke_mul_32(unsigned p, unsigned q) {
+  unsigned e = q * 0xffffffff;
+  return p == 0 ? p : _pext_u32(p - 1, e) + 1;
+}
+
+ALGO_DECL uint64_t stoke_mul_64(uint64_t p, uint64_t q) {
+  uint64_t e = q * 0xff;
+  return p == 0 ? 0 : _pext_u64(p, e) + 1;
+}
+
+ALGO_DECL unsigned div_stoke_32(unsigned p, unsigned q) {
+  unsigned exponent = __builtin_ctz(q);
+  //     v divide
+  unsigned ret = (p >> exponent);
+
+  return (ret << exponent) == p ? ret : ret + 1;
+}
+
+ALGO_DECL unsigned div_stoke_64(unsigned p, unsigned q) {
+  unsigned exponent = __builtin_ctz(q);
+  //     v divide
+  unsigned ret = (p >> exponent);
+
+  return (ret << exponent) == p ? ret : ret + 1;
+}
 
 ALGO_DECL uint32_t divide_questionc_32(uint32_t p, uint32_t q) {
   uint32_t e = lg32(q);
@@ -89,7 +136,7 @@ ALGO_DECL uint64_t divide_user23_64(uint64_t p, uint64_t q) {
 }
 
 ALGO_DECL uint64_t divide_user23_variant_64(uint64_t p, uint64_t q) {
-  uint64_t exponent = lg32(q);
+  uint64_t exponent = lg64(q);
   uint64_t mask = q - 1;
   //     v divide
   return (p >> exponent) + ((p & mask) != 0);

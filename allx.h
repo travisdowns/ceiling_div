@@ -3,6 +3,9 @@
 
 #define X_MACRO(x_func)	  \
   /* x_func(divide_questionc) .. fails at (0x80..., 2)	*/	\
+  x_func(stoke32) \
+  x_func(stoke_mul) \
+  x_func(div_stoke) \
   x_func(divide_chux)      \
   x_func(divide_user23)    \
   x_func(divide_user23_variant) \

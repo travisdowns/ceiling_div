@@ -1,358 +1,338 @@
-0000000000400760 <bench_c_stoke32_32>:
-  400760:	89 f8                	mov    eax,edi
-  400762:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400767:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40076e:	00 00 
-  400770:	89 c2                	mov    edx,eax
-  400772:	48 83 ea 01          	sub    rdx,0x1
-  400776:	48 c1 ea 03          	shr    rdx,0x3
-  40077a:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
-  40077e:	83 e9 01             	sub    ecx,0x1
-  400781:	75 ed                	jne    400770 <bench_c_stoke32_32+0x10>
-  400783:	c3                   	ret    
-  400784:	66 90                	xchg   ax,ax
-  400786:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40078d:	00 00 00 
+00000000004007a0 <bench_c_divide_peter_32>:
+  4007a0:	89 f8                	mov    eax,edi
+  4007a2:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  4007a7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4007ae:	00 00 
+  4007b0:	8d 50 ff             	lea    edx,[rax-0x1]
+  4007b3:	c1 ea 03             	shr    edx,0x3
+  4007b6:	8d 4a 01             	lea    ecx,[rdx+0x1]
+  4007b9:	31 d2                	xor    edx,edx
+  4007bb:	85 c0                	test   eax,eax
+  4007bd:	0f 95 c2             	setne  dl
+  4007c0:	f7 da                	neg    edx
+  4007c2:	21 ca                	and    edx,ecx
+  4007c4:	01 d0                	add    eax,edx
+  4007c6:	83 ee 01             	sub    esi,0x1
+  4007c9:	75 e5                	jne    4007b0 <bench_c_divide_peter_32+0x10>
+  4007cb:	c3                   	ret    
+  4007cc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
 
-0000000000400790 <bench_c_stoke32_64>:
-  400790:	89 f8                	mov    eax,edi
-  400792:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400797:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40079e:	00 00 
-  4007a0:	89 c6                	mov    esi,eax
-  4007a2:	48 89 f2             	mov    rdx,rsi
-  4007a5:	48 c1 ea 03          	shr    rdx,0x3
-  4007a9:	4c 8d 04 d5 00 00 00 	lea    r8,[rdx*8+0x0]
-  4007b0:	00 
-  4007b1:	8d 7a 01             	lea    edi,[rdx+0x1]
-  4007b4:	4c 39 c6             	cmp    rsi,r8
-  4007b7:	0f 45 d7             	cmovne edx,edi
-  4007ba:	01 d0                	add    eax,edx
-  4007bc:	83 e9 01             	sub    ecx,0x1
-  4007bf:	75 df                	jne    4007a0 <bench_c_stoke32_64+0x10>
-  4007c1:	c3                   	ret    
-  4007c2:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
-  4007c6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  4007cd:	00 00 00 
-
-00000000004007d0 <bench_c_div_stoke_64>:
+00000000004007d0 <bench_c_divide_peter_64>:
   4007d0:	89 f8                	mov    eax,edi
-  4007d2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4007d2:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
   4007d7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
   4007de:	00 00 
-  4007e0:	89 c2                	mov    edx,eax
-  4007e2:	c1 ea 03             	shr    edx,0x3
-  4007e5:	8d 3c d5 00 00 00 00 	lea    edi,[rdx*8+0x0]
-  4007ec:	8d 72 01             	lea    esi,[rdx+0x1]
-  4007ef:	39 c7                	cmp    edi,eax
-  4007f1:	0f 45 d6             	cmovne edx,esi
-  4007f4:	01 d0                	add    eax,edx
-  4007f6:	83 e9 01             	sub    ecx,0x1
-  4007f9:	75 e5                	jne    4007e0 <bench_c_div_stoke_64+0x10>
-  4007fb:	c3                   	ret    
-  4007fc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  4007e0:	89 c7                	mov    edi,eax
+  4007e2:	48 8d 57 ff          	lea    rdx,[rdi-0x1]
+  4007e6:	48 c1 ea 03          	shr    rdx,0x3
+  4007ea:	48 8d 4a 01          	lea    rcx,[rdx+0x1]
+  4007ee:	31 d2                	xor    edx,edx
+  4007f0:	48 85 ff             	test   rdi,rdi
+  4007f3:	0f 95 c2             	setne  dl
+  4007f6:	48 f7 da             	neg    rdx
+  4007f9:	48 21 ca             	and    rdx,rcx
+  4007fc:	01 d0                	add    eax,edx
+  4007fe:	83 ee 01             	sub    esi,0x1
+  400801:	75 dd                	jne    4007e0 <bench_c_divide_peter_64+0x10>
+  400803:	c3                   	ret    
+  400804:	66 90                	xchg   ax,ax
+  400806:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40080d:	00 00 00 
 
-0000000000400800 <bench_c_divide_chux_32>:
-  400800:	89 f8                	mov    eax,edi
-  400802:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400807:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40080e:	00 00 
-  400810:	31 f6                	xor    esi,esi
-  400812:	89 c2                	mov    edx,eax
-  400814:	a8 07                	test   al,0x7
-  400816:	40 0f 95 c6          	setne  sil
-  40081a:	c1 ea 03             	shr    edx,0x3
-  40081d:	01 f2                	add    edx,esi
-  40081f:	01 d0                	add    eax,edx
-  400821:	83 e9 01             	sub    ecx,0x1
-  400824:	75 ea                	jne    400810 <bench_c_divide_chux_32+0x10>
-  400826:	c3                   	ret    
-  400827:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40082e:	00 00 
+0000000000400810 <bench_c_stoke32_32>:
+  400810:	89 f8                	mov    eax,edi
+  400812:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400817:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40081e:	00 00 
+  400820:	89 c2                	mov    edx,eax
+  400822:	48 83 ea 01          	sub    rdx,0x1
+  400826:	48 c1 ea 03          	shr    rdx,0x3
+  40082a:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
+  40082e:	83 e9 01             	sub    ecx,0x1
+  400831:	75 ed                	jne    400820 <bench_c_stoke32_32+0x10>
+  400833:	c3                   	ret    
+  400834:	66 90                	xchg   ax,ax
+  400836:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40083d:	00 00 00 
 
-0000000000400830 <bench_c_divide_chux_64>:
-  400830:	89 f8                	mov    eax,edi
-  400832:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400837:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40083e:	00 00 
-  400840:	31 f6                	xor    esi,esi
-  400842:	89 c2                	mov    edx,eax
-  400844:	a8 07                	test   al,0x7
-  400846:	40 0f 95 c6          	setne  sil
-  40084a:	48 c1 ea 03          	shr    rdx,0x3
-  40084e:	48 01 f2             	add    rdx,rsi
-  400851:	01 d0                	add    eax,edx
-  400853:	83 e9 01             	sub    ecx,0x1
-  400856:	75 e8                	jne    400840 <bench_c_divide_chux_64+0x10>
-  400858:	c3                   	ret    
-  400859:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+0000000000400840 <bench_c_stoke32_64>:
+  400840:	89 f8                	mov    eax,edi
+  400842:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400847:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40084e:	00 00 
+  400850:	89 c6                	mov    esi,eax
+  400852:	48 89 f2             	mov    rdx,rsi
+  400855:	48 c1 ea 03          	shr    rdx,0x3
+  400859:	4c 8d 04 d5 00 00 00 	lea    r8,[rdx*8+0x0]
+  400860:	00 
+  400861:	8d 7a 01             	lea    edi,[rdx+0x1]
+  400864:	4c 39 c6             	cmp    rsi,r8
+  400867:	0f 45 d7             	cmovne edx,edi
+  40086a:	01 d0                	add    eax,edx
+  40086c:	83 e9 01             	sub    ecx,0x1
+  40086f:	75 df                	jne    400850 <bench_c_stoke32_64+0x10>
+  400871:	c3                   	ret    
+  400872:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400876:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40087d:	00 00 00 
 
-0000000000400860 <bench_c_divide_user23_32>:
-  400860:	89 f8                	mov    eax,edi
-  400862:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
-  400867:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40086e:	00 00 
-  400870:	89 c2                	mov    edx,eax
-  400872:	89 c1                	mov    ecx,eax
-  400874:	83 e2 07             	and    edx,0x7
-  400877:	c1 e9 03             	shr    ecx,0x3
-  40087a:	83 c2 07             	add    edx,0x7
-  40087d:	c1 ea 03             	shr    edx,0x3
-  400880:	01 ca                	add    edx,ecx
-  400882:	01 d0                	add    eax,edx
-  400884:	83 ee 01             	sub    esi,0x1
-  400887:	75 e7                	jne    400870 <bench_c_divide_user23_32+0x10>
-  400889:	c3                   	ret    
-  40088a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+0000000000400880 <bench_c_div_stoke_64>:
+  400880:	89 f8                	mov    eax,edi
+  400882:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400887:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40088e:	00 00 
+  400890:	89 c2                	mov    edx,eax
+  400892:	c1 ea 03             	shr    edx,0x3
+  400895:	8d 3c d5 00 00 00 00 	lea    edi,[rdx*8+0x0]
+  40089c:	8d 72 01             	lea    esi,[rdx+0x1]
+  40089f:	39 c7                	cmp    edi,eax
+  4008a1:	0f 45 d6             	cmovne edx,esi
+  4008a4:	01 d0                	add    eax,edx
+  4008a6:	83 e9 01             	sub    ecx,0x1
+  4008a9:	75 e5                	jne    400890 <bench_c_div_stoke_64+0x10>
+  4008ab:	c3                   	ret    
+  4008ac:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
 
-0000000000400890 <bench_c_divide_user23_64>:
-  400890:	89 f8                	mov    eax,edi
-  400892:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
-  400897:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40089e:	00 00 
-  4008a0:	89 c2                	mov    edx,eax
-  4008a2:	83 e2 07             	and    edx,0x7
-  4008a5:	48 83 c2 07          	add    rdx,0x7
-  4008a9:	48 89 d1             	mov    rcx,rdx
-  4008ac:	89 c2                	mov    edx,eax
-  4008ae:	48 c1 e9 03          	shr    rcx,0x3
-  4008b2:	48 c1 ea 03          	shr    rdx,0x3
-  4008b6:	48 01 ca             	add    rdx,rcx
-  4008b9:	01 d0                	add    eax,edx
-  4008bb:	83 ee 01             	sub    esi,0x1
-  4008be:	75 e0                	jne    4008a0 <bench_c_divide_user23_64+0x10>
-  4008c0:	c3                   	ret    
-  4008c1:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
-  4008c6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  4008cd:	00 00 00 
-
-00000000004008d0 <bench_c_divide_user23_variant_32>:
-  4008d0:	89 f8                	mov    eax,edi
-  4008d2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+00000000004008b0 <bench_c_divide_chux_32>:
+  4008b0:	89 f8                	mov    eax,edi
+  4008b2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4008b7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4008be:	00 00 
+  4008c0:	31 f6                	xor    esi,esi
+  4008c2:	89 c2                	mov    edx,eax
+  4008c4:	a8 07                	test   al,0x7
+  4008c6:	40 0f 95 c6          	setne  sil
+  4008ca:	c1 ea 03             	shr    edx,0x3
+  4008cd:	01 f2                	add    edx,esi
+  4008cf:	01 d0                	add    eax,edx
+  4008d1:	83 e9 01             	sub    ecx,0x1
+  4008d4:	75 ea                	jne    4008c0 <bench_c_divide_chux_32+0x10>
+  4008d6:	c3                   	ret    
   4008d7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
   4008de:	00 00 
-  4008e0:	31 f6                	xor    esi,esi
-  4008e2:	89 c2                	mov    edx,eax
-  4008e4:	a8 07                	test   al,0x7
-  4008e6:	40 0f 95 c6          	setne  sil
-  4008ea:	c1 ea 03             	shr    edx,0x3
-  4008ed:	01 f2                	add    edx,esi
-  4008ef:	01 d0                	add    eax,edx
-  4008f1:	83 e9 01             	sub    ecx,0x1
-  4008f4:	75 ea                	jne    4008e0 <bench_c_divide_user23_variant_32+0x10>
-  4008f6:	c3                   	ret    
-  4008f7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  4008fe:	00 00 
 
-0000000000400900 <bench_c_divide_user23_variant_64>:
-  400900:	89 f8                	mov    eax,edi
-  400902:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400907:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40090e:	00 00 
-  400910:	31 f6                	xor    esi,esi
-  400912:	89 c2                	mov    edx,eax
-  400914:	a8 07                	test   al,0x7
-  400916:	40 0f 95 c6          	setne  sil
-  40091a:	48 c1 ea 03          	shr    rdx,0x3
-  40091e:	48 01 f2             	add    rdx,rsi
-  400921:	01 d0                	add    eax,edx
-  400923:	83 e9 01             	sub    ecx,0x1
-  400926:	75 e8                	jne    400910 <bench_c_divide_user23_variant_64+0x10>
-  400928:	c3                   	ret    
-  400929:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+00000000004008e0 <bench_c_divide_chux_64>:
+  4008e0:	89 f8                	mov    eax,edi
+  4008e2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4008e7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4008ee:	00 00 
+  4008f0:	31 f6                	xor    esi,esi
+  4008f2:	89 c2                	mov    edx,eax
+  4008f4:	a8 07                	test   al,0x7
+  4008f6:	40 0f 95 c6          	setne  sil
+  4008fa:	48 c1 ea 03          	shr    rdx,0x3
+  4008fe:	48 01 f2             	add    rdx,rsi
+  400901:	01 d0                	add    eax,edx
+  400903:	83 e9 01             	sub    ecx,0x1
+  400906:	75 e8                	jne    4008f0 <bench_c_divide_chux_64+0x10>
+  400908:	c3                   	ret    
+  400909:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
-0000000000400930 <bench_c_divide_chrisdodd_32>:
-  400930:	89 f8                	mov    eax,edi
-  400932:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400937:	31 f6                	xor    esi,esi
-  400939:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-  400940:	8d 50 ff             	lea    edx,[rax-0x1]
-  400943:	c1 ea 03             	shr    edx,0x3
-  400946:	83 c2 01             	add    edx,0x1
-  400949:	85 c0                	test   eax,eax
-  40094b:	0f 44 d6             	cmove  edx,esi
-  40094e:	01 d0                	add    eax,edx
-  400950:	83 e9 01             	sub    ecx,0x1
-  400953:	75 eb                	jne    400940 <bench_c_divide_chrisdodd_32+0x10>
-  400955:	c3                   	ret    
-  400956:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40095d:	00 00 00 
+0000000000400910 <bench_c_divide_user23_32>:
+  400910:	89 f8                	mov    eax,edi
+  400912:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  400917:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40091e:	00 00 
+  400920:	89 c2                	mov    edx,eax
+  400922:	89 c1                	mov    ecx,eax
+  400924:	83 e2 07             	and    edx,0x7
+  400927:	c1 e9 03             	shr    ecx,0x3
+  40092a:	83 c2 07             	add    edx,0x7
+  40092d:	c1 ea 03             	shr    edx,0x3
+  400930:	01 ca                	add    edx,ecx
+  400932:	01 d0                	add    eax,edx
+  400934:	83 ee 01             	sub    esi,0x1
+  400937:	75 e7                	jne    400920 <bench_c_divide_user23_32+0x10>
+  400939:	c3                   	ret    
+  40093a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
 
-0000000000400960 <bench_c_divide_chrisdodd_64>:
-  400960:	89 f8                	mov    eax,edi
-  400962:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400967:	31 ff                	xor    edi,edi
-  400969:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-  400970:	89 c6                	mov    esi,eax
-  400972:	48 8d 56 ff          	lea    rdx,[rsi-0x1]
-  400976:	48 c1 ea 03          	shr    rdx,0x3
-  40097a:	48 83 c2 01          	add    rdx,0x1
-  40097e:	48 85 f6             	test   rsi,rsi
-  400981:	0f 44 d7             	cmove  edx,edi
-  400984:	01 d0                	add    eax,edx
-  400986:	83 e9 01             	sub    ecx,0x1
-  400989:	75 e5                	jne    400970 <bench_c_divide_chrisdodd_64+0x10>
-  40098b:	c3                   	ret    
-  40098c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+0000000000400940 <bench_c_divide_user23_64>:
+  400940:	89 f8                	mov    eax,edi
+  400942:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  400947:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40094e:	00 00 
+  400950:	89 c2                	mov    edx,eax
+  400952:	83 e2 07             	and    edx,0x7
+  400955:	48 83 c2 07          	add    rdx,0x7
+  400959:	48 89 d1             	mov    rcx,rdx
+  40095c:	89 c2                	mov    edx,eax
+  40095e:	48 c1 e9 03          	shr    rcx,0x3
+  400962:	48 c1 ea 03          	shr    rdx,0x3
+  400966:	48 01 ca             	add    rdx,rcx
+  400969:	01 d0                	add    eax,edx
+  40096b:	83 ee 01             	sub    esi,0x1
+  40096e:	75 e0                	jne    400950 <bench_c_divide_user23_64+0x10>
+  400970:	c3                   	ret    
+  400971:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  400976:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40097d:	00 00 00 
 
-0000000000400990 <bench_c_divide_weather_32>:
-  400990:	89 f8                	mov    eax,edi
-  400992:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400997:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40099e:	00 00 
-  4009a0:	89 c2                	mov    edx,eax
-  4009a2:	c1 ea 03             	shr    edx,0x3
-  4009a5:	85 c0                	test   eax,eax
-  4009a7:	74 12                	je     4009bb <bench_c_divide_weather_32+0x2b>
-  4009a9:	8d 70 ff             	lea    esi,[rax-0x1]
-  4009ac:	c1 ee 03             	shr    esi,0x3
-  4009af:	39 f2                	cmp    edx,esi
-  4009b1:	40 0f 94 c6          	sete   sil
-  4009b5:	40 0f b6 f6          	movzx  esi,sil
-  4009b9:	01 f2                	add    edx,esi
-  4009bb:	01 d0                	add    eax,edx
-  4009bd:	83 e9 01             	sub    ecx,0x1
-  4009c0:	75 de                	jne    4009a0 <bench_c_divide_weather_32+0x10>
-  4009c2:	c3                   	ret    
-  4009c3:	0f 1f 00             	nop    DWORD PTR [rax]
-  4009c6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  4009cd:	00 00 00 
+0000000000400980 <bench_c_divide_user23_variant_32>:
+  400980:	89 f8                	mov    eax,edi
+  400982:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400987:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40098e:	00 00 
+  400990:	31 f6                	xor    esi,esi
+  400992:	89 c2                	mov    edx,eax
+  400994:	a8 07                	test   al,0x7
+  400996:	40 0f 95 c6          	setne  sil
+  40099a:	c1 ea 03             	shr    edx,0x3
+  40099d:	01 f2                	add    edx,esi
+  40099f:	01 d0                	add    eax,edx
+  4009a1:	83 e9 01             	sub    ecx,0x1
+  4009a4:	75 ea                	jne    400990 <bench_c_divide_user23_variant_32+0x10>
+  4009a6:	c3                   	ret    
+  4009a7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4009ae:	00 00 
 
-00000000004009d0 <bench_c_divide_weather_64>:
-  4009d0:	89 f8                	mov    eax,edi
-  4009d2:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
-  4009d7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  4009de:	00 00 
-  4009e0:	89 c2                	mov    edx,eax
-  4009e2:	48 89 d1             	mov    rcx,rdx
-  4009e5:	48 c1 e9 03          	shr    rcx,0x3
-  4009e9:	48 85 d2             	test   rdx,rdx
-  4009ec:	74 14                	je     400a02 <bench_c_divide_weather_64+0x32>
-  4009ee:	48 83 ea 01          	sub    rdx,0x1
-  4009f2:	48 c1 ea 03          	shr    rdx,0x3
-  4009f6:	48 39 d1             	cmp    rcx,rdx
-  4009f9:	0f 94 c2             	sete   dl
-  4009fc:	0f b6 d2             	movzx  edx,dl
-  4009ff:	48 01 d1             	add    rcx,rdx
-  400a02:	01 c8                	add    eax,ecx
-  400a04:	83 ee 01             	sub    esi,0x1
-  400a07:	75 d7                	jne    4009e0 <bench_c_divide_weather_64+0x10>
-  400a09:	c3                   	ret    
-  400a0a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+00000000004009b0 <bench_c_divide_user23_variant_64>:
+  4009b0:	89 f8                	mov    eax,edi
+  4009b2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4009b7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4009be:	00 00 
+  4009c0:	31 f6                	xor    esi,esi
+  4009c2:	89 c2                	mov    edx,eax
+  4009c4:	a8 07                	test   al,0x7
+  4009c6:	40 0f 95 c6          	setne  sil
+  4009ca:	48 c1 ea 03          	shr    rdx,0x3
+  4009ce:	48 01 f2             	add    rdx,rsi
+  4009d1:	01 d0                	add    eax,edx
+  4009d3:	83 e9 01             	sub    ecx,0x1
+  4009d6:	75 e8                	jne    4009c0 <bench_c_divide_user23_variant_64+0x10>
+  4009d8:	c3                   	ret    
+  4009d9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
-0000000000400a10 <bench_c_divide_plusq_32>:
+00000000004009e0 <bench_c_divide_chrisdodd_32>:
+  4009e0:	89 f8                	mov    eax,edi
+  4009e2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4009e7:	31 f6                	xor    esi,esi
+  4009e9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  4009f0:	8d 50 ff             	lea    edx,[rax-0x1]
+  4009f3:	c1 ea 03             	shr    edx,0x3
+  4009f6:	83 c2 01             	add    edx,0x1
+  4009f9:	85 c0                	test   eax,eax
+  4009fb:	0f 44 d6             	cmove  edx,esi
+  4009fe:	01 d0                	add    eax,edx
+  400a00:	83 e9 01             	sub    ecx,0x1
+  400a03:	75 eb                	jne    4009f0 <bench_c_divide_chrisdodd_32+0x10>
+  400a05:	c3                   	ret    
+  400a06:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400a0d:	00 00 00 
+
+0000000000400a10 <bench_c_divide_chrisdodd_64>:
   400a10:	89 f8                	mov    eax,edi
   400a12:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400a17:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  400a1e:	00 00 
-  400a20:	8d 50 07             	lea    edx,[rax+0x7]
-  400a23:	c1 ea 03             	shr    edx,0x3
-  400a26:	01 d0                	add    eax,edx
-  400a28:	83 e9 01             	sub    ecx,0x1
-  400a2b:	75 f3                	jne    400a20 <bench_c_divide_plusq_32+0x10>
-  400a2d:	c3                   	ret    
-  400a2e:	66 90                	xchg   ax,ax
+  400a17:	31 ff                	xor    edi,edi
+  400a19:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  400a20:	89 c6                	mov    esi,eax
+  400a22:	48 8d 56 ff          	lea    rdx,[rsi-0x1]
+  400a26:	48 c1 ea 03          	shr    rdx,0x3
+  400a2a:	48 83 c2 01          	add    rdx,0x1
+  400a2e:	48 85 f6             	test   rsi,rsi
+  400a31:	0f 44 d7             	cmove  edx,edi
+  400a34:	01 d0                	add    eax,edx
+  400a36:	83 e9 01             	sub    ecx,0x1
+  400a39:	75 e5                	jne    400a20 <bench_c_divide_chrisdodd_64+0x10>
+  400a3b:	c3                   	ret    
+  400a3c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
 
-0000000000400a30 <bench_c_divide_plusq_64>:
-  400a30:	89 f8                	mov    eax,edi
-  400a32:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400a37:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  400a3e:	00 00 
-  400a40:	89 c2                	mov    edx,eax
-  400a42:	48 83 c2 07          	add    rdx,0x7
-  400a46:	48 c1 ea 03          	shr    rdx,0x3
-  400a4a:	01 d0                	add    eax,edx
-  400a4c:	83 e9 01             	sub    ecx,0x1
-  400a4f:	75 ef                	jne    400a40 <bench_c_divide_plusq_64+0x10>
-  400a51:	c3                   	ret    
-  400a52:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
-  400a56:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400a5d:	00 00 00 
+0000000000400a40 <bench_c_divide_weather_32>:
+  400a40:	89 f8                	mov    eax,edi
+  400a42:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400a47:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  400a4e:	00 00 
+  400a50:	89 c2                	mov    edx,eax
+  400a52:	c1 ea 03             	shr    edx,0x3
+  400a55:	85 c0                	test   eax,eax
+  400a57:	74 12                	je     400a6b <bench_c_divide_weather_32+0x2b>
+  400a59:	8d 70 ff             	lea    esi,[rax-0x1]
+  400a5c:	c1 ee 03             	shr    esi,0x3
+  400a5f:	39 f2                	cmp    edx,esi
+  400a61:	40 0f 94 c6          	sete   sil
+  400a65:	40 0f b6 f6          	movzx  esi,sil
+  400a69:	01 f2                	add    edx,esi
+  400a6b:	01 d0                	add    eax,edx
+  400a6d:	83 e9 01             	sub    ecx,0x1
+  400a70:	75 de                	jne    400a50 <bench_c_divide_weather_32+0x10>
+  400a72:	c3                   	ret    
+  400a73:	0f 1f 00             	nop    DWORD PTR [rax]
+  400a76:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400a7d:	00 00 00 
 
-0000000000400a60 <bench_c_divide_dummy_32>:
-  400a60:	89 f8                	mov    eax,edi
-  400a62:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
-  400a67:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  400a6e:	00 00 
-  400a70:	8d 44 00 08          	lea    eax,[rax+rax*1+0x8]
-  400a74:	83 ea 01             	sub    edx,0x1
-  400a77:	75 f7                	jne    400a70 <bench_c_divide_dummy_32+0x10>
-  400a79:	c3                   	ret    
-  400a7a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
-
-0000000000400a80 <bench_c_divide_dummy_64>:
+0000000000400a80 <bench_c_divide_weather_64>:
   400a80:	89 f8                	mov    eax,edi
-  400a82:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
+  400a82:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
   400a87:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
   400a8e:	00 00 
-  400a90:	8d 44 00 08          	lea    eax,[rax+rax*1+0x8]
-  400a94:	83 ea 01             	sub    edx,0x1
-  400a97:	75 f7                	jne    400a90 <bench_c_divide_dummy_64+0x10>
-  400a99:	c3                   	ret    
-  400a9a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400a90:	89 c2                	mov    edx,eax
+  400a92:	48 89 d1             	mov    rcx,rdx
+  400a95:	48 c1 e9 03          	shr    rcx,0x3
+  400a99:	48 85 d2             	test   rdx,rdx
+  400a9c:	74 14                	je     400ab2 <bench_c_divide_weather_64+0x32>
+  400a9e:	48 83 ea 01          	sub    rdx,0x1
+  400aa2:	48 c1 ea 03          	shr    rdx,0x3
+  400aa6:	48 39 d1             	cmp    rcx,rdx
+  400aa9:	0f 94 c2             	sete   dl
+  400aac:	0f b6 d2             	movzx  edx,dl
+  400aaf:	48 01 d1             	add    rcx,rdx
+  400ab2:	01 c8                	add    eax,ecx
+  400ab4:	83 ee 01             	sub    esi,0x1
+  400ab7:	75 d7                	jne    400a90 <bench_c_divide_weather_64+0x10>
+  400ab9:	c3                   	ret    
+  400aba:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
 
-0000000000400aa0 <bench_i_divide_weather_32>:
-  400aa0:	41 b8 00 ca 9a 3b    	mov    r8d,0x3b9aca00
-  400aa6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400aad:	00 00 00 
-  400ab0:	89 f8                	mov    eax,edi
-  400ab2:	31 d2                	xor    edx,edx
-  400ab4:	f7 f6                	div    esi
-  400ab6:	89 c1                	mov    ecx,eax
-  400ab8:	85 ff                	test   edi,edi
-  400aba:	74 0f                	je     400acb <bench_i_divide_weather_32+0x2b>
-  400abc:	8d 47 ff             	lea    eax,[rdi-0x1]
-  400abf:	31 d2                	xor    edx,edx
-  400ac1:	f7 f6                	div    esi
-  400ac3:	8d 51 01             	lea    edx,[rcx+0x1]
-  400ac6:	39 c1                	cmp    ecx,eax
-  400ac8:	0f 44 ca             	cmove  ecx,edx
-  400acb:	01 cf                	add    edi,ecx
-  400acd:	41 83 e8 01          	sub    r8d,0x1
-  400ad1:	75 dd                	jne    400ab0 <bench_i_divide_weather_32+0x10>
-  400ad3:	89 f8                	mov    eax,edi
-  400ad5:	c3                   	ret    
-  400ad6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400add:	00 00 00 
+0000000000400ac0 <bench_c_divide_plusq_32>:
+  400ac0:	89 f8                	mov    eax,edi
+  400ac2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400ac7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  400ace:	00 00 
+  400ad0:	8d 50 07             	lea    edx,[rax+0x7]
+  400ad3:	c1 ea 03             	shr    edx,0x3
+  400ad6:	01 d0                	add    eax,edx
+  400ad8:	83 e9 01             	sub    ecx,0x1
+  400adb:	75 f3                	jne    400ad0 <bench_c_divide_plusq_32+0x10>
+  400add:	c3                   	ret    
+  400ade:	66 90                	xchg   ax,ax
 
-0000000000400ae0 <bench_i_divide_weather_64>:
-  400ae0:	41 89 f0             	mov    r8d,esi
-  400ae3:	41 b9 00 ca 9a 3b    	mov    r9d,0x3b9aca00
-  400ae9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-  400af0:	89 f9                	mov    ecx,edi
-  400af2:	31 d2                	xor    edx,edx
-  400af4:	48 89 c8             	mov    rax,rcx
-  400af7:	49 f7 f0             	div    r8
-  400afa:	48 89 c6             	mov    rsi,rax
-  400afd:	48 85 c9             	test   rcx,rcx
-  400b00:	74 14                	je     400b16 <bench_i_divide_weather_64+0x36>
-  400b02:	48 8d 41 ff          	lea    rax,[rcx-0x1]
-  400b06:	31 d2                	xor    edx,edx
-  400b08:	49 f7 f0             	div    r8
-  400b0b:	48 8d 56 01          	lea    rdx,[rsi+0x1]
-  400b0f:	48 39 c6             	cmp    rsi,rax
-  400b12:	48 0f 44 f2          	cmove  rsi,rdx
-  400b16:	01 f7                	add    edi,esi
-  400b18:	41 83 e9 01          	sub    r9d,0x1
-  400b1c:	75 d2                	jne    400af0 <bench_i_divide_weather_64+0x10>
-  400b1e:	89 f8                	mov    eax,edi
-  400b20:	c3                   	ret    
-  400b21:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
-  400b26:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400b2d:	00 00 00 
+0000000000400ae0 <bench_c_divide_plusq_64>:
+  400ae0:	89 f8                	mov    eax,edi
+  400ae2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400ae7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  400aee:	00 00 
+  400af0:	89 c2                	mov    edx,eax
+  400af2:	48 83 c2 07          	add    rdx,0x7
+  400af6:	48 c1 ea 03          	shr    rdx,0x3
+  400afa:	01 d0                	add    eax,edx
+  400afc:	83 e9 01             	sub    ecx,0x1
+  400aff:	75 ef                	jne    400af0 <bench_c_divide_plusq_64+0x10>
+  400b01:	c3                   	ret    
+  400b02:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400b06:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400b0d:	00 00 00 
 
-0000000000400b30 <bench_i_divide_dummy_64>:
+0000000000400b10 <bench_c_divide_dummy_32>:
+  400b10:	89 f8                	mov    eax,edi
+  400b12:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
+  400b17:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  400b1e:	00 00 
+  400b20:	8d 44 00 08          	lea    eax,[rax+rax*1+0x8]
+  400b24:	83 ea 01             	sub    edx,0x1
+  400b27:	75 f7                	jne    400b20 <bench_c_divide_dummy_32+0x10>
+  400b29:	c3                   	ret    
+  400b2a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+
+0000000000400b30 <bench_c_divide_dummy_64>:
   400b30:	89 f8                	mov    eax,edi
   400b32:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
   400b37:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
   400b3e:	00 00 
-  400b40:	8d 04 46             	lea    eax,[rsi+rax*2]
-  400b43:	83 ea 01             	sub    edx,0x1
-  400b46:	75 f8                	jne    400b40 <bench_i_divide_dummy_64+0x10>
-  400b48:	c3                   	ret    
-  400b49:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  400b40:	8d 44 00 08          	lea    eax,[rax+rax*1+0x8]
+  400b44:	83 ea 01             	sub    edx,0x1
+  400b47:	75 f7                	jne    400b40 <bench_c_divide_dummy_64+0x10>
+  400b49:	c3                   	ret    
+  400b4a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
 
-0000000000400b50 <bench_v_divide_weather_32>:
+0000000000400b50 <bench_i_divide_weather_32>:
   400b50:	41 b8 00 ca 9a 3b    	mov    r8d,0x3b9aca00
   400b56:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
   400b5d:	00 00 00 
@@ -361,7 +341,7 @@
   400b64:	f7 f6                	div    esi
   400b66:	89 c1                	mov    ecx,eax
   400b68:	85 ff                	test   edi,edi
-  400b6a:	74 0f                	je     400b7b <bench_v_divide_weather_32+0x2b>
+  400b6a:	74 0f                	je     400b7b <bench_i_divide_weather_32+0x2b>
   400b6c:	8d 47 ff             	lea    eax,[rdi-0x1]
   400b6f:	31 d2                	xor    edx,edx
   400b71:	f7 f6                	div    esi
@@ -369,909 +349,1060 @@
   400b76:	39 c1                	cmp    ecx,eax
   400b78:	0f 44 ca             	cmove  ecx,edx
   400b7b:	01 cf                	add    edi,ecx
-  400b7d:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400b83:	41 83 e8 01          	sub    r8d,0x1
-  400b87:	75 d7                	jne    400b60 <bench_v_divide_weather_32+0x10>
-  400b89:	89 f8                	mov    eax,edi
-  400b8b:	c3                   	ret    
-  400b8c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400b7d:	41 83 e8 01          	sub    r8d,0x1
+  400b81:	75 dd                	jne    400b60 <bench_i_divide_weather_32+0x10>
+  400b83:	89 f8                	mov    eax,edi
+  400b85:	c3                   	ret    
+  400b86:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400b8d:	00 00 00 
 
-0000000000400b90 <bench_v_divide_weather_64>:
-  400b90:	41 ba 00 ca 9a 3b    	mov    r10d,0x3b9aca00
-  400b96:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400b9d:	00 00 00 
+0000000000400b90 <bench_i_divide_weather_64>:
+  400b90:	41 89 f0             	mov    r8d,esi
+  400b93:	41 b9 00 ca 9a 3b    	mov    r9d,0x3b9aca00
+  400b99:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
   400ba0:	89 f9                	mov    ecx,edi
-  400ba2:	41 89 f1             	mov    r9d,esi
-  400ba5:	31 d2                	xor    edx,edx
-  400ba7:	48 89 c8             	mov    rax,rcx
-  400baa:	49 f7 f1             	div    r9
-  400bad:	49 89 c0             	mov    r8,rax
-  400bb0:	48 85 c9             	test   rcx,rcx
-  400bb3:	74 14                	je     400bc9 <bench_v_divide_weather_64+0x39>
-  400bb5:	48 8d 41 ff          	lea    rax,[rcx-0x1]
-  400bb9:	31 d2                	xor    edx,edx
-  400bbb:	49 f7 f1             	div    r9
-  400bbe:	49 8d 50 01          	lea    rdx,[r8+0x1]
-  400bc2:	49 39 c0             	cmp    r8,rax
-  400bc5:	4c 0f 44 c2          	cmove  r8,rdx
-  400bc9:	44 01 c7             	add    edi,r8d
-  400bcc:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400bd2:	41 83 ea 01          	sub    r10d,0x1
-  400bd6:	75 c8                	jne    400ba0 <bench_v_divide_weather_64+0x10>
-  400bd8:	89 f8                	mov    eax,edi
-  400bda:	c3                   	ret    
-  400bdb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  400ba2:	31 d2                	xor    edx,edx
+  400ba4:	48 89 c8             	mov    rax,rcx
+  400ba7:	49 f7 f0             	div    r8
+  400baa:	48 89 c6             	mov    rsi,rax
+  400bad:	48 85 c9             	test   rcx,rcx
+  400bb0:	74 14                	je     400bc6 <bench_i_divide_weather_64+0x36>
+  400bb2:	48 8d 41 ff          	lea    rax,[rcx-0x1]
+  400bb6:	31 d2                	xor    edx,edx
+  400bb8:	49 f7 f0             	div    r8
+  400bbb:	48 8d 56 01          	lea    rdx,[rsi+0x1]
+  400bbf:	48 39 c6             	cmp    rsi,rax
+  400bc2:	48 0f 44 f2          	cmove  rsi,rdx
+  400bc6:	01 f7                	add    edi,esi
+  400bc8:	41 83 e9 01          	sub    r9d,0x1
+  400bcc:	75 d2                	jne    400ba0 <bench_i_divide_weather_64+0x10>
+  400bce:	89 f8                	mov    eax,edi
+  400bd0:	c3                   	ret    
+  400bd1:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  400bd6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400bdd:	00 00 00 
 
-0000000000400be0 <bench_v_divide_dummy_64>:
+0000000000400be0 <bench_i_divide_dummy_64>:
   400be0:	89 f8                	mov    eax,edi
   400be2:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
   400be7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
   400bee:	00 00 
   400bf0:	8d 04 46             	lea    eax,[rsi+rax*2]
-  400bf3:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400bf9:	83 ea 01             	sub    edx,0x1
-  400bfc:	75 f2                	jne    400bf0 <bench_v_divide_dummy_64+0x10>
-  400bfe:	c3                   	ret    
-  400bff:	90                   	nop
+  400bf3:	83 ea 01             	sub    edx,0x1
+  400bf6:	75 f8                	jne    400bf0 <bench_i_divide_dummy_64+0x10>
+  400bf8:	c3                   	ret    
+  400bf9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
-0000000000400c00 <bench_i_stoke32_32>:
-  400c00:	89 f8                	mov    eax,edi
-  400c02:	0f bd f6             	bsr    esi,esi
-  400c05:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400c0a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
-  400c10:	89 c2                	mov    edx,eax
-  400c12:	48 83 ea 01          	sub    rdx,0x1
-  400c16:	c4 e2 cb f7 d2       	shrx   rdx,rdx,rsi
-  400c1b:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
-  400c1f:	83 e9 01             	sub    ecx,0x1
-  400c22:	75 ec                	jne    400c10 <bench_i_stoke32_32+0x10>
-  400c24:	c3                   	ret    
-  400c25:	90                   	nop
-  400c26:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400c2d:	00 00 00 
+0000000000400c00 <bench_v_divide_weather_32>:
+  400c00:	41 b8 00 ca 9a 3b    	mov    r8d,0x3b9aca00
+  400c06:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400c0d:	00 00 00 
+  400c10:	89 f8                	mov    eax,edi
+  400c12:	31 d2                	xor    edx,edx
+  400c14:	f7 f6                	div    esi
+  400c16:	89 c1                	mov    ecx,eax
+  400c18:	85 ff                	test   edi,edi
+  400c1a:	74 0f                	je     400c2b <bench_v_divide_weather_32+0x2b>
+  400c1c:	8d 47 ff             	lea    eax,[rdi-0x1]
+  400c1f:	31 d2                	xor    edx,edx
+  400c21:	f7 f6                	div    esi
+  400c23:	8d 51 01             	lea    edx,[rcx+0x1]
+  400c26:	39 c1                	cmp    ecx,eax
+  400c28:	0f 44 ca             	cmove  ecx,edx
+  400c2b:	01 cf                	add    edi,ecx
+  400c2d:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400c33:	41 83 e8 01          	sub    r8d,0x1
+  400c37:	75 d7                	jne    400c10 <bench_v_divide_weather_32+0x10>
+  400c39:	89 f8                	mov    eax,edi
+  400c3b:	c3                   	ret    
+  400c3c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
 
-0000000000400c30 <bench_i_divide_chux_32>:
-  400c30:	44 8d 46 ff          	lea    r8d,[rsi-0x1]
-  400c34:	89 f8                	mov    eax,edi
-  400c36:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400c3b:	0f bd fe             	bsr    edi,esi
-  400c3e:	66 90                	xchg   ax,ax
-  400c40:	31 f6                	xor    esi,esi
-  400c42:	44 85 c0             	test   eax,r8d
-  400c45:	c4 e2 43 f7 d0       	shrx   edx,eax,edi
-  400c4a:	40 0f 95 c6          	setne  sil
-  400c4e:	01 f2                	add    edx,esi
-  400c50:	01 d0                	add    eax,edx
-  400c52:	83 e9 01             	sub    ecx,0x1
-  400c55:	75 e9                	jne    400c40 <bench_i_divide_chux_32+0x10>
-  400c57:	c3                   	ret    
-  400c58:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  400c5f:	00 
+0000000000400c40 <bench_v_divide_weather_64>:
+  400c40:	41 ba 00 ca 9a 3b    	mov    r10d,0x3b9aca00
+  400c46:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400c4d:	00 00 00 
+  400c50:	89 f9                	mov    ecx,edi
+  400c52:	41 89 f1             	mov    r9d,esi
+  400c55:	31 d2                	xor    edx,edx
+  400c57:	48 89 c8             	mov    rax,rcx
+  400c5a:	49 f7 f1             	div    r9
+  400c5d:	49 89 c0             	mov    r8,rax
+  400c60:	48 85 c9             	test   rcx,rcx
+  400c63:	74 14                	je     400c79 <bench_v_divide_weather_64+0x39>
+  400c65:	48 8d 41 ff          	lea    rax,[rcx-0x1]
+  400c69:	31 d2                	xor    edx,edx
+  400c6b:	49 f7 f1             	div    r9
+  400c6e:	49 8d 50 01          	lea    rdx,[r8+0x1]
+  400c72:	49 39 c0             	cmp    r8,rax
+  400c75:	4c 0f 44 c2          	cmove  r8,rdx
+  400c79:	44 01 c7             	add    edi,r8d
+  400c7c:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400c82:	41 83 ea 01          	sub    r10d,0x1
+  400c86:	75 c8                	jne    400c50 <bench_v_divide_weather_64+0x10>
+  400c88:	89 f8                	mov    eax,edi
+  400c8a:	c3                   	ret    
+  400c8b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
-0000000000400c60 <bench_i_divide_user23_32>:
-  400c60:	89 f8                	mov    eax,edi
-  400c62:	44 0f bd c6          	bsr    r8d,esi
-  400c66:	8d 7e ff             	lea    edi,[rsi-0x1]
-  400c69:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
-  400c6e:	66 90                	xchg   ax,ax
-  400c70:	89 c2                	mov    edx,eax
-  400c72:	c4 e2 3b f7 c8       	shrx   ecx,eax,r8d
-  400c77:	21 fa                	and    edx,edi
-  400c79:	01 fa                	add    edx,edi
-  400c7b:	c4 e2 3b f7 d2       	shrx   edx,edx,r8d
-  400c80:	01 ca                	add    edx,ecx
-  400c82:	01 d0                	add    eax,edx
-  400c84:	83 ee 01             	sub    esi,0x1
-  400c87:	75 e7                	jne    400c70 <bench_i_divide_user23_32+0x10>
-  400c89:	c3                   	ret    
-  400c8a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
-
-0000000000400c90 <bench_i_divide_user23_variant_32>:
+0000000000400c90 <bench_v_divide_dummy_64>:
   400c90:	89 f8                	mov    eax,edi
-  400c92:	44 0f bd c6          	bsr    r8d,esi
-  400c96:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400c9b:	8d 7e ff             	lea    edi,[rsi-0x1]
-  400c9e:	66 90                	xchg   ax,ax
-  400ca0:	31 f6                	xor    esi,esi
-  400ca2:	85 f8                	test   eax,edi
-  400ca4:	c4 e2 3b f7 d0       	shrx   edx,eax,r8d
-  400ca9:	40 0f 95 c6          	setne  sil
-  400cad:	01 f2                	add    edx,esi
-  400caf:	01 d0                	add    eax,edx
-  400cb1:	83 e9 01             	sub    ecx,0x1
-  400cb4:	75 ea                	jne    400ca0 <bench_i_divide_user23_variant_32+0x10>
-  400cb6:	c3                   	ret    
-  400cb7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  400cbe:	00 00 
+  400c92:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
+  400c97:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  400c9e:	00 00 
+  400ca0:	8d 04 46             	lea    eax,[rsi+rax*2]
+  400ca3:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400ca9:	83 ea 01             	sub    edx,0x1
+  400cac:	75 f2                	jne    400ca0 <bench_v_divide_dummy_64+0x10>
+  400cae:	c3                   	ret    
+  400caf:	90                   	nop
 
-0000000000400cc0 <bench_i_divide_chrisdodd_32>:
-  400cc0:	89 f8                	mov    eax,edi
-  400cc2:	0f bd f6             	bsr    esi,esi
-  400cc5:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400cca:	31 ff                	xor    edi,edi
-  400ccc:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
-  400cd0:	8d 50 ff             	lea    edx,[rax-0x1]
-  400cd3:	c4 e2 4b f7 d2       	shrx   edx,edx,esi
-  400cd8:	83 c2 01             	add    edx,0x1
-  400cdb:	85 c0                	test   eax,eax
-  400cdd:	0f 44 d7             	cmove  edx,edi
-  400ce0:	01 d0                	add    eax,edx
-  400ce2:	83 e9 01             	sub    ecx,0x1
-  400ce5:	75 e9                	jne    400cd0 <bench_i_divide_chrisdodd_32+0x10>
-  400ce7:	c3                   	ret    
-  400ce8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  400cef:	00 
+0000000000400cb0 <bench_i_divide_peter_32>:
+  400cb0:	89 f8                	mov    eax,edi
+  400cb2:	0f bd fe             	bsr    edi,esi
+  400cb5:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  400cba:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400cc0:	8d 50 ff             	lea    edx,[rax-0x1]
+  400cc3:	c4 e2 43 f7 d2       	shrx   edx,edx,edi
+  400cc8:	8d 4a 01             	lea    ecx,[rdx+0x1]
+  400ccb:	31 d2                	xor    edx,edx
+  400ccd:	85 c0                	test   eax,eax
+  400ccf:	0f 95 c2             	setne  dl
+  400cd2:	f7 da                	neg    edx
+  400cd4:	21 ca                	and    edx,ecx
+  400cd6:	01 d0                	add    eax,edx
+  400cd8:	83 ee 01             	sub    esi,0x1
+  400cdb:	75 e3                	jne    400cc0 <bench_i_divide_peter_32+0x10>
+  400cdd:	c3                   	ret    
+  400cde:	66 90                	xchg   ax,ax
 
-0000000000400cf0 <bench_i_divide_plusq_32>:
-  400cf0:	89 f8                	mov    eax,edi
-  400cf2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400cf7:	0f bd fe             	bsr    edi,esi
-  400cfa:	83 ee 01             	sub    esi,0x1
-  400cfd:	0f 1f 00             	nop    DWORD PTR [rax]
-  400d00:	8d 14 30             	lea    edx,[rax+rsi*1]
-  400d03:	c4 e2 43 f7 d2       	shrx   edx,edx,edi
-  400d08:	01 d0                	add    eax,edx
-  400d0a:	83 e9 01             	sub    ecx,0x1
-  400d0d:	75 f1                	jne    400d00 <bench_i_divide_plusq_32+0x10>
-  400d0f:	c3                   	ret    
+0000000000400ce0 <bench_i_stoke32_32>:
+  400ce0:	89 f8                	mov    eax,edi
+  400ce2:	0f bd f6             	bsr    esi,esi
+  400ce5:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400cea:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  400cf0:	89 c2                	mov    edx,eax
+  400cf2:	48 83 ea 01          	sub    rdx,0x1
+  400cf6:	c4 e2 cb f7 d2       	shrx   rdx,rdx,rsi
+  400cfb:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
+  400cff:	83 e9 01             	sub    ecx,0x1
+  400d02:	75 ec                	jne    400cf0 <bench_i_stoke32_32+0x10>
+  400d04:	c3                   	ret    
+  400d05:	90                   	nop
+  400d06:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400d0d:	00 00 00 
 
-0000000000400d10 <bench_v_stoke32_32>:
-  400d10:	89 f8                	mov    eax,edi
-  400d12:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400d17:	41 b8 1f 00 00 00    	mov    r8d,0x1f
-  400d1d:	0f 1f 00             	nop    DWORD PTR [rax]
-  400d20:	31 ff                	xor    edi,edi
-  400d22:	45 89 c1             	mov    r9d,r8d
-  400d25:	89 c2                	mov    edx,eax
-  400d27:	f3 0f bd fe          	lzcnt  edi,esi
-  400d2b:	41 29 f9             	sub    r9d,edi
-  400d2e:	48 83 ea 01          	sub    rdx,0x1
-  400d32:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400d38:	44 89 cf             	mov    edi,r9d
-  400d3b:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
-  400d40:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
-  400d44:	83 e9 01             	sub    ecx,0x1
-  400d47:	75 d7                	jne    400d20 <bench_v_stoke32_32+0x10>
-  400d49:	c3                   	ret    
-  400d4a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+0000000000400d10 <bench_i_divide_chux_32>:
+  400d10:	44 8d 46 ff          	lea    r8d,[rsi-0x1]
+  400d14:	89 f8                	mov    eax,edi
+  400d16:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400d1b:	0f bd fe             	bsr    edi,esi
+  400d1e:	66 90                	xchg   ax,ax
+  400d20:	31 f6                	xor    esi,esi
+  400d22:	44 85 c0             	test   eax,r8d
+  400d25:	c4 e2 43 f7 d0       	shrx   edx,eax,edi
+  400d2a:	40 0f 95 c6          	setne  sil
+  400d2e:	01 f2                	add    edx,esi
+  400d30:	01 d0                	add    eax,edx
+  400d32:	83 e9 01             	sub    ecx,0x1
+  400d35:	75 e9                	jne    400d20 <bench_i_divide_chux_32+0x10>
+  400d37:	c3                   	ret    
+  400d38:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  400d3f:	00 
 
-0000000000400d50 <bench_v_divide_chux_32>:
-  400d50:	89 f8                	mov    eax,edi
-  400d52:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400d57:	41 b8 1f 00 00 00    	mov    r8d,0x1f
-  400d5d:	0f 1f 00             	nop    DWORD PTR [rax]
-  400d60:	8d 7e ff             	lea    edi,[rsi-0x1]
-  400d63:	31 d2                	xor    edx,edx
-  400d65:	45 89 c1             	mov    r9d,r8d
-  400d68:	f3 0f bd d6          	lzcnt  edx,esi
-  400d6c:	85 c7                	test   edi,eax
-  400d6e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400d74:	40 0f 95 c7          	setne  dil
-  400d78:	41 29 d1             	sub    r9d,edx
-  400d7b:	40 0f b6 ff          	movzx  edi,dil
-  400d7f:	c4 e2 33 f7 d0       	shrx   edx,eax,r9d
-  400d84:	01 fa                	add    edx,edi
-  400d86:	01 d0                	add    eax,edx
-  400d88:	83 e9 01             	sub    ecx,0x1
-  400d8b:	75 d3                	jne    400d60 <bench_v_divide_chux_32+0x10>
-  400d8d:	c3                   	ret    
-  400d8e:	66 90                	xchg   ax,ax
+0000000000400d40 <bench_i_divide_user23_32>:
+  400d40:	89 f8                	mov    eax,edi
+  400d42:	44 0f bd c6          	bsr    r8d,esi
+  400d46:	8d 7e ff             	lea    edi,[rsi-0x1]
+  400d49:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  400d4e:	66 90                	xchg   ax,ax
+  400d50:	89 c2                	mov    edx,eax
+  400d52:	c4 e2 3b f7 c8       	shrx   ecx,eax,r8d
+  400d57:	21 fa                	and    edx,edi
+  400d59:	01 fa                	add    edx,edi
+  400d5b:	c4 e2 3b f7 d2       	shrx   edx,edx,r8d
+  400d60:	01 ca                	add    edx,ecx
+  400d62:	01 d0                	add    eax,edx
+  400d64:	83 ee 01             	sub    esi,0x1
+  400d67:	75 e7                	jne    400d50 <bench_i_divide_user23_32+0x10>
+  400d69:	c3                   	ret    
+  400d6a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
 
-0000000000400d90 <bench_v_divide_user23_32>:
-  400d90:	89 f8                	mov    eax,edi
-  400d92:	41 b9 1f 00 00 00    	mov    r9d,0x1f
-  400d98:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  400d9d:	0f 1f 00             	nop    DWORD PTR [rax]
-  400da0:	31 d2                	xor    edx,edx
-  400da2:	44 89 c9             	mov    ecx,r9d
-  400da5:	f3 0f bd d6          	lzcnt  edx,esi
-  400da9:	29 d1                	sub    ecx,edx
-  400dab:	89 ca                	mov    edx,ecx
-  400dad:	8d 4e ff             	lea    ecx,[rsi-0x1]
-  400db0:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400db6:	41 89 c8             	mov    r8d,ecx
-  400db9:	41 21 c0             	and    r8d,eax
-  400dbc:	44 01 c1             	add    ecx,r8d
-  400dbf:	c4 e2 6b f7 c9       	shrx   ecx,ecx,edx
-  400dc4:	c4 e2 6b f7 d0       	shrx   edx,eax,edx
-  400dc9:	01 ca                	add    edx,ecx
-  400dcb:	01 d0                	add    eax,edx
-  400dcd:	83 ef 01             	sub    edi,0x1
-  400dd0:	75 ce                	jne    400da0 <bench_v_divide_user23_32+0x10>
-  400dd2:	c3                   	ret    
-  400dd3:	0f 1f 00             	nop    DWORD PTR [rax]
-  400dd6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400ddd:	00 00 00 
+0000000000400d70 <bench_i_divide_user23_variant_32>:
+  400d70:	89 f8                	mov    eax,edi
+  400d72:	44 0f bd c6          	bsr    r8d,esi
+  400d76:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400d7b:	8d 7e ff             	lea    edi,[rsi-0x1]
+  400d7e:	66 90                	xchg   ax,ax
+  400d80:	31 f6                	xor    esi,esi
+  400d82:	85 f8                	test   eax,edi
+  400d84:	c4 e2 3b f7 d0       	shrx   edx,eax,r8d
+  400d89:	40 0f 95 c6          	setne  sil
+  400d8d:	01 f2                	add    edx,esi
+  400d8f:	01 d0                	add    eax,edx
+  400d91:	83 e9 01             	sub    ecx,0x1
+  400d94:	75 ea                	jne    400d80 <bench_i_divide_user23_variant_32+0x10>
+  400d96:	c3                   	ret    
+  400d97:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  400d9e:	00 00 
 
-0000000000400de0 <bench_v_divide_user23_variant_32>:
-  400de0:	89 f8                	mov    eax,edi
-  400de2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400de7:	41 b8 1f 00 00 00    	mov    r8d,0x1f
-  400ded:	0f 1f 00             	nop    DWORD PTR [rax]
-  400df0:	8d 7e ff             	lea    edi,[rsi-0x1]
-  400df3:	31 d2                	xor    edx,edx
-  400df5:	45 89 c1             	mov    r9d,r8d
-  400df8:	f3 0f bd d6          	lzcnt  edx,esi
-  400dfc:	85 c7                	test   edi,eax
-  400dfe:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400e04:	40 0f 95 c7          	setne  dil
-  400e08:	41 29 d1             	sub    r9d,edx
-  400e0b:	40 0f b6 ff          	movzx  edi,dil
-  400e0f:	c4 e2 33 f7 d0       	shrx   edx,eax,r9d
-  400e14:	01 fa                	add    edx,edi
-  400e16:	01 d0                	add    eax,edx
-  400e18:	83 e9 01             	sub    ecx,0x1
-  400e1b:	75 d3                	jne    400df0 <bench_v_divide_user23_variant_32+0x10>
-  400e1d:	c3                   	ret    
-  400e1e:	66 90                	xchg   ax,ax
+0000000000400da0 <bench_i_divide_chrisdodd_32>:
+  400da0:	89 f8                	mov    eax,edi
+  400da2:	0f bd f6             	bsr    esi,esi
+  400da5:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400daa:	31 ff                	xor    edi,edi
+  400dac:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  400db0:	8d 50 ff             	lea    edx,[rax-0x1]
+  400db3:	c4 e2 4b f7 d2       	shrx   edx,edx,esi
+  400db8:	83 c2 01             	add    edx,0x1
+  400dbb:	85 c0                	test   eax,eax
+  400dbd:	0f 44 d7             	cmove  edx,edi
+  400dc0:	01 d0                	add    eax,edx
+  400dc2:	83 e9 01             	sub    ecx,0x1
+  400dc5:	75 e9                	jne    400db0 <bench_i_divide_chrisdodd_32+0x10>
+  400dc7:	c3                   	ret    
+  400dc8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  400dcf:	00 
 
-0000000000400e20 <bench_v_divide_chrisdodd_32>:
-  400e20:	89 f8                	mov    eax,edi
-  400e22:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400e27:	41 b9 1f 00 00 00    	mov    r9d,0x1f
-  400e2d:	45 31 c0             	xor    r8d,r8d
-  400e30:	8d 50 ff             	lea    edx,[rax-0x1]
-  400e33:	31 ff                	xor    edi,edi
-  400e35:	45 89 ca             	mov    r10d,r9d
-  400e38:	f3 0f bd fe          	lzcnt  edi,esi
-  400e3c:	41 29 fa             	sub    r10d,edi
-  400e3f:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400e45:	c4 e2 2b f7 d2       	shrx   edx,edx,r10d
-  400e4a:	83 c2 01             	add    edx,0x1
-  400e4d:	85 c0                	test   eax,eax
-  400e4f:	41 0f 44 d0          	cmove  edx,r8d
-  400e53:	01 d0                	add    eax,edx
-  400e55:	83 e9 01             	sub    ecx,0x1
-  400e58:	75 d6                	jne    400e30 <bench_v_divide_chrisdodd_32+0x10>
-  400e5a:	c3                   	ret    
-  400e5b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+0000000000400dd0 <bench_i_divide_plusq_32>:
+  400dd0:	89 f8                	mov    eax,edi
+  400dd2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400dd7:	0f bd fe             	bsr    edi,esi
+  400dda:	83 ee 01             	sub    esi,0x1
+  400ddd:	0f 1f 00             	nop    DWORD PTR [rax]
+  400de0:	8d 14 30             	lea    edx,[rax+rsi*1]
+  400de3:	c4 e2 43 f7 d2       	shrx   edx,edx,edi
+  400de8:	01 d0                	add    eax,edx
+  400dea:	83 e9 01             	sub    ecx,0x1
+  400ded:	75 f1                	jne    400de0 <bench_i_divide_plusq_32+0x10>
+  400def:	c3                   	ret    
 
-0000000000400e60 <bench_v_divide_plusq_32>:
-  400e60:	89 f8                	mov    eax,edi
-  400e62:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400e67:	41 b8 1f 00 00 00    	mov    r8d,0x1f
-  400e6d:	0f 1f 00             	nop    DWORD PTR [rax]
-  400e70:	8d 54 30 ff          	lea    edx,[rax+rsi*1-0x1]
-  400e74:	31 ff                	xor    edi,edi
-  400e76:	45 89 c1             	mov    r9d,r8d
-  400e79:	f3 0f bd fe          	lzcnt  edi,esi
-  400e7d:	41 29 f9             	sub    r9d,edi
-  400e80:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400e86:	c4 e2 33 f7 d2       	shrx   edx,edx,r9d
-  400e8b:	01 d0                	add    eax,edx
-  400e8d:	83 e9 01             	sub    ecx,0x1
-  400e90:	75 de                	jne    400e70 <bench_v_divide_plusq_32+0x10>
-  400e92:	c3                   	ret    
-  400e93:	0f 1f 00             	nop    DWORD PTR [rax]
-  400e96:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  400e9d:	00 00 00 
+0000000000400df0 <bench_v_divide_peter_32>:
+  400df0:	89 f8                	mov    eax,edi
+  400df2:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  400df8:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  400dfd:	0f 1f 00             	nop    DWORD PTR [rax]
+  400e00:	8d 50 ff             	lea    edx,[rax-0x1]
+  400e03:	31 c9                	xor    ecx,ecx
+  400e05:	45 89 c1             	mov    r9d,r8d
+  400e08:	f3 0f bd ce          	lzcnt  ecx,esi
+  400e0c:	41 29 c9             	sub    r9d,ecx
+  400e0f:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400e15:	c4 e2 33 f7 d2       	shrx   edx,edx,r9d
+  400e1a:	8d 4a 01             	lea    ecx,[rdx+0x1]
+  400e1d:	31 d2                	xor    edx,edx
+  400e1f:	85 c0                	test   eax,eax
+  400e21:	0f 95 c2             	setne  dl
+  400e24:	f7 da                	neg    edx
+  400e26:	21 ca                	and    edx,ecx
+  400e28:	01 d0                	add    eax,edx
+  400e2a:	83 ef 01             	sub    edi,0x1
+  400e2d:	75 d1                	jne    400e00 <bench_v_divide_peter_32+0x10>
+  400e2f:	c3                   	ret    
 
-0000000000400ea0 <bench_i_stoke32_64>:
-  400ea0:	89 f8                	mov    eax,edi
-  400ea2:	31 ff                	xor    edi,edi
-  400ea4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400ea9:	f3 0f bc fe          	tzcnt  edi,esi
-  400ead:	0f 1f 00             	nop    DWORD PTR [rax]
-  400eb0:	89 c6                	mov    esi,eax
-  400eb2:	c4 e2 c3 f7 d6       	shrx   rdx,rsi,rdi
-  400eb7:	c4 62 41 f7 ca       	shlx   r9d,edx,edi
-  400ebc:	44 8d 42 01          	lea    r8d,[rdx+0x1]
-  400ec0:	4c 39 ce             	cmp    rsi,r9
-  400ec3:	41 0f 45 d0          	cmovne edx,r8d
-  400ec7:	01 d0                	add    eax,edx
-  400ec9:	83 e9 01             	sub    ecx,0x1
-  400ecc:	75 e2                	jne    400eb0 <bench_i_stoke32_64+0x10>
-  400ece:	c3                   	ret    
-  400ecf:	90                   	nop
+0000000000400e30 <bench_v_stoke32_32>:
+  400e30:	89 f8                	mov    eax,edi
+  400e32:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400e37:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  400e3d:	0f 1f 00             	nop    DWORD PTR [rax]
+  400e40:	31 ff                	xor    edi,edi
+  400e42:	45 89 c1             	mov    r9d,r8d
+  400e45:	89 c2                	mov    edx,eax
+  400e47:	f3 0f bd fe          	lzcnt  edi,esi
+  400e4b:	41 29 f9             	sub    r9d,edi
+  400e4e:	48 83 ea 01          	sub    rdx,0x1
+  400e52:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400e58:	44 89 cf             	mov    edi,r9d
+  400e5b:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  400e60:	8d 44 10 01          	lea    eax,[rax+rdx*1+0x1]
+  400e64:	83 e9 01             	sub    ecx,0x1
+  400e67:	75 d7                	jne    400e40 <bench_v_stoke32_32+0x10>
+  400e69:	c3                   	ret    
+  400e6a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
 
-0000000000400ed0 <bench_v_stoke32_64>:
-  400ed0:	89 f8                	mov    eax,edi
-  400ed2:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  400ed7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  400ede:	00 00 
-  400ee0:	31 c9                	xor    ecx,ecx
-  400ee2:	41 89 c0             	mov    r8d,eax
-  400ee5:	f3 0f bc ce          	tzcnt  ecx,esi
-  400ee9:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400eef:	c4 c2 f3 f7 d0       	shrx   rdx,r8,rcx
-  400ef4:	c4 e2 71 f7 ca       	shlx   ecx,edx,ecx
-  400ef9:	44 8d 4a 01          	lea    r9d,[rdx+0x1]
-  400efd:	49 39 c8             	cmp    r8,rcx
-  400f00:	41 0f 45 d1          	cmovne edx,r9d
-  400f04:	01 d0                	add    eax,edx
-  400f06:	83 ef 01             	sub    edi,0x1
-  400f09:	75 d5                	jne    400ee0 <bench_v_stoke32_64+0x10>
-  400f0b:	c3                   	ret    
-  400f0c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+0000000000400e70 <bench_v_divide_chux_32>:
+  400e70:	89 f8                	mov    eax,edi
+  400e72:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400e77:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  400e7d:	0f 1f 00             	nop    DWORD PTR [rax]
+  400e80:	8d 7e ff             	lea    edi,[rsi-0x1]
+  400e83:	31 d2                	xor    edx,edx
+  400e85:	45 89 c1             	mov    r9d,r8d
+  400e88:	f3 0f bd d6          	lzcnt  edx,esi
+  400e8c:	85 c7                	test   edi,eax
+  400e8e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400e94:	40 0f 95 c7          	setne  dil
+  400e98:	41 29 d1             	sub    r9d,edx
+  400e9b:	40 0f b6 ff          	movzx  edi,dil
+  400e9f:	c4 e2 33 f7 d0       	shrx   edx,eax,r9d
+  400ea4:	01 fa                	add    edx,edi
+  400ea6:	01 d0                	add    eax,edx
+  400ea8:	83 e9 01             	sub    ecx,0x1
+  400eab:	75 d3                	jne    400e80 <bench_v_divide_chux_32+0x10>
+  400ead:	c3                   	ret    
+  400eae:	66 90                	xchg   ax,ax
 
-0000000000400f10 <bench_i_div_stoke_64>:
-  400f10:	89 f8                	mov    eax,edi
-  400f12:	f3 0f bc f6          	tzcnt  esi,esi
-  400f16:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400f1b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
-  400f20:	c4 e2 4b f7 d0       	shrx   edx,eax,esi
-  400f25:	c4 62 49 f7 c2       	shlx   r8d,edx,esi
-  400f2a:	8d 7a 01             	lea    edi,[rdx+0x1]
-  400f2d:	41 39 c0             	cmp    r8d,eax
-  400f30:	0f 45 d7             	cmovne edx,edi
-  400f33:	01 d0                	add    eax,edx
-  400f35:	83 e9 01             	sub    ecx,0x1
-  400f38:	75 e6                	jne    400f20 <bench_i_div_stoke_64+0x10>
-  400f3a:	c3                   	ret    
-  400f3b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+0000000000400eb0 <bench_v_divide_user23_32>:
+  400eb0:	89 f8                	mov    eax,edi
+  400eb2:	41 b9 1f 00 00 00    	mov    r9d,0x1f
+  400eb8:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  400ebd:	0f 1f 00             	nop    DWORD PTR [rax]
+  400ec0:	31 d2                	xor    edx,edx
+  400ec2:	44 89 c9             	mov    ecx,r9d
+  400ec5:	f3 0f bd d6          	lzcnt  edx,esi
+  400ec9:	29 d1                	sub    ecx,edx
+  400ecb:	89 ca                	mov    edx,ecx
+  400ecd:	8d 4e ff             	lea    ecx,[rsi-0x1]
+  400ed0:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400ed6:	41 89 c8             	mov    r8d,ecx
+  400ed9:	41 21 c0             	and    r8d,eax
+  400edc:	44 01 c1             	add    ecx,r8d
+  400edf:	c4 e2 6b f7 c9       	shrx   ecx,ecx,edx
+  400ee4:	c4 e2 6b f7 d0       	shrx   edx,eax,edx
+  400ee9:	01 ca                	add    edx,ecx
+  400eeb:	01 d0                	add    eax,edx
+  400eed:	83 ef 01             	sub    edi,0x1
+  400ef0:	75 ce                	jne    400ec0 <bench_v_divide_user23_32+0x10>
+  400ef2:	c3                   	ret    
+  400ef3:	0f 1f 00             	nop    DWORD PTR [rax]
+  400ef6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400efd:	00 00 00 
 
-0000000000400f40 <bench_v_div_stoke_64>:
+0000000000400f00 <bench_v_divide_user23_variant_32>:
+  400f00:	89 f8                	mov    eax,edi
+  400f02:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400f07:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  400f0d:	0f 1f 00             	nop    DWORD PTR [rax]
+  400f10:	8d 7e ff             	lea    edi,[rsi-0x1]
+  400f13:	31 d2                	xor    edx,edx
+  400f15:	45 89 c1             	mov    r9d,r8d
+  400f18:	f3 0f bd d6          	lzcnt  edx,esi
+  400f1c:	85 c7                	test   edi,eax
+  400f1e:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400f24:	40 0f 95 c7          	setne  dil
+  400f28:	41 29 d1             	sub    r9d,edx
+  400f2b:	40 0f b6 ff          	movzx  edi,dil
+  400f2f:	c4 e2 33 f7 d0       	shrx   edx,eax,r9d
+  400f34:	01 fa                	add    edx,edi
+  400f36:	01 d0                	add    eax,edx
+  400f38:	83 e9 01             	sub    ecx,0x1
+  400f3b:	75 d3                	jne    400f10 <bench_v_divide_user23_variant_32+0x10>
+  400f3d:	c3                   	ret    
+  400f3e:	66 90                	xchg   ax,ax
+
+0000000000400f40 <bench_v_divide_chrisdodd_32>:
   400f40:	89 f8                	mov    eax,edi
-  400f42:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  400f47:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  400f4e:	00 00 
-  400f50:	31 c9                	xor    ecx,ecx
-  400f52:	f3 0f bc ce          	tzcnt  ecx,esi
-  400f56:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400f5c:	c4 e2 73 f7 d0       	shrx   edx,eax,ecx
-  400f61:	c4 e2 71 f7 ca       	shlx   ecx,edx,ecx
-  400f66:	44 8d 42 01          	lea    r8d,[rdx+0x1]
-  400f6a:	39 c1                	cmp    ecx,eax
-  400f6c:	41 0f 45 d0          	cmovne edx,r8d
-  400f70:	01 d0                	add    eax,edx
-  400f72:	83 ef 01             	sub    edi,0x1
-  400f75:	75 d9                	jne    400f50 <bench_v_div_stoke_64+0x10>
-  400f77:	c3                   	ret    
-  400f78:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  400f7f:	00 
+  400f42:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  400f47:	41 b9 1f 00 00 00    	mov    r9d,0x1f
+  400f4d:	45 31 c0             	xor    r8d,r8d
+  400f50:	8d 50 ff             	lea    edx,[rax-0x1]
+  400f53:	31 ff                	xor    edi,edi
+  400f55:	45 89 ca             	mov    r10d,r9d
+  400f58:	f3 0f bd fe          	lzcnt  edi,esi
+  400f5c:	41 29 fa             	sub    r10d,edi
+  400f5f:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400f65:	c4 e2 2b f7 d2       	shrx   edx,edx,r10d
+  400f6a:	83 c2 01             	add    edx,0x1
+  400f6d:	85 c0                	test   eax,eax
+  400f6f:	41 0f 44 d0          	cmove  edx,r8d
+  400f73:	01 d0                	add    eax,edx
+  400f75:	83 e9 01             	sub    ecx,0x1
+  400f78:	75 d6                	jne    400f50 <bench_v_divide_chrisdodd_32+0x10>
+  400f7a:	c3                   	ret    
+  400f7b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
-0000000000400f80 <bench_c_stoke_mul_32>:
+0000000000400f80 <bench_v_divide_plusq_32>:
   400f80:	89 f8                	mov    eax,edi
   400f82:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400f87:	bf f8 ff ff ff       	mov    edi,0xfffffff8
-  400f8c:	31 f6                	xor    esi,esi
-  400f8e:	66 90                	xchg   ax,ax
-  400f90:	8d 50 ff             	lea    edx,[rax-0x1]
-  400f93:	c4 e2 6a f5 d7       	pext   edx,edx,edi
-  400f98:	83 c2 01             	add    edx,0x1
-  400f9b:	85 c0                	test   eax,eax
-  400f9d:	0f 44 d6             	cmove  edx,esi
-  400fa0:	01 d0                	add    eax,edx
-  400fa2:	83 e9 01             	sub    ecx,0x1
-  400fa5:	75 e9                	jne    400f90 <bench_c_stoke_mul_32+0x10>
-  400fa7:	c3                   	ret    
-  400fa8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  400faf:	00 
+  400f87:	41 b8 1f 00 00 00    	mov    r8d,0x1f
+  400f8d:	0f 1f 00             	nop    DWORD PTR [rax]
+  400f90:	8d 54 30 ff          	lea    edx,[rax+rsi*1-0x1]
+  400f94:	31 ff                	xor    edi,edi
+  400f96:	45 89 c1             	mov    r9d,r8d
+  400f99:	f3 0f bd fe          	lzcnt  edi,esi
+  400f9d:	41 29 f9             	sub    r9d,edi
+  400fa0:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  400fa6:	c4 e2 33 f7 d2       	shrx   edx,edx,r9d
+  400fab:	01 d0                	add    eax,edx
+  400fad:	83 e9 01             	sub    ecx,0x1
+  400fb0:	75 de                	jne    400f90 <bench_v_divide_plusq_32+0x10>
+  400fb2:	c3                   	ret    
+  400fb3:	0f 1f 00             	nop    DWORD PTR [rax]
+  400fb6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400fbd:	00 00 00 
 
-0000000000400fb0 <bench_i_stoke_mul_32>:
-  400fb0:	89 f8                	mov    eax,edi
-  400fb2:	f7 de                	neg    esi
-  400fb4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400fb9:	31 ff                	xor    edi,edi
-  400fbb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
-  400fc0:	8d 50 ff             	lea    edx,[rax-0x1]
-  400fc3:	c4 e2 6a f5 d6       	pext   edx,edx,esi
-  400fc8:	83 c2 01             	add    edx,0x1
-  400fcb:	85 c0                	test   eax,eax
-  400fcd:	0f 44 d7             	cmove  edx,edi
-  400fd0:	01 d0                	add    eax,edx
-  400fd2:	83 e9 01             	sub    ecx,0x1
-  400fd5:	75 e9                	jne    400fc0 <bench_i_stoke_mul_32+0x10>
-  400fd7:	c3                   	ret    
-  400fd8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  400fdf:	00 
+0000000000400fc0 <bench_i_divide_peter_64>:
+  400fc0:	41 89 f0             	mov    r8d,esi
+  400fc3:	89 f8                	mov    eax,edi
+  400fc5:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  400fca:	4d 0f bd c0          	bsr    r8,r8
+  400fce:	66 90                	xchg   ax,ax
+  400fd0:	89 c7                	mov    edi,eax
+  400fd2:	48 8d 57 ff          	lea    rdx,[rdi-0x1]
+  400fd6:	c4 e2 bb f7 d2       	shrx   rdx,rdx,r8
+  400fdb:	48 8d 4a 01          	lea    rcx,[rdx+0x1]
+  400fdf:	31 d2                	xor    edx,edx
+  400fe1:	48 85 ff             	test   rdi,rdi
+  400fe4:	0f 95 c2             	setne  dl
+  400fe7:	48 f7 da             	neg    rdx
+  400fea:	48 21 ca             	and    rdx,rcx
+  400fed:	01 d0                	add    eax,edx
+  400fef:	83 ee 01             	sub    esi,0x1
+  400ff2:	75 dc                	jne    400fd0 <bench_i_divide_peter_64+0x10>
+  400ff4:	c3                   	ret    
+  400ff5:	90                   	nop
+  400ff6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  400ffd:	00 00 00 
 
-0000000000400fe0 <bench_v_stoke_mul_32>:
-  400fe0:	89 f8                	mov    eax,edi
-  400fe2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  400fe7:	45 31 c0             	xor    r8d,r8d
-  400fea:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
-  400ff0:	8d 50 ff             	lea    edx,[rax-0x1]
-  400ff3:	89 f7                	mov    edi,esi
-  400ff5:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  400ffb:	f7 df                	neg    edi
-  400ffd:	c4 e2 6a f5 d7       	pext   edx,edx,edi
-  401002:	83 c2 01             	add    edx,0x1
-  401005:	85 c0                	test   eax,eax
-  401007:	41 0f 44 d0          	cmove  edx,r8d
-  40100b:	01 d0                	add    eax,edx
-  40100d:	83 e9 01             	sub    ecx,0x1
-  401010:	75 de                	jne    400ff0 <bench_v_stoke_mul_32+0x10>
-  401012:	c3                   	ret    
-  401013:	0f 1f 00             	nop    DWORD PTR [rax]
-  401016:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40101d:	00 00 00 
+0000000000401000 <bench_i_divide_chux_64>:
+  401000:	89 f2                	mov    edx,esi
+  401002:	89 f8                	mov    eax,edi
+  401004:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  401009:	4c 8d 42 ff          	lea    r8,[rdx-0x1]
+  40100d:	48 0f bd fa          	bsr    rdi,rdx
+  401011:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  401018:	89 c2                	mov    edx,eax
+  40101a:	31 f6                	xor    esi,esi
+  40101c:	4c 85 c2             	test   rdx,r8
+  40101f:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  401024:	40 0f 95 c6          	setne  sil
+  401028:	48 01 f2             	add    rdx,rsi
+  40102b:	01 d0                	add    eax,edx
+  40102d:	83 e9 01             	sub    ecx,0x1
+  401030:	75 e6                	jne    401018 <bench_i_divide_chux_64+0x18>
+  401032:	c3                   	ret    
+  401033:	0f 1f 00             	nop    DWORD PTR [rax]
+  401036:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40103d:	00 00 00 
 
-0000000000401020 <bench_c_stoke_mul_64>:
-  401020:	89 f8                	mov    eax,edi
-  401022:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  401027:	41 b8 f8 07 00 00    	mov    r8d,0x7f8
-  40102d:	31 ff                	xor    edi,edi
-  40102f:	90                   	nop
-  401030:	89 c6                	mov    esi,eax
-  401032:	c4 c2 ca f5 d0       	pext   rdx,rsi,r8
-  401037:	48 83 c2 01          	add    rdx,0x1
-  40103b:	48 85 f6             	test   rsi,rsi
-  40103e:	0f 44 d7             	cmove  edx,edi
-  401041:	01 d0                	add    eax,edx
-  401043:	83 e9 01             	sub    ecx,0x1
-  401046:	75 e8                	jne    401030 <bench_c_stoke_mul_64+0x10>
-  401048:	c3                   	ret    
-  401049:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+0000000000401040 <bench_i_divide_user23_64>:
+  401040:	89 f2                	mov    edx,esi
+  401042:	89 f8                	mov    eax,edi
+  401044:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  401049:	4c 8d 42 ff          	lea    r8,[rdx-0x1]
+  40104d:	48 0f bd fa          	bsr    rdi,rdx
+  401051:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  401058:	89 c2                	mov    edx,eax
+  40105a:	48 89 d1             	mov    rcx,rdx
+  40105d:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  401062:	4c 21 c1             	and    rcx,r8
+  401065:	4c 01 c1             	add    rcx,r8
+  401068:	c4 e2 c3 f7 c9       	shrx   rcx,rcx,rdi
+  40106d:	48 01 ca             	add    rdx,rcx
+  401070:	01 d0                	add    eax,edx
+  401072:	83 ee 01             	sub    esi,0x1
+  401075:	75 e1                	jne    401058 <bench_i_divide_user23_64+0x18>
+  401077:	c3                   	ret    
+  401078:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  40107f:	00 
 
-0000000000401050 <bench_i_stoke_mul_64>:
-  401050:	89 f2                	mov    edx,esi
-  401052:	89 f8                	mov    eax,edi
-  401054:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  401059:	48 89 d7             	mov    rdi,rdx
-  40105c:	45 31 c0             	xor    r8d,r8d
-  40105f:	48 c1 e7 08          	shl    rdi,0x8
-  401063:	48 29 d7             	sub    rdi,rdx
-  401066:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40106d:	00 00 00 
-  401070:	89 c6                	mov    esi,eax
-  401072:	c4 e2 ca f5 d7       	pext   rdx,rsi,rdi
-  401077:	48 83 c2 01          	add    rdx,0x1
-  40107b:	48 85 f6             	test   rsi,rsi
-  40107e:	41 0f 44 d0          	cmove  edx,r8d
-  401082:	01 d0                	add    eax,edx
-  401084:	83 e9 01             	sub    ecx,0x1
-  401087:	75 e7                	jne    401070 <bench_i_stoke_mul_64+0x20>
-  401089:	c3                   	ret    
-  40108a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+0000000000401080 <bench_i_divide_user23_variant_64>:
+  401080:	89 f2                	mov    edx,esi
+  401082:	89 f8                	mov    eax,edi
+  401084:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  401089:	4c 8d 42 ff          	lea    r8,[rdx-0x1]
+  40108d:	48 0f bd fa          	bsr    rdi,rdx
+  401091:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  401098:	89 c2                	mov    edx,eax
+  40109a:	31 f6                	xor    esi,esi
+  40109c:	4c 85 c2             	test   rdx,r8
+  40109f:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  4010a4:	40 0f 95 c6          	setne  sil
+  4010a8:	48 01 f2             	add    rdx,rsi
+  4010ab:	01 d0                	add    eax,edx
+  4010ad:	83 e9 01             	sub    ecx,0x1
+  4010b0:	75 e6                	jne    401098 <bench_i_divide_user23_variant_64+0x18>
+  4010b2:	c3                   	ret    
+  4010b3:	0f 1f 00             	nop    DWORD PTR [rax]
+  4010b6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  4010bd:	00 00 00 
 
-0000000000401090 <bench_v_stoke_mul_64>:
-  401090:	89 f8                	mov    eax,edi
-  401092:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  401097:	45 31 c9             	xor    r9d,r9d
-  40109a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
-  4010a0:	41 89 f0             	mov    r8d,esi
-  4010a3:	89 c7                	mov    edi,eax
-  4010a5:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  4010ab:	4c 89 c2             	mov    rdx,r8
-  4010ae:	48 c1 e2 08          	shl    rdx,0x8
-  4010b2:	4c 29 c2             	sub    rdx,r8
-  4010b5:	c4 e2 c2 f5 d2       	pext   rdx,rdi,rdx
-  4010ba:	48 83 c2 01          	add    rdx,0x1
-  4010be:	48 85 ff             	test   rdi,rdi
-  4010c1:	41 0f 44 d1          	cmove  edx,r9d
-  4010c5:	01 d0                	add    eax,edx
-  4010c7:	83 e9 01             	sub    ecx,0x1
-  4010ca:	75 d4                	jne    4010a0 <bench_v_stoke_mul_64+0x10>
-  4010cc:	c3                   	ret    
-  4010cd:	0f 1f 00             	nop    DWORD PTR [rax]
+00000000004010c0 <bench_i_divide_chrisdodd_64>:
+  4010c0:	89 f8                	mov    eax,edi
+  4010c2:	89 f7                	mov    edi,esi
+  4010c4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4010c9:	48 0f bd ff          	bsr    rdi,rdi
+  4010cd:	45 31 c0             	xor    r8d,r8d
+  4010d0:	89 c6                	mov    esi,eax
+  4010d2:	48 8d 56 ff          	lea    rdx,[rsi-0x1]
+  4010d6:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  4010db:	48 83 c2 01          	add    rdx,0x1
+  4010df:	48 85 f6             	test   rsi,rsi
+  4010e2:	41 0f 44 d0          	cmove  edx,r8d
+  4010e6:	01 d0                	add    eax,edx
+  4010e8:	83 e9 01             	sub    ecx,0x1
+  4010eb:	75 e3                	jne    4010d0 <bench_i_divide_chrisdodd_64+0x10>
+  4010ed:	c3                   	ret    
+  4010ee:	66 90                	xchg   ax,ax
 
-00000000004010d0 <bench_i_divide_chux_64>:
-  4010d0:	89 f2                	mov    edx,esi
-  4010d2:	89 f8                	mov    eax,edi
-  4010d4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  4010d9:	4c 8d 42 ff          	lea    r8,[rdx-0x1]
-  4010dd:	48 0f bd fa          	bsr    rdi,rdx
-  4010e1:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-  4010e8:	89 c2                	mov    edx,eax
-  4010ea:	31 f6                	xor    esi,esi
-  4010ec:	4c 85 c2             	test   rdx,r8
-  4010ef:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
-  4010f4:	40 0f 95 c6          	setne  sil
-  4010f8:	48 01 f2             	add    rdx,rsi
-  4010fb:	01 d0                	add    eax,edx
-  4010fd:	83 e9 01             	sub    ecx,0x1
-  401100:	75 e6                	jne    4010e8 <bench_i_divide_chux_64+0x18>
-  401102:	c3                   	ret    
-  401103:	0f 1f 00             	nop    DWORD PTR [rax]
-  401106:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40110d:	00 00 00 
+00000000004010f0 <bench_i_divide_plusq_64>:
+  4010f0:	89 f6                	mov    esi,esi
+  4010f2:	89 f8                	mov    eax,edi
+  4010f4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4010f9:	48 0f bd fe          	bsr    rdi,rsi
+  4010fd:	48 83 ee 01          	sub    rsi,0x1
+  401101:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+  401108:	89 c2                	mov    edx,eax
+  40110a:	48 01 f2             	add    rdx,rsi
+  40110d:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
+  401112:	01 d0                	add    eax,edx
+  401114:	83 e9 01             	sub    ecx,0x1
+  401117:	75 ef                	jne    401108 <bench_i_divide_plusq_64+0x18>
+  401119:	c3                   	ret    
+  40111a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
 
-0000000000401110 <bench_i_divide_user23_64>:
-  401110:	89 f2                	mov    edx,esi
-  401112:	89 f8                	mov    eax,edi
-  401114:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
-  401119:	4c 8d 42 ff          	lea    r8,[rdx-0x1]
-  40111d:	48 0f bd fa          	bsr    rdi,rdx
-  401121:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-  401128:	89 c2                	mov    edx,eax
-  40112a:	48 89 d1             	mov    rcx,rdx
-  40112d:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
-  401132:	4c 21 c1             	and    rcx,r8
-  401135:	4c 01 c1             	add    rcx,r8
-  401138:	c4 e2 c3 f7 c9       	shrx   rcx,rcx,rdi
-  40113d:	48 01 ca             	add    rdx,rcx
-  401140:	01 d0                	add    eax,edx
-  401142:	83 ee 01             	sub    esi,0x1
-  401145:	75 e1                	jne    401128 <bench_i_divide_user23_64+0x18>
-  401147:	c3                   	ret    
-  401148:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  40114f:	00 
+0000000000401120 <bench_v_divide_peter_64>:
+  401120:	89 f8                	mov    eax,edi
+  401122:	41 b9 3f 00 00 00    	mov    r9d,0x3f
+  401128:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  40112d:	0f 1f 00             	nop    DWORD PTR [rax]
+  401130:	41 89 c0             	mov    r8d,eax
+  401133:	89 f1                	mov    ecx,esi
+  401135:	4d 89 ca             	mov    r10,r9
+  401138:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40113e:	f3 48 0f bd c9       	lzcnt  rcx,rcx
+  401143:	49 8d 50 ff          	lea    rdx,[r8-0x1]
+  401147:	49 29 ca             	sub    r10,rcx
+  40114a:	c4 e2 ab f7 d2       	shrx   rdx,rdx,r10
+  40114f:	48 8d 4a 01          	lea    rcx,[rdx+0x1]
+  401153:	31 d2                	xor    edx,edx
+  401155:	4d 85 c0             	test   r8,r8
+  401158:	0f 95 c2             	setne  dl
+  40115b:	48 f7 da             	neg    rdx
+  40115e:	48 21 ca             	and    rdx,rcx
+  401161:	01 d0                	add    eax,edx
+  401163:	83 ef 01             	sub    edi,0x1
+  401166:	75 c8                	jne    401130 <bench_v_divide_peter_64+0x10>
+  401168:	c3                   	ret    
+  401169:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
-0000000000401150 <bench_i_divide_user23_variant_64>:
-  401150:	89 f2                	mov    edx,esi
-  401152:	89 f8                	mov    eax,edi
-  401154:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  401159:	4c 8d 42 ff          	lea    r8,[rdx-0x1]
-  40115d:	48 0f bd fa          	bsr    rdi,rdx
-  401161:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-  401168:	89 c2                	mov    edx,eax
-  40116a:	31 f6                	xor    esi,esi
-  40116c:	4c 85 c2             	test   rdx,r8
-  40116f:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
-  401174:	40 0f 95 c6          	setne  sil
-  401178:	48 01 f2             	add    rdx,rsi
-  40117b:	01 d0                	add    eax,edx
-  40117d:	83 e9 01             	sub    ecx,0x1
-  401180:	75 e6                	jne    401168 <bench_i_divide_user23_variant_64+0x18>
-  401182:	c3                   	ret    
-  401183:	0f 1f 00             	nop    DWORD PTR [rax]
-  401186:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40118d:	00 00 00 
+0000000000401170 <bench_v_divide_chux_64>:
+  401170:	89 f8                	mov    eax,edi
+  401172:	41 b9 3f 00 00 00    	mov    r9d,0x3f
+  401178:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  40117d:	0f 1f 00             	nop    DWORD PTR [rax]
+  401180:	89 f1                	mov    ecx,esi
+  401182:	89 c2                	mov    edx,eax
+  401184:	4d 89 ca             	mov    r10,r9
+  401187:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40118d:	4c 8d 41 ff          	lea    r8,[rcx-0x1]
+  401191:	49 85 d0             	test   r8,rdx
+  401194:	41 0f 95 c0          	setne  r8b
+  401198:	f3 48 0f bd c9       	lzcnt  rcx,rcx
+  40119d:	49 29 ca             	sub    r10,rcx
+  4011a0:	45 0f b6 c0          	movzx  r8d,r8b
+  4011a4:	c4 e2 ab f7 d2       	shrx   rdx,rdx,r10
+  4011a9:	4c 01 c2             	add    rdx,r8
+  4011ac:	01 d0                	add    eax,edx
+  4011ae:	83 ef 01             	sub    edi,0x1
+  4011b1:	75 cd                	jne    401180 <bench_v_divide_chux_64+0x10>
+  4011b3:	c3                   	ret    
+  4011b4:	66 90                	xchg   ax,ax
+  4011b6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  4011bd:	00 00 00 
 
-0000000000401190 <bench_i_divide_chrisdodd_64>:
-  401190:	89 f8                	mov    eax,edi
-  401192:	89 f7                	mov    edi,esi
-  401194:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  401199:	48 0f bd ff          	bsr    rdi,rdi
-  40119d:	45 31 c0             	xor    r8d,r8d
-  4011a0:	89 c6                	mov    esi,eax
-  4011a2:	48 8d 56 ff          	lea    rdx,[rsi-0x1]
-  4011a6:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
-  4011ab:	48 83 c2 01          	add    rdx,0x1
-  4011af:	48 85 f6             	test   rsi,rsi
-  4011b2:	41 0f 44 d0          	cmove  edx,r8d
-  4011b6:	01 d0                	add    eax,edx
-  4011b8:	83 e9 01             	sub    ecx,0x1
-  4011bb:	75 e3                	jne    4011a0 <bench_i_divide_chrisdodd_64+0x10>
-  4011bd:	c3                   	ret    
-  4011be:	66 90                	xchg   ax,ax
+00000000004011c0 <bench_v_divide_user23_64>:
+  4011c0:	89 f8                	mov    eax,edi
+  4011c2:	41 ba 3f 00 00 00    	mov    r10d,0x3f
+  4011c8:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  4011cd:	0f 1f 00             	nop    DWORD PTR [rax]
+  4011d0:	41 89 f0             	mov    r8d,esi
+  4011d3:	89 c2                	mov    edx,eax
+  4011d5:	4d 89 d3             	mov    r11,r10
+  4011d8:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4011de:	49 8d 48 ff          	lea    rcx,[r8-0x1]
+  4011e2:	49 89 d1             	mov    r9,rdx
+  4011e5:	f3 4d 0f bd c0       	lzcnt  r8,r8
+  4011ea:	4d 29 c3             	sub    r11,r8
+  4011ed:	49 21 c9             	and    r9,rcx
+  4011f0:	c4 e2 a3 f7 d2       	shrx   rdx,rdx,r11
+  4011f5:	4c 01 c9             	add    rcx,r9
+  4011f8:	c4 e2 a3 f7 c9       	shrx   rcx,rcx,r11
+  4011fd:	48 01 ca             	add    rdx,rcx
+  401200:	01 d0                	add    eax,edx
+  401202:	83 ef 01             	sub    edi,0x1
+  401205:	75 c9                	jne    4011d0 <bench_v_divide_user23_64+0x10>
+  401207:	c3                   	ret    
+  401208:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  40120f:	00 
 
-00000000004011c0 <bench_i_divide_plusq_64>:
-  4011c0:	89 f6                	mov    esi,esi
-  4011c2:	89 f8                	mov    eax,edi
-  4011c4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  4011c9:	48 0f bd fe          	bsr    rdi,rsi
-  4011cd:	48 83 ee 01          	sub    rsi,0x1
-  4011d1:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-  4011d8:	89 c2                	mov    edx,eax
-  4011da:	48 01 f2             	add    rdx,rsi
-  4011dd:	c4 e2 c3 f7 d2       	shrx   rdx,rdx,rdi
-  4011e2:	01 d0                	add    eax,edx
-  4011e4:	83 e9 01             	sub    ecx,0x1
-  4011e7:	75 ef                	jne    4011d8 <bench_i_divide_plusq_64+0x18>
-  4011e9:	c3                   	ret    
-  4011ea:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+0000000000401210 <bench_v_divide_user23_variant_64>:
+  401210:	89 f8                	mov    eax,edi
+  401212:	41 b9 3f 00 00 00    	mov    r9d,0x3f
+  401218:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  40121d:	0f 1f 00             	nop    DWORD PTR [rax]
+  401220:	89 f1                	mov    ecx,esi
+  401222:	89 c2                	mov    edx,eax
+  401224:	4d 89 ca             	mov    r10,r9
+  401227:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40122d:	4c 8d 41 ff          	lea    r8,[rcx-0x1]
+  401231:	49 85 d0             	test   r8,rdx
+  401234:	41 0f 95 c0          	setne  r8b
+  401238:	f3 48 0f bd c9       	lzcnt  rcx,rcx
+  40123d:	49 29 ca             	sub    r10,rcx
+  401240:	45 0f b6 c0          	movzx  r8d,r8b
+  401244:	c4 e2 ab f7 d2       	shrx   rdx,rdx,r10
+  401249:	4c 01 c2             	add    rdx,r8
+  40124c:	01 d0                	add    eax,edx
+  40124e:	83 ef 01             	sub    edi,0x1
+  401251:	75 cd                	jne    401220 <bench_v_divide_user23_variant_64+0x10>
+  401253:	c3                   	ret    
+  401254:	66 90                	xchg   ax,ax
+  401256:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40125d:	00 00 00 
 
-00000000004011f0 <bench_v_divide_chux_64>:
-  4011f0:	89 f8                	mov    eax,edi
-  4011f2:	41 b9 3f 00 00 00    	mov    r9d,0x3f
-  4011f8:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  4011fd:	0f 1f 00             	nop    DWORD PTR [rax]
-  401200:	89 f1                	mov    ecx,esi
-  401202:	89 c2                	mov    edx,eax
-  401204:	4d 89 ca             	mov    r10,r9
-  401207:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  40120d:	4c 8d 41 ff          	lea    r8,[rcx-0x1]
-  401211:	49 85 d0             	test   r8,rdx
-  401214:	41 0f 95 c0          	setne  r8b
-  401218:	f3 48 0f bd c9       	lzcnt  rcx,rcx
-  40121d:	49 29 ca             	sub    r10,rcx
-  401220:	45 0f b6 c0          	movzx  r8d,r8b
-  401224:	c4 e2 ab f7 d2       	shrx   rdx,rdx,r10
-  401229:	4c 01 c2             	add    rdx,r8
-  40122c:	01 d0                	add    eax,edx
-  40122e:	83 ef 01             	sub    edi,0x1
-  401231:	75 cd                	jne    401200 <bench_v_divide_chux_64+0x10>
-  401233:	c3                   	ret    
-  401234:	66 90                	xchg   ax,ax
-  401236:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40123d:	00 00 00 
+0000000000401260 <bench_v_divide_chrisdodd_64>:
+  401260:	89 f8                	mov    eax,edi
+  401262:	41 ba 3f 00 00 00    	mov    r10d,0x3f
+  401268:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  40126d:	45 31 c9             	xor    r9d,r9d
+  401270:	41 89 c0             	mov    r8d,eax
+  401273:	89 f1                	mov    ecx,esi
+  401275:	4d 89 d3             	mov    r11,r10
+  401278:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40127e:	f3 48 0f bd c9       	lzcnt  rcx,rcx
+  401283:	49 8d 50 ff          	lea    rdx,[r8-0x1]
+  401287:	49 29 cb             	sub    r11,rcx
+  40128a:	c4 e2 a3 f7 d2       	shrx   rdx,rdx,r11
+  40128f:	48 83 c2 01          	add    rdx,0x1
+  401293:	4d 85 c0             	test   r8,r8
+  401296:	41 0f 44 d1          	cmove  edx,r9d
+  40129a:	01 d0                	add    eax,edx
+  40129c:	83 ef 01             	sub    edi,0x1
+  40129f:	75 cf                	jne    401270 <bench_v_divide_chrisdodd_64+0x10>
+  4012a1:	c3                   	ret    
+  4012a2:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  4012a6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  4012ad:	00 00 00 
 
-0000000000401240 <bench_v_divide_user23_64>:
-  401240:	89 f8                	mov    eax,edi
-  401242:	41 ba 3f 00 00 00    	mov    r10d,0x3f
-  401248:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  40124d:	0f 1f 00             	nop    DWORD PTR [rax]
-  401250:	41 89 f0             	mov    r8d,esi
-  401253:	89 c2                	mov    edx,eax
-  401255:	4d 89 d3             	mov    r11,r10
-  401258:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  40125e:	49 8d 48 ff          	lea    rcx,[r8-0x1]
-  401262:	49 89 d1             	mov    r9,rdx
-  401265:	f3 4d 0f bd c0       	lzcnt  r8,r8
-  40126a:	4d 29 c3             	sub    r11,r8
-  40126d:	49 21 c9             	and    r9,rcx
-  401270:	c4 e2 a3 f7 d2       	shrx   rdx,rdx,r11
-  401275:	4c 01 c9             	add    rcx,r9
-  401278:	c4 e2 a3 f7 c9       	shrx   rcx,rcx,r11
-  40127d:	48 01 ca             	add    rdx,rcx
-  401280:	01 d0                	add    eax,edx
-  401282:	83 ef 01             	sub    edi,0x1
-  401285:	75 c9                	jne    401250 <bench_v_divide_user23_64+0x10>
-  401287:	c3                   	ret    
-  401288:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  40128f:	00 
+00000000004012b0 <bench_v_divide_plusq_64>:
+  4012b0:	89 f8                	mov    eax,edi
+  4012b2:	41 b8 3f 00 00 00    	mov    r8d,0x3f
+  4012b8:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  4012bd:	0f 1f 00             	nop    DWORD PTR [rax]
+  4012c0:	89 f2                	mov    edx,esi
+  4012c2:	89 c1                	mov    ecx,eax
+  4012c4:	4d 89 c1             	mov    r9,r8
+  4012c7:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4012cd:	48 8d 4c 0a ff       	lea    rcx,[rdx+rcx*1-0x1]
+  4012d2:	f3 48 0f bd d2       	lzcnt  rdx,rdx
+  4012d7:	49 29 d1             	sub    r9,rdx
+  4012da:	c4 e2 b3 f7 d1       	shrx   rdx,rcx,r9
+  4012df:	01 d0                	add    eax,edx
+  4012e1:	83 ef 01             	sub    edi,0x1
+  4012e4:	75 da                	jne    4012c0 <bench_v_divide_plusq_64+0x10>
+  4012e6:	c3                   	ret    
+  4012e7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4012ee:	00 00 
 
-0000000000401290 <bench_v_divide_user23_variant_64>:
-  401290:	89 f8                	mov    eax,edi
-  401292:	41 b9 3f 00 00 00    	mov    r9d,0x3f
-  401298:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  40129d:	0f 1f 00             	nop    DWORD PTR [rax]
-  4012a0:	89 f1                	mov    ecx,esi
-  4012a2:	89 c2                	mov    edx,eax
-  4012a4:	4d 89 ca             	mov    r10,r9
-  4012a7:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  4012ad:	4c 8d 41 ff          	lea    r8,[rcx-0x1]
-  4012b1:	49 85 d0             	test   r8,rdx
-  4012b4:	41 0f 95 c0          	setne  r8b
-  4012b8:	f3 48 0f bd c9       	lzcnt  rcx,rcx
-  4012bd:	49 29 ca             	sub    r10,rcx
-  4012c0:	45 0f b6 c0          	movzx  r8d,r8b
-  4012c4:	c4 e2 ab f7 d2       	shrx   rdx,rdx,r10
-  4012c9:	4c 01 c2             	add    rdx,r8
-  4012cc:	01 d0                	add    eax,edx
-  4012ce:	83 ef 01             	sub    edi,0x1
-  4012d1:	75 cd                	jne    4012a0 <bench_v_divide_user23_variant_64+0x10>
-  4012d3:	c3                   	ret    
-  4012d4:	66 90                	xchg   ax,ax
-  4012d6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  4012dd:	00 00 00 
+00000000004012f0 <bench_i_stoke32_64>:
+  4012f0:	89 f8                	mov    eax,edi
+  4012f2:	31 ff                	xor    edi,edi
+  4012f4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4012f9:	f3 0f bc fe          	tzcnt  edi,esi
+  4012fd:	0f 1f 00             	nop    DWORD PTR [rax]
+  401300:	89 c6                	mov    esi,eax
+  401302:	c4 e2 c3 f7 d6       	shrx   rdx,rsi,rdi
+  401307:	c4 62 41 f7 ca       	shlx   r9d,edx,edi
+  40130c:	44 8d 42 01          	lea    r8d,[rdx+0x1]
+  401310:	4c 39 ce             	cmp    rsi,r9
+  401313:	41 0f 45 d0          	cmovne edx,r8d
+  401317:	01 d0                	add    eax,edx
+  401319:	83 e9 01             	sub    ecx,0x1
+  40131c:	75 e2                	jne    401300 <bench_i_stoke32_64+0x10>
+  40131e:	c3                   	ret    
+  40131f:	90                   	nop
 
-00000000004012e0 <bench_v_divide_chrisdodd_64>:
-  4012e0:	89 f8                	mov    eax,edi
-  4012e2:	41 ba 3f 00 00 00    	mov    r10d,0x3f
-  4012e8:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  4012ed:	45 31 c9             	xor    r9d,r9d
-  4012f0:	41 89 c0             	mov    r8d,eax
-  4012f3:	89 f1                	mov    ecx,esi
-  4012f5:	4d 89 d3             	mov    r11,r10
-  4012f8:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  4012fe:	f3 48 0f bd c9       	lzcnt  rcx,rcx
-  401303:	49 8d 50 ff          	lea    rdx,[r8-0x1]
-  401307:	49 29 cb             	sub    r11,rcx
-  40130a:	c4 e2 a3 f7 d2       	shrx   rdx,rdx,r11
-  40130f:	48 83 c2 01          	add    rdx,0x1
-  401313:	4d 85 c0             	test   r8,r8
-  401316:	41 0f 44 d1          	cmove  edx,r9d
-  40131a:	01 d0                	add    eax,edx
-  40131c:	83 ef 01             	sub    edi,0x1
-  40131f:	75 cf                	jne    4012f0 <bench_v_divide_chrisdodd_64+0x10>
-  401321:	c3                   	ret    
-  401322:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
-  401326:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40132d:	00 00 00 
+0000000000401320 <bench_v_stoke32_64>:
+  401320:	89 f8                	mov    eax,edi
+  401322:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  401327:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40132e:	00 00 
+  401330:	31 c9                	xor    ecx,ecx
+  401332:	41 89 c0             	mov    r8d,eax
+  401335:	f3 0f bc ce          	tzcnt  ecx,esi
+  401339:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40133f:	c4 c2 f3 f7 d0       	shrx   rdx,r8,rcx
+  401344:	c4 e2 71 f7 ca       	shlx   ecx,edx,ecx
+  401349:	44 8d 4a 01          	lea    r9d,[rdx+0x1]
+  40134d:	49 39 c8             	cmp    r8,rcx
+  401350:	41 0f 45 d1          	cmovne edx,r9d
+  401354:	01 d0                	add    eax,edx
+  401356:	83 ef 01             	sub    edi,0x1
+  401359:	75 d5                	jne    401330 <bench_v_stoke32_64+0x10>
+  40135b:	c3                   	ret    
+  40135c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
 
-0000000000401330 <bench_v_divide_plusq_64>:
-  401330:	89 f8                	mov    eax,edi
-  401332:	41 b8 3f 00 00 00    	mov    r8d,0x3f
-  401338:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  40133d:	0f 1f 00             	nop    DWORD PTR [rax]
-  401340:	89 f2                	mov    edx,esi
-  401342:	89 c1                	mov    ecx,eax
-  401344:	4d 89 c1             	mov    r9,r8
-  401347:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  40134d:	48 8d 4c 0a ff       	lea    rcx,[rdx+rcx*1-0x1]
-  401352:	f3 48 0f bd d2       	lzcnt  rdx,rdx
-  401357:	49 29 d1             	sub    r9,rdx
-  40135a:	c4 e2 b3 f7 d1       	shrx   rdx,rcx,r9
-  40135f:	01 d0                	add    eax,edx
-  401361:	83 ef 01             	sub    edi,0x1
-  401364:	75 da                	jne    401340 <bench_v_divide_plusq_64+0x10>
-  401366:	c3                   	ret    
-  401367:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40136e:	00 00 
+0000000000401360 <bench_i_div_stoke_64>:
+  401360:	89 f8                	mov    eax,edi
+  401362:	f3 0f bc f6          	tzcnt  esi,esi
+  401366:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  40136b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  401370:	c4 e2 4b f7 d0       	shrx   edx,eax,esi
+  401375:	c4 62 49 f7 c2       	shlx   r8d,edx,esi
+  40137a:	8d 7a 01             	lea    edi,[rdx+0x1]
+  40137d:	41 39 c0             	cmp    r8d,eax
+  401380:	0f 45 d7             	cmovne edx,edi
+  401383:	01 d0                	add    eax,edx
+  401385:	83 e9 01             	sub    ecx,0x1
+  401388:	75 e6                	jne    401370 <bench_i_div_stoke_64+0x10>
+  40138a:	c3                   	ret    
+  40138b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
-0000000000401370 <bench_c_divide_chris_32>:
-  401370:	89 f8                	mov    eax,edi
-  401372:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
-  401377:	bf ff ff ff ff       	mov    edi,0xffffffff
-  40137c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
-  401380:	0f bc d0             	bsf    edx,eax
-  401383:	0f 44 d7             	cmove  edx,edi
-  401386:	83 c2 01             	add    edx,0x1
-  401389:	83 fa 03             	cmp    edx,0x3
-  40138c:	0f 9e c1             	setle  cl
-  40138f:	85 d2                	test   edx,edx
-  401391:	0f 95 c2             	setne  dl
-  401394:	0f b6 d2             	movzx  edx,dl
-  401397:	21 ca                	and    edx,ecx
-  401399:	89 c1                	mov    ecx,eax
-  40139b:	c1 e9 03             	shr    ecx,0x3
-  40139e:	01 ca                	add    edx,ecx
-  4013a0:	01 d0                	add    eax,edx
-  4013a2:	83 ee 01             	sub    esi,0x1
-  4013a5:	75 d9                	jne    401380 <bench_c_divide_chris_32+0x10>
-  4013a7:	c3                   	ret    
-  4013a8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  4013af:	00 
+0000000000401390 <bench_v_div_stoke_64>:
+  401390:	89 f8                	mov    eax,edi
+  401392:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  401397:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40139e:	00 00 
+  4013a0:	31 c9                	xor    ecx,ecx
+  4013a2:	f3 0f bc ce          	tzcnt  ecx,esi
+  4013a6:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4013ac:	c4 e2 73 f7 d0       	shrx   edx,eax,ecx
+  4013b1:	c4 e2 71 f7 ca       	shlx   ecx,edx,ecx
+  4013b6:	44 8d 42 01          	lea    r8d,[rdx+0x1]
+  4013ba:	39 c1                	cmp    ecx,eax
+  4013bc:	41 0f 45 d0          	cmovne edx,r8d
+  4013c0:	01 d0                	add    eax,edx
+  4013c2:	83 ef 01             	sub    edi,0x1
+  4013c5:	75 d9                	jne    4013a0 <bench_v_div_stoke_64+0x10>
+  4013c7:	c3                   	ret    
+  4013c8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  4013cf:	00 
 
-00000000004013b0 <bench_i_divide_chris_32>:
-  4013b0:	89 f8                	mov    eax,edi
-  4013b2:	31 ff                	xor    edi,edi
-  4013b4:	41 b8 ff ff ff ff    	mov    r8d,0xffffffff
-  4013ba:	f3 0f bc fe          	tzcnt  edi,esi
-  4013be:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
-  4013c3:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
-  4013c8:	0f bc d0             	bsf    edx,eax
-  4013cb:	41 0f 44 d0          	cmove  edx,r8d
-  4013cf:	83 c2 01             	add    edx,0x1
-  4013d2:	39 fa                	cmp    edx,edi
-  4013d4:	0f 9e c1             	setle  cl
-  4013d7:	85 d2                	test   edx,edx
-  4013d9:	0f 95 c2             	setne  dl
-  4013dc:	0f b6 d2             	movzx  edx,dl
-  4013df:	21 ca                	and    edx,ecx
-  4013e1:	c4 e2 43 f7 c8       	shrx   ecx,eax,edi
-  4013e6:	01 ca                	add    edx,ecx
-  4013e8:	01 d0                	add    eax,edx
-  4013ea:	83 ee 01             	sub    esi,0x1
-  4013ed:	75 d9                	jne    4013c8 <bench_i_divide_chris_32+0x18>
-  4013ef:	c3                   	ret    
+00000000004013d0 <bench_c_stoke_mul_32>:
+  4013d0:	89 f8                	mov    eax,edi
+  4013d2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4013d7:	bf f8 ff ff ff       	mov    edi,0xfffffff8
+  4013dc:	31 f6                	xor    esi,esi
+  4013de:	66 90                	xchg   ax,ax
+  4013e0:	8d 50 ff             	lea    edx,[rax-0x1]
+  4013e3:	c4 e2 6a f5 d7       	pext   edx,edx,edi
+  4013e8:	83 c2 01             	add    edx,0x1
+  4013eb:	85 c0                	test   eax,eax
+  4013ed:	0f 44 d6             	cmove  edx,esi
+  4013f0:	01 d0                	add    eax,edx
+  4013f2:	83 e9 01             	sub    ecx,0x1
+  4013f5:	75 e9                	jne    4013e0 <bench_c_stoke_mul_32+0x10>
+  4013f7:	c3                   	ret    
+  4013f8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  4013ff:	00 
 
-00000000004013f0 <bench_v_divide_chris_32>:
-  4013f0:	89 f8                	mov    eax,edi
-  4013f2:	41 b8 00 ca 9a 3b    	mov    r8d,0x3b9aca00
-  4013f8:	41 b9 ff ff ff ff    	mov    r9d,0xffffffff
-  4013fe:	66 90                	xchg   ax,ax
-  401400:	0f bc c8             	bsf    ecx,eax
-  401403:	41 0f 44 c9          	cmove  ecx,r9d
-  401407:	31 d2                	xor    edx,edx
-  401409:	f3 0f bc d6          	tzcnt  edx,esi
-  40140d:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  401413:	83 c1 01             	add    ecx,0x1
-  401416:	39 d1                	cmp    ecx,edx
-  401418:	c4 e2 6b f7 d0       	shrx   edx,eax,edx
-  40141d:	40 0f 9e c7          	setle  dil
-  401421:	85 c9                	test   ecx,ecx
-  401423:	0f 95 c1             	setne  cl
-  401426:	0f b6 c9             	movzx  ecx,cl
-  401429:	21 f9                	and    ecx,edi
-  40142b:	01 ca                	add    edx,ecx
-  40142d:	01 d0                	add    eax,edx
-  40142f:	41 83 e8 01          	sub    r8d,0x1
-  401433:	75 cb                	jne    401400 <bench_v_divide_chris_32+0x10>
-  401435:	c3                   	ret    
-  401436:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40143d:	00 00 00 
+0000000000401400 <bench_i_stoke_mul_32>:
+  401400:	89 f8                	mov    eax,edi
+  401402:	f7 de                	neg    esi
+  401404:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  401409:	31 ff                	xor    edi,edi
+  40140b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  401410:	8d 50 ff             	lea    edx,[rax-0x1]
+  401413:	c4 e2 6a f5 d6       	pext   edx,edx,esi
+  401418:	83 c2 01             	add    edx,0x1
+  40141b:	85 c0                	test   eax,eax
+  40141d:	0f 44 d7             	cmove  edx,edi
+  401420:	01 d0                	add    eax,edx
+  401422:	83 e9 01             	sub    ecx,0x1
+  401425:	75 e9                	jne    401410 <bench_i_stoke_mul_32+0x10>
+  401427:	c3                   	ret    
+  401428:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  40142f:	00 
 
-0000000000401440 <bench_c_divide_chris_64>:
-  401440:	89 f8                	mov    eax,edi
-  401442:	49 c7 c0 ff ff ff ff 	mov    r8,0xffffffffffffffff
-  401449:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  40144e:	66 90                	xchg   ax,ax
-  401450:	89 c2                	mov    edx,eax
-  401452:	48 0f bc ca          	bsf    rcx,rdx
-  401456:	49 0f 44 c8          	cmove  rcx,r8
-  40145a:	48 83 c1 01          	add    rcx,0x1
-  40145e:	83 f9 03             	cmp    ecx,0x3
-  401461:	40 0f 9e c6          	setle  sil
-  401465:	85 c9                	test   ecx,ecx
-  401467:	0f 95 c1             	setne  cl
-  40146a:	48 c1 ea 03          	shr    rdx,0x3
-  40146e:	0f b6 c9             	movzx  ecx,cl
-  401471:	48 21 f1             	and    rcx,rsi
-  401474:	48 01 ca             	add    rdx,rcx
-  401477:	01 d0                	add    eax,edx
-  401479:	83 ef 01             	sub    edi,0x1
-  40147c:	75 d2                	jne    401450 <bench_c_divide_chris_64+0x10>
-  40147e:	c3                   	ret    
+0000000000401430 <bench_v_stoke_mul_32>:
+  401430:	89 f8                	mov    eax,edi
+  401432:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  401437:	45 31 c0             	xor    r8d,r8d
+  40143a:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  401440:	8d 50 ff             	lea    edx,[rax-0x1]
+  401443:	89 f7                	mov    edi,esi
+  401445:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40144b:	f7 df                	neg    edi
+  40144d:	c4 e2 6a f5 d7       	pext   edx,edx,edi
+  401452:	83 c2 01             	add    edx,0x1
+  401455:	85 c0                	test   eax,eax
+  401457:	41 0f 44 d0          	cmove  edx,r8d
+  40145b:	01 d0                	add    eax,edx
+  40145d:	83 e9 01             	sub    ecx,0x1
+  401460:	75 de                	jne    401440 <bench_v_stoke_mul_32+0x10>
+  401462:	c3                   	ret    
+  401463:	0f 1f 00             	nop    DWORD PTR [rax]
+  401466:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40146d:	00 00 00 
+
+0000000000401470 <bench_c_stoke_mul_64>:
+  401470:	89 f8                	mov    eax,edi
+  401472:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  401477:	41 b8 f8 07 00 00    	mov    r8d,0x7f8
+  40147d:	31 ff                	xor    edi,edi
   40147f:	90                   	nop
+  401480:	89 c6                	mov    esi,eax
+  401482:	c4 c2 ca f5 d0       	pext   rdx,rsi,r8
+  401487:	48 83 c2 01          	add    rdx,0x1
+  40148b:	48 85 f6             	test   rsi,rsi
+  40148e:	0f 44 d7             	cmove  edx,edi
+  401491:	01 d0                	add    eax,edx
+  401493:	83 e9 01             	sub    ecx,0x1
+  401496:	75 e8                	jne    401480 <bench_c_stoke_mul_64+0x10>
+  401498:	c3                   	ret    
+  401499:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
-0000000000401480 <bench_i_divide_chris_64>:
-  401480:	41 89 f0             	mov    r8d,esi
-  401483:	89 f8                	mov    eax,edi
-  401485:	49 c7 c1 ff ff ff ff 	mov    r9,0xffffffffffffffff
-  40148c:	f3 4d 0f bc c0       	tzcnt  r8,r8
-  401491:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  401496:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
-  40149d:	00 00 00 
-  4014a0:	89 c2                	mov    edx,eax
-  4014a2:	48 0f bc ca          	bsf    rcx,rdx
-  4014a6:	c4 e2 bb f7 d2       	shrx   rdx,rdx,r8
-  4014ab:	49 0f 44 c9          	cmove  rcx,r9
-  4014af:	48 83 c1 01          	add    rcx,0x1
-  4014b3:	44 39 c1             	cmp    ecx,r8d
-  4014b6:	40 0f 9e c6          	setle  sil
-  4014ba:	85 c9                	test   ecx,ecx
-  4014bc:	0f 95 c1             	setne  cl
-  4014bf:	0f b6 c9             	movzx  ecx,cl
-  4014c2:	48 21 f1             	and    rcx,rsi
-  4014c5:	48 01 ca             	add    rdx,rcx
-  4014c8:	01 d0                	add    eax,edx
-  4014ca:	83 ef 01             	sub    edi,0x1
-  4014cd:	75 d1                	jne    4014a0 <bench_i_divide_chris_64+0x20>
-  4014cf:	c3                   	ret    
+00000000004014a0 <bench_i_stoke_mul_64>:
+  4014a0:	89 f2                	mov    edx,esi
+  4014a2:	89 f8                	mov    eax,edi
+  4014a4:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4014a9:	48 89 d7             	mov    rdi,rdx
+  4014ac:	45 31 c0             	xor    r8d,r8d
+  4014af:	48 c1 e7 08          	shl    rdi,0x8
+  4014b3:	48 29 d7             	sub    rdi,rdx
+  4014b6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  4014bd:	00 00 00 
+  4014c0:	89 c6                	mov    esi,eax
+  4014c2:	c4 e2 ca f5 d7       	pext   rdx,rsi,rdi
+  4014c7:	48 83 c2 01          	add    rdx,0x1
+  4014cb:	48 85 f6             	test   rsi,rsi
+  4014ce:	41 0f 44 d0          	cmove  edx,r8d
+  4014d2:	01 d0                	add    eax,edx
+  4014d4:	83 e9 01             	sub    ecx,0x1
+  4014d7:	75 e7                	jne    4014c0 <bench_i_stoke_mul_64+0x20>
+  4014d9:	c3                   	ret    
+  4014da:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
 
-00000000004014d0 <bench_v_divide_chris_64>:
-  4014d0:	89 f8                	mov    eax,edi
-  4014d2:	49 c7 c2 ff ff ff ff 	mov    r10,0xffffffffffffffff
-  4014d9:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  4014de:	66 90                	xchg   ax,ax
-  4014e0:	89 c2                	mov    edx,eax
-  4014e2:	41 89 f0             	mov    r8d,esi
-  4014e5:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  4014eb:	48 0f bc ca          	bsf    rcx,rdx
-  4014ef:	49 0f 44 ca          	cmove  rcx,r10
-  4014f3:	f3 4d 0f bc c0       	tzcnt  r8,r8
-  4014f8:	c4 e2 bb f7 d2       	shrx   rdx,rdx,r8
-  4014fd:	48 83 c1 01          	add    rcx,0x1
-  401501:	44 39 c1             	cmp    ecx,r8d
-  401504:	41 0f 9e c1          	setle  r9b
-  401508:	85 c9                	test   ecx,ecx
-  40150a:	0f 95 c1             	setne  cl
-  40150d:	0f b6 c9             	movzx  ecx,cl
-  401510:	4c 21 c9             	and    rcx,r9
-  401513:	48 01 ca             	add    rdx,rcx
-  401516:	01 d0                	add    eax,edx
-  401518:	83 ef 01             	sub    edi,0x1
-  40151b:	75 c3                	jne    4014e0 <bench_v_divide_chris_64+0x10>
-  40151d:	c3                   	ret    
-  40151e:	66 90                	xchg   ax,ax
+00000000004014e0 <bench_v_stoke_mul_64>:
+  4014e0:	89 f8                	mov    eax,edi
+  4014e2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4014e7:	45 31 c9             	xor    r9d,r9d
+  4014ea:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+  4014f0:	41 89 f0             	mov    r8d,esi
+  4014f3:	89 c7                	mov    edi,eax
+  4014f5:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4014fb:	4c 89 c2             	mov    rdx,r8
+  4014fe:	48 c1 e2 08          	shl    rdx,0x8
+  401502:	4c 29 c2             	sub    rdx,r8
+  401505:	c4 e2 c2 f5 d2       	pext   rdx,rdi,rdx
+  40150a:	48 83 c2 01          	add    rdx,0x1
+  40150e:	48 85 ff             	test   rdi,rdi
+  401511:	41 0f 44 d1          	cmove  edx,r9d
+  401515:	01 d0                	add    eax,edx
+  401517:	83 e9 01             	sub    ecx,0x1
+  40151a:	75 d4                	jne    4014f0 <bench_v_stoke_mul_64+0x10>
+  40151c:	c3                   	ret    
+  40151d:	0f 1f 00             	nop    DWORD PTR [rax]
 
-00000000004016c0 <bench_i_divide_dummy_32>:
-  4016c0:	89 f8                	mov    eax,edi
-  4016c2:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
-  4016c7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  4016ce:	00 00 
-  4016d0:	8d 04 46             	lea    eax,[rsi+rax*2]
-  4016d3:	83 ea 01             	sub    edx,0x1
-  4016d6:	75 f8                	jne    4016d0 <bench_i_divide_dummy_32+0x10>
-  4016d8:	c3                   	ret    
-  4016d9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+0000000000401520 <bench_c_divide_chris_32>:
+  401520:	89 f8                	mov    eax,edi
+  401522:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  401527:	bf ff ff ff ff       	mov    edi,0xffffffff
+  40152c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+  401530:	0f bc d0             	bsf    edx,eax
+  401533:	0f 44 d7             	cmove  edx,edi
+  401536:	83 c2 01             	add    edx,0x1
+  401539:	83 fa 03             	cmp    edx,0x3
+  40153c:	0f 9e c1             	setle  cl
+  40153f:	85 d2                	test   edx,edx
+  401541:	0f 95 c2             	setne  dl
+  401544:	0f b6 d2             	movzx  edx,dl
+  401547:	21 ca                	and    edx,ecx
+  401549:	89 c1                	mov    ecx,eax
+  40154b:	c1 e9 03             	shr    ecx,0x3
+  40154e:	01 ca                	add    edx,ecx
+  401550:	01 d0                	add    eax,edx
+  401552:	83 ee 01             	sub    esi,0x1
+  401555:	75 d9                	jne    401530 <bench_c_divide_chris_32+0x10>
+  401557:	c3                   	ret    
+  401558:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  40155f:	00 
 
-00000000004016e0 <bench_v_divide_dummy_32>:
-  4016e0:	89 f8                	mov    eax,edi
-  4016e2:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
-  4016e7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  4016ee:	00 00 
-  4016f0:	8d 04 46             	lea    eax,[rsi+rax*2]
-  4016f3:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  4016f9:	83 ea 01             	sub    edx,0x1
-  4016fc:	75 f2                	jne    4016f0 <bench_v_divide_dummy_32+0x10>
-  4016fe:	c3                   	ret    
-  4016ff:	90                   	nop
+0000000000401560 <bench_i_divide_chris_32>:
+  401560:	89 f8                	mov    eax,edi
+  401562:	31 ff                	xor    edi,edi
+  401564:	41 b8 ff ff ff ff    	mov    r8d,0xffffffff
+  40156a:	f3 0f bc fe          	tzcnt  edi,esi
+  40156e:	be 00 ca 9a 3b       	mov    esi,0x3b9aca00
+  401573:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  401578:	0f bc d0             	bsf    edx,eax
+  40157b:	41 0f 44 d0          	cmove  edx,r8d
+  40157f:	83 c2 01             	add    edx,0x1
+  401582:	39 fa                	cmp    edx,edi
+  401584:	0f 9e c1             	setle  cl
+  401587:	85 d2                	test   edx,edx
+  401589:	0f 95 c2             	setne  dl
+  40158c:	0f b6 d2             	movzx  edx,dl
+  40158f:	21 ca                	and    edx,ecx
+  401591:	c4 e2 43 f7 c8       	shrx   ecx,eax,edi
+  401596:	01 ca                	add    edx,ecx
+  401598:	01 d0                	add    eax,edx
+  40159a:	83 ee 01             	sub    esi,0x1
+  40159d:	75 d9                	jne    401578 <bench_i_divide_chris_32+0x18>
+  40159f:	c3                   	ret    
 
-0000000000401700 <bench_c_div_stoke_32>:
-  401700:	89 f8                	mov    eax,edi
-  401702:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  401707:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40170e:	00 00 
-  401710:	89 c2                	mov    edx,eax
-  401712:	c1 ea 03             	shr    edx,0x3
-  401715:	8d 3c d5 00 00 00 00 	lea    edi,[rdx*8+0x0]
-  40171c:	8d 72 01             	lea    esi,[rdx+0x1]
-  40171f:	39 c7                	cmp    edi,eax
-  401721:	0f 45 d6             	cmovne edx,esi
-  401724:	01 d0                	add    eax,edx
-  401726:	83 e9 01             	sub    ecx,0x1
-  401729:	75 e5                	jne    401710 <bench_c_div_stoke_32+0x10>
-  40172b:	c3                   	ret    
-  40172c:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+00000000004015a0 <bench_v_divide_chris_32>:
+  4015a0:	89 f8                	mov    eax,edi
+  4015a2:	41 b8 00 ca 9a 3b    	mov    r8d,0x3b9aca00
+  4015a8:	41 b9 ff ff ff ff    	mov    r9d,0xffffffff
+  4015ae:	66 90                	xchg   ax,ax
+  4015b0:	0f bc c8             	bsf    ecx,eax
+  4015b3:	41 0f 44 c9          	cmove  ecx,r9d
+  4015b7:	31 d2                	xor    edx,edx
+  4015b9:	f3 0f bc d6          	tzcnt  edx,esi
+  4015bd:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4015c3:	83 c1 01             	add    ecx,0x1
+  4015c6:	39 d1                	cmp    ecx,edx
+  4015c8:	c4 e2 6b f7 d0       	shrx   edx,eax,edx
+  4015cd:	40 0f 9e c7          	setle  dil
+  4015d1:	85 c9                	test   ecx,ecx
+  4015d3:	0f 95 c1             	setne  cl
+  4015d6:	0f b6 c9             	movzx  ecx,cl
+  4015d9:	21 f9                	and    ecx,edi
+  4015db:	01 ca                	add    edx,ecx
+  4015dd:	01 d0                	add    eax,edx
+  4015df:	41 83 e8 01          	sub    r8d,0x1
+  4015e3:	75 cb                	jne    4015b0 <bench_v_divide_chris_32+0x10>
+  4015e5:	c3                   	ret    
+  4015e6:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  4015ed:	00 00 00 
 
-0000000000401730 <bench_i_div_stoke_32>:
-  401730:	89 f8                	mov    eax,edi
-  401732:	f3 0f bc f6          	tzcnt  esi,esi
-  401736:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
-  40173b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
-  401740:	c4 e2 4b f7 d0       	shrx   edx,eax,esi
-  401745:	c4 62 49 f7 c2       	shlx   r8d,edx,esi
-  40174a:	8d 7a 01             	lea    edi,[rdx+0x1]
-  40174d:	41 39 c0             	cmp    r8d,eax
-  401750:	0f 45 d7             	cmovne edx,edi
-  401753:	01 d0                	add    eax,edx
-  401755:	83 e9 01             	sub    ecx,0x1
-  401758:	75 e6                	jne    401740 <bench_i_div_stoke_32+0x10>
-  40175a:	c3                   	ret    
-  40175b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+00000000004015f0 <bench_c_divide_chris_64>:
+  4015f0:	89 f8                	mov    eax,edi
+  4015f2:	49 c7 c0 ff ff ff ff 	mov    r8,0xffffffffffffffff
+  4015f9:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  4015fe:	66 90                	xchg   ax,ax
+  401600:	89 c2                	mov    edx,eax
+  401602:	48 0f bc ca          	bsf    rcx,rdx
+  401606:	49 0f 44 c8          	cmove  rcx,r8
+  40160a:	48 83 c1 01          	add    rcx,0x1
+  40160e:	83 f9 03             	cmp    ecx,0x3
+  401611:	40 0f 9e c6          	setle  sil
+  401615:	85 c9                	test   ecx,ecx
+  401617:	0f 95 c1             	setne  cl
+  40161a:	48 c1 ea 03          	shr    rdx,0x3
+  40161e:	0f b6 c9             	movzx  ecx,cl
+  401621:	48 21 f1             	and    rcx,rsi
+  401624:	48 01 ca             	add    rdx,rcx
+  401627:	01 d0                	add    eax,edx
+  401629:	83 ef 01             	sub    edi,0x1
+  40162c:	75 d2                	jne    401600 <bench_c_divide_chris_64+0x10>
+  40162e:	c3                   	ret    
+  40162f:	90                   	nop
 
-0000000000401760 <bench_v_div_stoke_32>:
-  401760:	89 f8                	mov    eax,edi
-  401762:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
-  401767:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
-  40176e:	00 00 
-  401770:	31 c9                	xor    ecx,ecx
-  401772:	f3 0f bc ce          	tzcnt  ecx,esi
-  401776:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
-  40177c:	c4 e2 73 f7 d0       	shrx   edx,eax,ecx
-  401781:	c4 e2 71 f7 ca       	shlx   ecx,edx,ecx
-  401786:	44 8d 42 01          	lea    r8d,[rdx+0x1]
-  40178a:	39 c1                	cmp    ecx,eax
-  40178c:	41 0f 45 d0          	cmovne edx,r8d
-  401790:	01 d0                	add    eax,edx
-  401792:	83 ef 01             	sub    edi,0x1
-  401795:	75 d9                	jne    401770 <bench_v_div_stoke_32+0x10>
-  401797:	c3                   	ret    
-  401798:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
-  40179f:	00 
+0000000000401630 <bench_i_divide_chris_64>:
+  401630:	41 89 f0             	mov    r8d,esi
+  401633:	89 f8                	mov    eax,edi
+  401635:	49 c7 c1 ff ff ff ff 	mov    r9,0xffffffffffffffff
+  40163c:	f3 4d 0f bc c0       	tzcnt  r8,r8
+  401641:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  401646:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+  40164d:	00 00 00 
+  401650:	89 c2                	mov    edx,eax
+  401652:	48 0f bc ca          	bsf    rcx,rdx
+  401656:	c4 e2 bb f7 d2       	shrx   rdx,rdx,r8
+  40165b:	49 0f 44 c9          	cmove  rcx,r9
+  40165f:	48 83 c1 01          	add    rcx,0x1
+  401663:	44 39 c1             	cmp    ecx,r8d
+  401666:	40 0f 9e c6          	setle  sil
+  40166a:	85 c9                	test   ecx,ecx
+  40166c:	0f 95 c1             	setne  cl
+  40166f:	0f b6 c9             	movzx  ecx,cl
+  401672:	48 21 f1             	and    rcx,rsi
+  401675:	48 01 ca             	add    rdx,rcx
+  401678:	01 d0                	add    eax,edx
+  40167a:	83 ef 01             	sub    edi,0x1
+  40167d:	75 d1                	jne    401650 <bench_i_divide_chris_64+0x20>
+  40167f:	c3                   	ret    
+
+0000000000401680 <bench_v_divide_chris_64>:
+  401680:	89 f8                	mov    eax,edi
+  401682:	49 c7 c2 ff ff ff ff 	mov    r10,0xffffffffffffffff
+  401689:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  40168e:	66 90                	xchg   ax,ax
+  401690:	89 c2                	mov    edx,eax
+  401692:	41 89 f0             	mov    r8d,esi
+  401695:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40169b:	48 0f bc ca          	bsf    rcx,rdx
+  40169f:	49 0f 44 ca          	cmove  rcx,r10
+  4016a3:	f3 4d 0f bc c0       	tzcnt  r8,r8
+  4016a8:	c4 e2 bb f7 d2       	shrx   rdx,rdx,r8
+  4016ad:	48 83 c1 01          	add    rcx,0x1
+  4016b1:	44 39 c1             	cmp    ecx,r8d
+  4016b4:	41 0f 9e c1          	setle  r9b
+  4016b8:	85 c9                	test   ecx,ecx
+  4016ba:	0f 95 c1             	setne  cl
+  4016bd:	0f b6 c9             	movzx  ecx,cl
+  4016c0:	4c 21 c9             	and    rcx,r9
+  4016c3:	48 01 ca             	add    rdx,rcx
+  4016c6:	01 d0                	add    eax,edx
+  4016c8:	83 ef 01             	sub    edi,0x1
+  4016cb:	75 c3                	jne    401690 <bench_v_divide_chris_64+0x10>
+  4016cd:	c3                   	ret    
+  4016ce:	66 90                	xchg   ax,ax
+
+0000000000401780 <bench_i_divide_dummy_32>:
+  401780:	89 f8                	mov    eax,edi
+  401782:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
+  401787:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40178e:	00 00 
+  401790:	8d 04 46             	lea    eax,[rsi+rax*2]
+  401793:	83 ea 01             	sub    edx,0x1
+  401796:	75 f8                	jne    401790 <bench_i_divide_dummy_32+0x10>
+  401798:	c3                   	ret    
+  401799:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
+
+00000000004017a0 <bench_v_divide_dummy_32>:
+  4017a0:	89 f8                	mov    eax,edi
+  4017a2:	ba 00 ca 9a 3b       	mov    edx,0x3b9aca00
+  4017a7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4017ae:	00 00 
+  4017b0:	8d 04 46             	lea    eax,[rsi+rax*2]
+  4017b3:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  4017b9:	83 ea 01             	sub    edx,0x1
+  4017bc:	75 f2                	jne    4017b0 <bench_v_divide_dummy_32+0x10>
+  4017be:	c3                   	ret    
+  4017bf:	90                   	nop
+
+00000000004017c0 <bench_c_div_stoke_32>:
+  4017c0:	89 f8                	mov    eax,edi
+  4017c2:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4017c7:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  4017ce:	00 00 
+  4017d0:	89 c2                	mov    edx,eax
+  4017d2:	c1 ea 03             	shr    edx,0x3
+  4017d5:	8d 3c d5 00 00 00 00 	lea    edi,[rdx*8+0x0]
+  4017dc:	8d 72 01             	lea    esi,[rdx+0x1]
+  4017df:	39 c7                	cmp    edi,eax
+  4017e1:	0f 45 d6             	cmovne edx,esi
+  4017e4:	01 d0                	add    eax,edx
+  4017e6:	83 e9 01             	sub    ecx,0x1
+  4017e9:	75 e5                	jne    4017d0 <bench_c_div_stoke_32+0x10>
+  4017eb:	c3                   	ret    
+  4017ec:	0f 1f 40 00          	nop    DWORD PTR [rax+0x0]
+
+00000000004017f0 <bench_i_div_stoke_32>:
+  4017f0:	89 f8                	mov    eax,edi
+  4017f2:	f3 0f bc f6          	tzcnt  esi,esi
+  4017f6:	b9 00 ca 9a 3b       	mov    ecx,0x3b9aca00
+  4017fb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+  401800:	c4 e2 4b f7 d0       	shrx   edx,eax,esi
+  401805:	c4 62 49 f7 c2       	shlx   r8d,edx,esi
+  40180a:	8d 7a 01             	lea    edi,[rdx+0x1]
+  40180d:	41 39 c0             	cmp    r8d,eax
+  401810:	0f 45 d7             	cmovne edx,edi
+  401813:	01 d0                	add    eax,edx
+  401815:	83 e9 01             	sub    ecx,0x1
+  401818:	75 e6                	jne    401800 <bench_i_div_stoke_32+0x10>
+  40181a:	c3                   	ret    
+  40181b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+
+0000000000401820 <bench_v_div_stoke_32>:
+  401820:	89 f8                	mov    eax,edi
+  401822:	bf 00 ca 9a 3b       	mov    edi,0x3b9aca00
+  401827:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+  40182e:	00 00 
+  401830:	31 c9                	xor    ecx,ecx
+  401832:	f3 0f bc ce          	tzcnt  ecx,esi
+  401836:	c4 e3 7b f0 f6 1f    	rorx   esi,esi,0x1f
+  40183c:	c4 e2 73 f7 d0       	shrx   edx,eax,ecx
+  401841:	c4 e2 71 f7 ca       	shlx   ecx,edx,ecx
+  401846:	44 8d 42 01          	lea    r8d,[rdx+0x1]
+  40184a:	39 c1                	cmp    ecx,eax
+  40184c:	41 0f 45 d0          	cmovne edx,r8d
+  401850:	01 d0                	add    eax,edx
+  401852:	83 ef 01             	sub    edi,0x1
+  401855:	75 d9                	jne    401830 <bench_v_div_stoke_32+0x10>
+  401857:	c3                   	ret    
+  401858:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [rax+rax*1+0x0]
+  40185f:	00 
 

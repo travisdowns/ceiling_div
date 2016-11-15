@@ -105,8 +105,8 @@ void bench_index(int indexes[], bfunc_t f32[], bfunc_t f64[], const char *name) 
   }
 }
 
-int main(int argc, char** argv) {
-  int *indexes = filter(argc == 1 ? NULL : argv[1]);
+int main(int argc, const char** argv) {
+  int *indexes = filter(argc, argv);
   bench_index(indexes, bfuncs_C32, bfuncs_C64, "Compile-time constant Q");
   bench_index(indexes, bfuncs_I32, bfuncs_I64, "Invariant Q");
   bench_index(indexes, bfuncs_V32, bfuncs_V64, "Variable Q");

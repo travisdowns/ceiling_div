@@ -53,8 +53,8 @@ void bench_index(int indexes[]) {
   }
 }
 
-int main(int argc, char** argv) {
-  bench_index(filter(argc == 1 ? NULL : argv[1]));
+int main(int argc,const char** argv) {
+  bench_index(filter(argc, argv));
 }
 
 

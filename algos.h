@@ -31,6 +31,20 @@ incl %eax
 retq   
 */
 
+ALGO_DECL unsigned divide_peter_32(unsigned p, unsigned q) {
+    unsigned mask = -(unsigned)(p!=0);  // TEST+SETCC+NEG
+    unsigned e = lg32(q);
+    unsigned nonzero_result = ((p-1) >> e) + 1;
+    return nonzero_result & mask;
+}
+
+ALGO_DECL unsigned long divide_peter_64(unsigned long p, unsigned long q) {
+    unsigned long mask = -(unsigned long)(p!=0);  // TEST+SETCC+NEG
+    unsigned long e = lg64(q);
+    unsigned long nonzero_result = ((p-1) >> e) + 1;
+    return nonzero_result & mask;
+}
+
 ALGO_DECL unsigned stoke32_32(unsigned p, unsigned q) {
   return (((unsigned long)p - 1) >> lg32(q)) + 1;
 }
